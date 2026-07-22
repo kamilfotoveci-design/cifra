@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-22",
+  "framework": "vanilla-html",
+  "font_stack": [
+    "Bricolage Grotesque",
+    "Instrument Sans",
+    "IBM Plex Mono"
+  ],
+  "palette": "Vystav Cobalt ledger",
+  "motion": "CSS only",
+  "spacing": "4pt tokens",
+  "design_system": "DESIGN.md"
+}

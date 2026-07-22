@@ -1,19 +1,92 @@
-# Cifra Design Direction
+# Vystav Design Direction
 
 ## Thesis
-Cifra is a calm financial workbench for getting paid, not a generic dashboard. The interface should make the invoice and its payment state feel immediately legible, with one confident action per surface.
+Vystav is a calm financial workbench for Czech and Slovak freelancers and small firms. The invoice, payment details, and next action must be immediately legible. Every surface has one confident primary action.
 
 ## Visual world
-The visual language is based on a precise blue ledger: warm white paper surfaces, ink-black text, cobalt actions, and fine blue-grey rules. Structure comes from alignment, spacing, and typography; decorative gradients, floating glass, and ornamental shadows are excluded.
+A precise cobalt ledger: bright paper, deep blue-black ink, cobalt actions, and fine blue-grey rules. Hierarchy comes from typography, alignment, and spacing. Decorative gradients, glass panels, oversized rounding, ornamental shadows, fake browser chrome, and tiny uppercase labels are excluded.
 
 ## Typography
-Use Instrument Sans when available, then Aptos/Segoe UI Variable/system fallbacks. Financial values use tabular Instrument Sans numerals for a consistent, humanist reading rhythm. Use a restrained scale: 13px metadata, 15–16px body and controls, 18–20px section titles, 36px app titles, and fluid display type only on the landing page. Use 400/500/600/700 weights with generous line-height for reading and tighter line-height for display numbers.
+The public landing uses Bricolage Grotesque for the wordmark and display headlines, giving Vystav an individual but restrained voice. Product UI and body copy use Instrument Sans with Aptos and Segoe UI Variable fallbacks. Financial values use tabular numerals. Body and controls stay at 15–17px; metadata never falls below 13px.
 
 ## Surfaces and components
-Public surfaces use deep ink `#091426` with cobalt signal `#2457ff`; the authenticated workspace uses a bright ledger canvas `#f6f8fb` and paper `#ffffff`. Ink `#101828`, muted `#667085`, rule `#dbe2ec`, and deep navy `#10213f` keep the system grounded. Cards use a 16px radius and a 1px rule, with no default shadow. Status colors are reserved for payment state. Buttons, fields, navigation, tables, and the invoice modal share the same radius, focus ring, and spacing rhythm.
+Public surfaces use Vystav Cobalt tokens from `tokens.css`. The authenticated workspace keeps its bright ledger canvas and dark navigation rail. Cards use fine rules, restrained 10–18px radii, and no default shadow. Status colors communicate payment state only. Buttons, fields, tabs, tables, and invoice previews share focus, spacing, and active-state conventions.
 
 ## Layout and behavior
-Landing is a two-column proof-first composition that collapses to one column. Auth is a focused single-card flow. The app is a persistent dark navigation rail plus a bright operational workspace. Dashboard content uses a flexible stat grid, a wider income panel, a quick-action rail, and a responsive invoice table. At narrow widths, controls wrap or stack before text shrinks; the table scrolls as a bounded region.
+The landing follows a product-first Workbench structure: three-part sticky navigation, concise hero, live invoice demo, workflow proof, capability ledger, and closing statement. The demo is real DOM with overview, invoice, and scannable Czech SPD QR states. At narrow widths, layout stacks before typography shrinks; controls remain at least 40px high.
 
 ## Motion and accessibility
-Use short ease-out transitions for controls and a restrained modal/toast entrance. Respect `prefers-reduced-motion`. Keep body text at or above 15px, preserve visible focus states, and communicate payment state with text as well as color.
+Use 120–420ms ease-out transitions for hero settle, demo crossfade, button feedback, and sticky navigation only. Respect `prefers-reduced-motion`. Preserve visible keyboard focus, semantic tabs, meaningful button labels, and text alongside status color.
+
+## Exports
+
+`tokens.css` is the source of truth and ships beside both generated HTML files.
+
+### Tailwind v4
+```css
+@theme {
+  --color-paper: oklch(98% 0.008 255);
+  --color-paper-2: oklch(95.5% 0.012 255);
+  --color-paper-3: oklch(92% 0.016 255);
+  --color-ink: oklch(18% 0.025 255);
+  --color-ink-2: oklch(31% 0.028 255);
+  --color-muted: oklch(49% 0.025 255);
+  --color-rule: oklch(86% 0.020 255);
+  --color-accent: oklch(55% 0.230 260);
+  --color-focus: oklch(67% 0.180 260);
+  --font-display: "Bricolage Grotesque", "Instrument Sans", sans-serif;
+  --font-body: "Instrument Sans", Aptos, sans-serif;
+  --spacing-xs: .5rem;
+  --spacing-sm: .75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem;
+  --radius-card: 14px;
+  --radius-input: 10px;
+  --ease-out: cubic-bezier(.16,1,.3,1);
+}
+```
+
+### DTCG tokens.json
+```json
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "color": {
+    "paper": {"$value":"oklch(98% 0.008 255)","$type":"color"},
+    "ink": {"$value":"oklch(18% 0.025 255)","$type":"color"},
+    "muted": {"$value":"oklch(49% 0.025 255)","$type":"color"},
+    "rule": {"$value":"oklch(86% 0.020 255)","$type":"color"},
+    "accent": {"$value":"oklch(55% 0.230 260)","$type":"color"},
+    "focus": {"$value":"oklch(67% 0.180 260)","$type":"color"}
+  },
+  "font": {
+    "display": {"$value":"Bricolage Grotesque, Instrument Sans, sans-serif","$type":"fontFamily"},
+    "body": {"$value":"Instrument Sans, Aptos, sans-serif","$type":"fontFamily"}
+  },
+  "duration": {
+    "micro": {"$value":"120ms","$type":"duration"},
+    "short": {"$value":"220ms","$type":"duration"},
+    "long": {"$value":"420ms","$type":"duration"}
+  }
+}
+```
+
+### shadcn/ui
+```css
+:root {
+  --background: 98% 0.008 255;
+  --foreground: 18% 0.025 255;
+  --card: 95.5% 0.012 255;
+  --card-foreground: 18% 0.025 255;
+  --primary: 55% 0.230 260;
+  --primary-foreground: 98% 0.006 255;
+  --secondary: 92% 0.016 255;
+  --secondary-foreground: 31% 0.028 255;
+  --muted: 86% 0.020 255;
+  --muted-foreground: 49% 0.025 255;
+  --border: 86% 0.020 255;
+  --input: 86% 0.020 255;
+  --ring: 67% 0.180 260;
+  --radius: 0.875rem;
+}
+```
