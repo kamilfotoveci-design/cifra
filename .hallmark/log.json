@@ -1,22 +1,32 @@
 [
-  {
-    "date": "2026-07-23",
-    "scope": "landing",
-    "macrostructure": "Statement + Proof",
-    "theme": "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
-    "enrichment": "E1 tier-A live product demo",
-    "nav": "N2",
-    "footer": "Ft5",
-    "brief": "Complete landing redesign with editorial statement, real product stage, invoice-to-payment proof flow, and ledger feature list"
-  },
-  {
-    "date": "2026-07-22",
-    "scope": "landing",
-    "macrostructure": "Workbench",
-    "theme": "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
-    "enrichment": "E1 tier-A live product demo",
-    "nav": "N1b",
-    "footer": "Ft5",
-    "brief": "Vystav landing page with interactive invoice and QR demo"
-  }
+    {
+        "date":  "2026-07-23",
+        "scope":  "landing",
+        "macrostructure":  "Split Studio",
+        "theme":  "Cobalt",
+        "enrichment":  "tier-A live product demo",
+        "nav":  "N9",
+        "footer":  "Ft2",
+        "brief":  "Anti-slop landing refinement with restrained product-led motion and tonal interaction states"
+    },
+    {
+        "date":  "2026-07-23",
+        "scope":  "landing",
+        "macrostructure":  "Statement + Proof",
+        "theme":  "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
+        "enrichment":  "E1 tier-A live product demo",
+        "nav":  "N2",
+        "footer":  "Ft5",
+        "brief":  "Complete landing redesign with editorial statement, real product stage, invoice-to-payment proof flow, and ledger feature list"
+    },
+    {
+        "date":  "2026-07-22",
+        "scope":  "landing",
+        "macrostructure":  "Workbench",
+        "theme":  "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
+        "enrichment":  "E1 tier-A live product demo",
+        "nav":  "N1b",
+        "footer":  "Ft5",
+        "brief":  "Vystav landing page with interactive invoice and QR demo"
+    }
 ]

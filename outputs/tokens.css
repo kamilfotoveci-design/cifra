@@ -18,8 +18,8 @@
   --color-night-muted: oklch(76% 0.025 255);
   --color-night-rule: oklch(34% 0.038 255);
 
-  --font-display: "Manrope", Aptos, "Segoe UI Variable", sans-serif;
-  --font-body: "Manrope", Aptos, "Segoe UI Variable", sans-serif;
+  --font-display: "Geist", "Segoe UI Variable", sans-serif;
+  --font-body: "IBM Plex Sans", Aptos, "Segoe UI", sans-serif;
   --font-ui: var(--font-body);
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
