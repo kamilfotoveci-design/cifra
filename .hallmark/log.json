@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-07-23",
+    "scope": "landing",
+    "macrostructure": "Statement + Proof",
+    "theme": "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
+    "enrichment": "E1 tier-A live product demo",
+    "nav": "N2",
+    "footer": "Ft5",
+    "brief": "Complete landing redesign with editorial statement, real product stage, invoice-to-payment proof flow, and ledger feature list"
+  },
+  {
     "date": "2026-07-22",
     "scope": "landing",
     "macrostructure": "Workbench",

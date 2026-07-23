@@ -7,13 +7,13 @@ Vystav is a calm financial workbench for Czech and Slovak freelancers and small 
 A precise cobalt ledger: bright paper, deep blue-black ink, cobalt actions, and fine blue-grey rules. Hierarchy comes from typography, alignment, and spacing. Decorative gradients, glass panels, oversized rounding, ornamental shadows, fake browser chrome, and tiny uppercase labels are excluded.
 
 ## Typography
-The public landing uses Bricolage Grotesque for the wordmark and display headlines, giving Vystav an individual but restrained voice. Product UI and body copy use Instrument Sans with Aptos and Segoe UI Variable fallbacks. Financial values use tabular numerals. Body and controls stay at 15–17px; metadata never falls below 13px.
+The public landing uses Manrope for the wordmark and display headlines, giving Vystav an individual but restrained voice. Product UI, body copy, and display type use Manrope with Aptos and Segoe UI Variable fallbacks. Financial values use tabular numerals. Body and controls stay at 15–17px; metadata never falls below 13px.
 
 ## Surfaces and components
 Public surfaces use Vystav Cobalt tokens from `tokens.css`. The authenticated workspace keeps its bright ledger canvas and dark navigation rail. Cards use fine rules, restrained 10–18px radii, and no default shadow. Status colors communicate payment state only. Buttons, fields, tabs, tables, and invoice previews share focus, spacing, and active-state conventions.
 
 ## Layout and behavior
-The landing follows a product-first Workbench structure: three-part sticky navigation, concise hero, live invoice demo, workflow proof, capability ledger, and closing statement. The demo is real DOM with overview, invoice, and scannable Czech SPD QR states. At narrow widths, layout stacks before typography shrinks; controls remain at least 40px high.
+The landing follows a Statement + Proof structure: three-part sticky navigation, concise hero, live invoice demo, workflow proof, capability ledger, and closing statement. The demo is real DOM with overview, invoice, and scannable Czech SPD QR states. At narrow widths, layout stacks before typography shrinks; controls remain at least 40px high.
 
 ## Motion and accessibility
 Use 120–420ms ease-out transitions for hero settle, demo crossfade, button feedback, and sticky navigation only. Respect `prefers-reduced-motion`. Preserve visible keyboard focus, semantic tabs, meaningful button labels, and text alongside status color.
@@ -34,8 +34,8 @@ Use 120–420ms ease-out transitions for hero settle, demo crossfade, button fee
   --color-rule: oklch(86% 0.020 255);
   --color-accent: oklch(55% 0.230 260);
   --color-focus: oklch(67% 0.180 260);
-  --font-display: "Bricolage Grotesque", "Instrument Sans", sans-serif;
-  --font-body: "Instrument Sans", Aptos, sans-serif;
+  --font-display: "Manrope", Aptos, sans-serif;
+  --font-body: "Manrope", Aptos, sans-serif;
   --spacing-xs: .5rem;
   --spacing-sm: .75rem;
   --spacing-md: 1rem;
@@ -60,8 +60,8 @@ Use 120–420ms ease-out transitions for hero settle, demo crossfade, button fee
     "focus": {"$value":"oklch(67% 0.180 260)","$type":"color"}
   },
   "font": {
-    "display": {"$value":"Bricolage Grotesque, Instrument Sans, sans-serif","$type":"fontFamily"},
-    "body": {"$value":"Instrument Sans, Aptos, sans-serif","$type":"fontFamily"}
+    "display": {"$value":"Manrope, Aptos, sans-serif","$type":"fontFamily"},
+    "body": {"$value":"Manrope, Aptos, sans-serif","$type":"fontFamily"}
   },
   "duration": {
     "micro": {"$value":"120ms","$type":"duration"},
