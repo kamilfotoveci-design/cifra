@@ -1283,10 +1283,14 @@ body .toast {
   }
 
   .app .help-row {
+    width: 100%;
     min-height: 44px;
     padding-inline: 11px;
+    border: 0;
+    background: transparent;
     color: var(--color-night-muted);
     font-size: 14px;
+    text-align: left;
   }
 
   .app .user-row {
