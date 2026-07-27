@@ -6,3 +6,7 @@ node_modules/
 .env
 .env.*
 !.env.example
+tmp/
+.impeccable/
+outputs/faktury-dashboard-remap.html
+outputs/assets/fonts/

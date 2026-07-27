@@ -1,32 +1,57 @@
 [
     {
-        "date":  "2026-07-23",
-        "scope":  "landing",
-        "macrostructure":  "Split Studio",
-        "theme":  "Cobalt",
-        "enrichment":  "tier-A live product demo",
-        "nav":  "N9",
-        "footer":  "Ft2",
-        "brief":  "Anti-slop landing refinement with restrained product-led motion and tonal interaction states"
+        "date":  "2026-07-27",
+        "scope":  "landing + product app",
+        "macrostructure":  "Product Canvas",
+        "theme":  "supplied VYSTAV brand manual (#1D4ED8 + #35D2C3)",
+        "enrichment":  "single live product canvas",
+        "nav":  "N1b restrained",
+        "footer":  "Ft2 compact",
+        "brief":  "Minimal luxury redesign using the supplied logo, Inter typography, one product proof, three-step workflow and consistent application identity"
     },
     {
-        "date":  "2026-07-23",
-        "scope":  "landing",
-        "macrostructure":  "Statement + Proof",
-        "theme":  "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
-        "enrichment":  "E1 tier-A live product demo",
-        "nav":  "N2",
-        "footer":  "Ft5",
-        "brief":  "Complete landing redesign with editorial statement, real product stage, invoice-to-payment proof flow, and ledger feature list"
-    },
-    {
-        "date":  "2026-07-22",
-        "scope":  "landing",
-        "macrostructure":  "Workbench",
-        "theme":  "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
-        "enrichment":  "E1 tier-A live product demo",
-        "nav":  "N1b",
-        "footer":  "Ft5",
-        "brief":  "Vystav landing page with interactive invoice and QR demo"
+        "value":  [
+                      {
+                          "date":  "2026-07-23",
+                          "scope":  "landing + product app",
+                          "macrostructure":  "Feature Stack",
+                          "theme":  "studied-DNA (Stripe + Mercury + Linear + Wise, Vystav Cobalt)",
+                          "enrichment":  "live product canvas",
+                          "nav":  "N1b",
+                          "footer":  "Ft1",
+                          "brief":  "Full-system redesign of the Vystav landing, authentication, dashboard, tables, forms, invoice detail and responsive shell"
+                      },
+                      {
+                          "date":  "2026-07-23",
+                          "scope":  "landing",
+                          "macrostructure":  "Split Studio",
+                          "theme":  "Cobalt",
+                          "enrichment":  "tier-A live product demo",
+                          "nav":  "N9",
+                          "footer":  "Ft2",
+                          "brief":  "Anti-slop landing refinement with restrained product-led motion and tonal interaction states"
+                      },
+                      {
+                          "date":  "2026-07-23",
+                          "scope":  "landing",
+                          "macrostructure":  "Statement + Proof",
+                          "theme":  "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
+                          "enrichment":  "E1 tier-A live product demo",
+                          "nav":  "N2",
+                          "footer":  "Ft5",
+                          "brief":  "Complete landing redesign with editorial statement, real product stage, invoice-to-payment proof flow, and ledger feature list"
+                      },
+                      {
+                          "date":  "2026-07-22",
+                          "scope":  "landing",
+                          "macrostructure":  "Workbench",
+                          "theme":  "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
+                          "enrichment":  "E1 tier-A live product demo",
+                          "nav":  "N1b",
+                          "footer":  "Ft5",
+                          "brief":  "Vystav landing page with interactive invoice and QR demo"
+                      }
+                  ],
+        "Count":  4
     }
 ]

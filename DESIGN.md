@@ -1,92 +1,88 @@
-# Vystav Design Direction
+# Vystav — locked product design system
 
-## Thesis
-Vystav is a calm financial workbench for Czech and Slovak freelancers and small firms. The invoice, payment details, and next action must be immediately legible. Every surface has one confident primary action.
+Vystav is a calm invoicing workspace for Czech and Slovak freelancers and small firms. Every surface should feel precise, legible and composed. The product earns trust through clarity, not decoration.
 
-## Visual world
-A precise cobalt ledger: bright paper, deep blue-black ink, cobalt actions, and fine blue-grey rules. Hierarchy comes from typography, alignment, and spacing. Decorative gradients, glass panels, oversized rounding, ornamental shadows, fake browser chrome, and tiny uppercase labels are excluded.
+## Genre
+
+Modern-minimal with a restrained financial-product character.
+
+## Structure
+
+- Marketing: one decisive hero, one live product canvas, one concise capability sequence and one closing action.
+- Product: stable navigation, divided information bands, clear tables and forms, one primary action per screen.
+- Documents: white paper, typographic hierarchy, generous margins and quiet Vystav icon.
+
+## Brand
+
+- Primary blue: `#1D4ED8`.
+- Accent turquoise: `#35D2C3`.
+- Dark text: `#1E293B`.
+- Light background: `#F8FAFC`.
+- Supporting colour is semantic only: green for paid, amber for waiting, red for overdue.
+- No decorative gradients, glass panels, floating pills, oversized rounding, ornamental shadows or icon confetti.
 
 ## Typography
-The public landing uses Geist for the wordmark and display headlines, giving Vystav a precise but restrained voice. Product UI and body copy use IBM Plex Sans with Aptos and Segoe UI fallbacks; IBM Plex Mono is reserved for machine-readable values. Financial values use tabular numerals. Body and controls stay at 15–17px; metadata never falls below 13px.
 
-## Surfaces and components
-Public surfaces use Vystav Cobalt tokens from `tokens.css`. The authenticated workspace keeps its bright ledger canvas and dark navigation rail. Cards use fine rules, restrained 10–18px radii, and no default shadow. Status colors communicate payment state only. Buttons, fields, tabs, tables, and invoice previews share focus, spacing, and active-state conventions.
+- Display and body: Inter.
+- Supporting emphasis: Manrope, used sparingly.
+- Weights: 400 for reading, 500 for controls and data, 700 for headings and primary actions.
+- Financial values use tabular numerals.
+- Body copy is 16–18 px. Operational metadata never falls below 13 px.
+- Headlines are compact, sentence case and tightly tracked. Tiny all-caps labels are not part of the brand.
 
-## Layout and behavior
-The landing follows a Statement + Proof structure: three-part sticky navigation, concise hero, live invoice demo, workflow proof, capability ledger, and closing statement. The demo is real DOM with overview, invoice, and scannable Czech SPD QR states. At narrow widths, layout stacks before typography shrinks; controls remain at least 40px high.
+## Components
 
-## Motion and accessibility
-Use 120–420ms ease-out transitions for hero settle, demo crossfade, button feedback, and sticky navigation only. Respect `prefers-reduced-motion`. Preserve visible keyboard focus, semantic tabs, meaningful button labels, and text alongside status color.
+- Controls: 48 px standard height, 8 px radius.
+- Panels: 12–14 px radius, 1 px cool rule, no default shadow.
+- Primary buttons: brand-blue fill, white text, compact copy tied to a real action.
+- Turquoise is a signature detail, not a second competing CTA colour.
+- Secondary actions: text or hairline border, never a competing filled colour.
+- Product previews use real DOM and real states rather than decorative device frames.
 
-## Exports
+## Layout
 
-`tokens.css` is the source of truth and ships beside both generated HTML files.
+- Maximum content width: 1240 px.
+- The landing page uses generous vertical rhythm and no more than one enriched product composition per viewport.
+- App layouts stack before typography shrinks.
+- Repeated equal cards are replaced by divided bands, ledgers or tables.
 
-### Tailwind v4
+## Motion
+
+- Micro feedback: 140–180 ms.
+- Section and product transitions: 320–520 ms with `cubic-bezier(0.16, 1, 0.3, 1)`.
+- Motion changes opacity and transform only.
+- Reduced-motion mode removes spatial movement and keeps short opacity feedback.
+
+## Voice
+
+- Direct, useful and local.
+- Prefer concrete verbs: Vystaviť, odoslať, skontrolovať, zaplatiť.
+- Never use inflated claims, invented metrics, technical theatre or “AI” language.
+- Slovak and Czech copy have equal status and are written naturally, not mechanically translated.
+
+## Logo rules
+
+- Use the supplied primary logo and standalone icon without distortion or recolouring.
+- Minimum wordmark width: 120 px.
+- Clear space: at least the visual height of the letter V around the mark.
+- Monochrome is reserved for one-colour documents.
+
+## Source of truth
+
+`tokens.css` contains shared tokens. `brand.css` is the final identity layer. `work/vystav-ui.css` retains the established application components and behaviour.
+
 ```css
-@theme {
-  --color-paper: oklch(98% 0.008 255);
-  --color-paper-2: oklch(95.5% 0.012 255);
-  --color-paper-3: oklch(92% 0.016 255);
-  --color-ink: oklch(18% 0.025 255);
-  --color-ink-2: oklch(31% 0.028 255);
-  --color-muted: oklch(49% 0.025 255);
-  --color-rule: oklch(86% 0.020 255);
-  --color-accent: oklch(55% 0.230 260);
-  --color-focus: oklch(67% 0.180 260);
-  --font-display: "Geist", "Segoe UI Variable", sans-serif;
-  --font-body: "IBM Plex Sans", Aptos, "Segoe UI", sans-serif;
-  --spacing-xs: .5rem;
-  --spacing-sm: .75rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2.5rem;
-  --radius-card: 14px;
-  --radius-input: 10px;
-  --ease-out: cubic-bezier(.16,1,.3,1);
-}
+/* Hallmark · genre: modern-minimal · marketing: product canvas · app: calm workspace · theme: Vystav Blue + Turquoise · designed-as-app */
 ```
+## Iconography and support
 
-### DTCG tokens.json
-```json
-{
-  "$schema": "https://design-tokens.github.io/community-group/format/",
-  "color": {
-    "paper": {"$value":"oklch(98% 0.008 255)","$type":"color"},
-    "ink": {"$value":"oklch(18% 0.025 255)","$type":"color"},
-    "muted": {"$value":"oklch(49% 0.025 255)","$type":"color"},
-    "rule": {"$value":"oklch(86% 0.020 255)","$type":"color"},
-    "accent": {"$value":"oklch(55% 0.230 260)","$type":"color"},
-    "focus": {"$value":"oklch(67% 0.180 260)","$type":"color"}
-  },
-  "font": {
-    "display": {"$value":"Geist, Segoe UI Variable, sans-serif","$type":"fontFamily"},
-    "body": {"$value":"IBM Plex Sans, Aptos, Segoe UI, sans-serif","$type":"fontFamily"}
-  },
-  "duration": {
-    "micro": {"$value":"120ms","$type":"duration"},
-    "short": {"$value":"220ms","$type":"duration"},
-    "long": {"$value":"420ms","$type":"duration"}
-  }
-}
-```
+- Interface icons use one 24 px, 1.8 px stroke SVG language with rounded caps and joins.
+- Icons support visible labels; they never replace meaning on their own.
+- Product support is available from the footer and authenticated navigation at `kamil.hortik@gmail.com`.
+- The cookie notice describes only necessary storage, persists acknowledgement and does not imply unused analytics.
 
-### shadcn/ui
-```css
-:root {
-  --background: 98% 0.008 255;
-  --foreground: 18% 0.025 255;
-  --card: 95.5% 0.012 255;
-  --card-foreground: 18% 0.025 255;
-  --primary: 55% 0.230 260;
-  --primary-foreground: 98% 0.006 255;
-  --secondary: 92% 0.016 255;
-  --secondary-foreground: 31% 0.028 255;
-  --muted: 86% 0.020 255;
-  --muted-foreground: 49% 0.025 255;
-  --border: 86% 0.020 255;
-  --input: 86% 0.020 255;
-  --ring: 67% 0.180 260;
-  --radius: 0.875rem;
-}
-```
+## Motion signature
+
+- The authored landing moment is the invoice trace: the VYSTAV signature line draws, the product surface receives one restrained light pass and QR payment gets one short scan when opened.
+- Authenticated navigation uses a 190 ms continuity transition; frequent controls use only immediate pressed feedback.
+- Motion uses transform, opacity and clip-path, with a complete `prefers-reduced-motion` path in `enhancements.css`.

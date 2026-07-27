@@ -1,27 +1,37 @@
-/* Hallmark · Vystav Cobalt design tokens */
+/* Vystav — shared brand and product tokens */
 :root {
-  --color-paper: oklch(98% 0.008 255);
-  --color-paper-2: oklch(95.5% 0.012 255);
-  --color-paper-3: oklch(92% 0.016 255);
-  --color-ink: oklch(18% 0.025 255);
-  --color-ink-2: oklch(31% 0.028 255);
-  --color-muted: oklch(49% 0.025 255);
-  --color-rule: oklch(86% 0.020 255);
-  --color-rule-strong: oklch(70% 0.030 255);
-  --color-accent: oklch(55% 0.230 260);
-  --color-accent-hover: oklch(48% 0.220 260);
-  --color-accent-ink: oklch(98% 0.006 255);
-  --color-focus: oklch(67% 0.180 260);
-  --color-night: oklch(16% 0.035 255);
-  --color-night-2: oklch(23% 0.040 255);
-  --color-night-ink: oklch(96% 0.010 255);
-  --color-night-muted: oklch(76% 0.025 255);
-  --color-night-rule: oklch(34% 0.038 255);
+  --color-paper: #ffffff;
+  --color-paper-2: #f8fafc;
+  --color-paper-3: #f1f5f9;
+  --color-ink: #1e293b;
+  --color-ink-2: #334155;
+  --color-muted: #64748b;
+  --color-rule: #e2e8f0;
+  --color-rule-strong: #cbd5e1;
+  --color-accent: #1d4ed8;
+  --color-accent-hover: #1e40af;
+  --color-accent-soft: #eff6ff;
+  --color-accent-ink: #ffffff;
+  --color-focus: #2563eb;
+  --color-signature: #35d2c3;
+  --color-signature-soft: #ecfdfb;
+  --color-night: #0f172a;
+  --color-night-2: #172554;
+  --color-night-ink: #f8fafc;
+  --color-night-muted: #cbd5e1;
+  --color-night-rule: #243654;
+  --color-success: #15805f;
+  --color-success-soft: #ecfdf5;
+  --color-warning: #a65f00;
+  --color-warning-soft: #fff7e6;
+  --color-danger: #c5322c;
+  --color-danger-soft: #fff1f0;
 
-  --font-display: "Geist", "Segoe UI Variable", sans-serif;
-  --font-body: "IBM Plex Sans", Aptos, "Segoe UI", sans-serif;
+  --font-display: Inter, "Segoe UI Variable", Aptos, sans-serif;
+  --font-body: Inter, "Segoe UI Variable", Aptos, sans-serif;
   --font-ui: var(--font-body);
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: var(--font-body);
+  --font-support: Manrope, Inter, "Segoe UI Variable", sans-serif;
 
   --space-3xs: 0.125rem;
   --space-2xs: 0.25rem;
@@ -32,31 +42,31 @@
   --space-xl: 2.5rem;
   --space-2xl: 4rem;
   --space-3xl: 6rem;
-  --space-4xl: 9rem;
+  --space-4xl: 8rem;
 
-  --text-xs: 0.8rem;
-  --text-sm: 0.9rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
   --text-base: 1rem;
-  --text-md: 1.25rem;
-  --text-lg: 1.5625rem;
-  --text-xl: 1.953rem;
-  --text-2xl: 2.441rem;
-  --text-3xl: clamp(2.45rem, 5vw, 4.2rem);
-  --text-display: clamp(2.85rem, 6.2vw, 5.25rem);
+  --text-md: 1.1875rem;
+  --text-lg: 1.5rem;
+  --text-xl: 1.875rem;
+  --text-2xl: 2.375rem;
+  --text-3xl: clamp(2.45rem, 4.2vw, 3.75rem);
+  --text-display: clamp(3.1rem, 5.8vw, 5.2rem);
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-micro: 120ms;
+  --dur-micro: 140ms;
   --dur-short: 220ms;
-  --dur-long: 420ms;
+  --dur-long: 480ms;
 
   --rule-hair: 1px;
-  --radius-control: 10px;
-  --radius-card: 14px;
-  --radius-demo: 18px;
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --radius-demo: 14px;
   --page-max: 1240px;
-  --shadow-whisper: 0 18px 48px oklch(18% 0.025 255 / 0.08);
+  --shadow-whisper: 0 28px 80px rgb(30 41 59 / 10%);
 
   --z-base: 1;
   --z-raised: 10;
