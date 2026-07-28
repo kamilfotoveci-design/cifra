@@ -1544,3 +1544,338 @@ body .toast {
 .app .lang-cz { display: none; }
 html[lang="cz"] .app .lang-sk { display: none; }
 html[lang="cz"] .app .lang-cz { display: inline; }
+
+
+/* Mobile production layer: iOS viewport, keyboard, touch and resilient states */
+:root {
+  --app-viewport-height: 100svh;
+  --keyboard-inset: 0px;
+}
+
+@supports (height: 100dvh) {
+  :root { --app-viewport-height: 100dvh; }
+}
+
+body.app-scroll-locked {
+  position: fixed;
+  inset-inline: 0;
+  width: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.app,
+.app .main {
+  min-height: var(--app-viewport-height, 100svh);
+}
+
+.app :where(button, a, [role="button"], input, select, textarea) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app :where(button, a, [role="button"]),
+body .dialog :where(button, a, [role="button"]) {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.app :where(button, .btn, .row-menu, .quick-item),
+body .dialog :where(button, .btn) {
+  transition: transform 120ms var(--ease-out), background-color 140ms var(--ease-out), border-color 140ms var(--ease-out), color 140ms var(--ease-out), opacity 140ms var(--ease-out);
+}
+
+.app :where(button, .btn, .row-menu, .quick-item):active,
+body .dialog :where(button, .btn):active {
+  transform: scale(.975);
+}
+
+.app :where(button, .btn)[disabled],
+body .dialog :where(button, .btn)[disabled] {
+  cursor: wait;
+  opacity: .58;
+  transform: none;
+}
+
+.app :where(input, select, textarea),
+body .dialog :where(input, select, textarea) {
+  scroll-margin-block: 104px calc(118px + var(--keyboard-inset));
+}
+
+.network-status {
+  position: fixed;
+  inset: max(10px, env(safe-area-inset-top)) auto auto 50%;
+  z-index: calc(var(--z-toast) + 1);
+  width: min(560px, calc(100vw - 24px));
+  min-height: 44px;
+  padding: 11px 15px;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 10px;
+  background: var(--color-night);
+  color: var(--color-night-ink);
+  box-shadow: 0 12px 32px rgb(15 23 42 / 18%);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: center;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.network-status[data-state="offline"],
+.network-status[data-state="pending"] {
+  border-color: rgb(245 158 11 / 45%);
+}
+
+.network-status[hidden] { display: none; }
+
+.mobile-skeleton {
+  display: grid;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.mobile-skeleton > span,
+.mobile-skeleton > b,
+.mobile-skeleton-grid > i {
+  display: block;
+  border-radius: 8px;
+  background: var(--color-rule);
+  animation: mobile-skeleton-pulse 1.2s ease-in-out infinite alternate;
+}
+
+.mobile-skeleton > span:first-child { width: min(62%, 340px); height: 38px; }
+.mobile-skeleton > span:nth-child(2) { width: min(86%, 540px); height: 18px; }
+.mobile-skeleton-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; margin-block: 12px 6px; overflow: hidden; border: 1px solid var(--color-rule); border-radius: var(--radius-card); background: var(--color-rule); }
+.mobile-skeleton-grid > i { height: 108px; border-radius: 0; background: var(--color-paper); }
+.mobile-skeleton > b { width: 100%; height: 74px; background: var(--color-paper); border: 1px solid var(--color-rule); }
+
+@keyframes mobile-skeleton-pulse {
+  to { opacity: .5; }
+}
+
+body .line-row .line-cell {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body .line-row .line-cell input { width: 100%; }
+
+@media (max-width: 47.99rem) {
+  .app .topbar {
+    min-height: calc(62px + env(safe-area-inset-top));
+    height: auto;
+    padding-block-start: env(safe-area-inset-top);
+    padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right));
+  }
+
+  .app .page {
+    padding-inline: max(14px, env(safe-area-inset-left)) max(14px, env(safe-area-inset-right));
+  }
+
+  .app .sidebar {
+    contain: layout paint;
+  }
+
+  .profile-menu {
+    inset: auto max(10px, env(safe-area-inset-right)) calc(78px + env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+    width: auto;
+    max-height: min(420px, calc(var(--app-viewport-height) - 110px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform-origin: bottom right;
+  }
+
+  body .dialog {
+    height: var(--app-viewport-height, 100svh);
+    max-height: var(--app-viewport-height, 100svh);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body .dialog-foot {
+    padding-block-end: max(14px, env(safe-area-inset-bottom));
+  }
+
+  html.keyboard-open .app .sidebar { display: none; }
+  html.keyboard-open .app .page { padding-block-end: 24px; }
+  html.keyboard-open body .dialog-foot { padding-block-end: 12px; }
+
+  body .line-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 10px;
+  }
+
+  body .line-row .line-cell-description,
+  body .line-row .line-cell-price {
+    grid-column: 1 / -1;
+  }
+
+  body .line-row .line-total {
+    grid-column: 1;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  body .line-row .line-remove {
+    grid-column: 2;
+  }
+
+  .app .invoice-stamp {
+    position: static;
+    margin-block-start: 18px;
+  }
+}
+
+@media (max-width: 35.99rem) {
+  .app .breadcrumb {
+    max-width: min(38vw, 150px);
+  }
+
+  .app .top-actions .locale button {
+    min-width: 34px;
+  }
+
+  .app .invoice-paper-table thead { display: none; }
+  .app .invoice-paper-table tbody,
+  .app .invoice-paper-table tr,
+  .app .invoice-paper-table td { display: block; }
+  .app .invoice-paper-table tr {
+    padding-block: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 14px;
+    border-block-end: 1px solid var(--color-rule);
+  }
+  .app .invoice-paper-table td {
+    padding: 0;
+    display: grid;
+    gap: 2px;
+    border: 0;
+    text-align: start !important;
+  }
+  .app .invoice-paper-table td:first-child { grid-column: 1 / -1; width: auto; }
+  .app .invoice-paper-table td::before {
+    content: attr(data-label);
+    color: var(--color-muted);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .app .invoice-paper-table td:first-child::before { display: none; }
+  .app .invoice-paper-table td:last-child { font-weight: 700; }
+}
+
+@media (min-width: 48rem) {
+  body .line-row .line-cell { display: block; }
+  body .line-row .line-cell > span { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app :where(button, .btn, .row-menu, .quick-item),
+  body .dialog :where(button, .btn),
+  .mobile-skeleton > span,
+  .mobile-skeleton > b,
+  .mobile-skeleton-grid > i {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* Mobile readability floor and reliable touch targets */
+@media (max-width: 47.99rem) {
+  .app :where(button, [role="button"], .btn, .row-menu, .line-remove),
+  body .dialog :where(button, [role="button"], .btn, .line-remove) {
+    min-height: 44px;
+  }
+
+  .app :where(.top-actions .icon-button, .top-actions .locale button, .row-menu, .line-remove),
+  body .dialog :where(.close-button, .line-remove) {
+    min-width: 44px;
+  }
+
+  body .line-row .line-cell {
+    font-size: 14px;
+  }
+
+  .app :where(small, .breadcrumb, .table-sub, .metric-label, .invoice-meta),
+  body .dialog :where(small, .field-hint) {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+}
+
+@media (max-width: 35.99rem) {
+  .app .top-actions .locale button {
+    min-width: 44px;
+  }
+
+  .app .invoice-paper-table td::before {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+}
+
+
+/* Payment account and bank-readable QR */
+body .account-field {
+  align-content: start;
+}
+
+body .account-hint {
+  display: block;
+  margin-block-start: 7px;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+body .account-hint.is-valid {
+  color: #08775f;
+}
+
+body .account-hint.is-error,
+body .qr-error {
+  color: #b42318;
+}
+
+.app .settings-grid select {
+  width: 100%;
+  height: 46px;
+  padding-inline: 12px 38px;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: 9px;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.app .invoice-qr img,
+.app .invoice-qr svg {
+  width: 132px;
+  height: 132px;
+  display: block;
+  background: #fff;
+  image-rendering: auto;
+}
+
+.app .invoice-qr .qr-error {
+  max-width: 24ch;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+@media (max-width: 47.99rem) {
+  .app .invoice-qr img,
+  .app .invoice-qr svg {
+    width: 148px;
+    height: 148px;
+  }
+}
