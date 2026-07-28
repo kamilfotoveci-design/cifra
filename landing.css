@@ -109,7 +109,7 @@ body { overflow-x: clip; }
   display: block;
   object-fit: cover;
   object-position: 49% center;
-  transition: transform 1000ms var(--ease-out);
+  transition: transform 420ms var(--ease-out);
 }
 
 .v6-workscene figcaption {
@@ -124,7 +124,7 @@ body { overflow-x: clip; }
   font-weight: 700;
 }
 
-.v6-hero-visual:hover .v6-workscene img { transform: scale(1.018); }
+
 
 .v6-hero h1 {
   max-width: 9ch;
@@ -403,7 +403,20 @@ body { overflow-x: clip; }
 }
 .v6-faq h3 button > span:last-child { flex: 0 0 auto; color: var(--color-accent); font-size: var(--text-lg); transition: transform var(--dur-short) var(--ease-out); }
 .v6-faq h3 button[aria-expanded="true"] > span:last-child { transform: rotate(45deg); }
-.v6-faq article > div { max-width: 44rem; padding-bottom: var(--space-lg); }
+.v6-faq article > div {
+  max-width: 44rem;
+  padding-bottom: var(--space-lg);
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0);
+  transition: opacity 140ms var(--ease-out), transform 180ms var(--ease-out), clip-path 180ms var(--ease-out);
+}
+.v6-faq article > div.is-opening,
+.v6-faq article > div.is-closing {
+  opacity: 0;
+  transform: translateY(-0.25rem);
+  clip-path: inset(0 0 16% 0);
+}
 .v6-faq p { margin: 0; color: var(--color-muted); line-height: 1.65; }
 
 .v6-final { display: grid; gap: var(--space-xl); align-items: end; padding-block: var(--space-3xl); border-top: var(--rule-hair) solid var(--color-rule-strong); }
@@ -425,6 +438,7 @@ body { overflow-x: clip; }
 .v6-statement.is-visible p { opacity: 1; transform: none; }
 
 @media (hover: hover) and (pointer: fine) {
+  .v6-hero-visual:hover .v6-workscene img { transform: scale(1.012); }
   .landing-v6 .btn:hover, .v6-overview-head button:hover, .v6-invoice > button:hover { transform: translateY(-1px); }
   .v6-login:hover, .v6-locale button:hover, .v6-pocket-steps button:hover, .v6-demo-tabs button:hover { background: var(--color-paper-3); color: var(--color-ink); }
   .v6-hero-actions > a:hover, .v6-footer :is(a, button):hover { color: var(--color-accent); }
@@ -477,6 +491,6 @@ body { overflow-x: clip; }
 
 @media (prefers-reduced-motion: reduce) {
   .v6-enter { opacity: 1; transform: none; animation: none; }
-  .v6-statement p, .v6-pocket-stage > *, .v6-product [data-demo-view], .v6-faq h3 button > span:last-child { transform: none; transition: opacity var(--dur-micro) linear; }
+  .v6-statement p, .v6-pocket-stage > *, .v6-product [data-demo-view], .v6-faq h3 button > span:last-child, .v6-faq article > div { transform: none; clip-path: none; transition: opacity var(--dur-micro) linear; }
   .v6-statement p { opacity: 1; }
 }
