@@ -110,7 +110,7 @@
 .app .invoice-table tbody tr:has(.status-waiting) .amount{color:#8a570b}
 
 /* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · landing motion refinement · designed-as-app */
-.v6-hero-demo{min-width:0;align-self:center;position:relative;padding:var(--space-sm);border:1px solid var(--color-rule-strong);border-radius:var(--radius-demo);background:var(--color-paper-2)}
+.v6-hero-demo{z-index:2;min-width:0;align-self:center;position:relative;padding:var(--space-sm);border:1px solid var(--color-rule-strong);border-radius:var(--radius-demo);background:var(--color-paper-2)}
 .v6-demo-toolbar{min-height:52px;padding:0 var(--space-2xs) var(--space-sm);display:flex;align-items:center;justify-content:space-between;gap:var(--space-md)}
 .v6-demo-toolbar>span{color:var(--color-muted);font-size:var(--text-sm);font-weight:700}
 .v6-hero-demo .v6-demo-tabs{margin:0;flex-wrap:nowrap}
@@ -123,5 +123,6 @@
 .v6-motion [data-flow-step]{position:relative;z-index:2;opacity:.42;transform:translate3d(0,var(--space-xs),0);transition:opacity 240ms var(--ease-out),transform 320ms var(--ease-out)}
 .v6-motion [data-flow-step].is-current{opacity:1;transform:none}
 .v6-motion [data-flow-step].is-past{opacity:.76;transform:none}
-@media (max-width:39.99rem){.v6-demo-toolbar{align-items:flex-start;flex-direction:column}.v6-hero-demo .v6-demo-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.v6-hero-demo .v6-demo-tabs button{min-width:0;padding-inline:var(--space-xs)}.v6-hero-demo{padding:var(--space-xs)}}
-@media (prefers-reduced-motion:reduce){.v6-motion [data-flow-step]{opacity:1!important;transform:none!important;transition:none!important}.v6-workflow .v6-steps::after{transform:scaleX(1)!important}}
+@media (max-width:59.99rem){.v6-hero-visual{padding:clamp(7rem,18vw,11rem) 0 0 clamp(2.5rem,9vw,5rem)}.v6-workscene{inset:0 clamp(2rem,8vw,4rem) clamp(7rem,18vw,11rem) 0}.v6-workscene img{object-position:center 42%}}
+@media (max-width:39.99rem){.v6-hero-visual{padding:10rem 0 0 1rem}.v6-workscene{inset:0 2rem 8rem 0}.v6-workscene figcaption{inset:auto auto var(--space-sm) var(--space-sm)}.v6-demo-toolbar{align-items:flex-start;flex-direction:column}.v6-hero-demo .v6-demo-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.v6-hero-demo .v6-demo-tabs button{min-width:0;padding-inline:var(--space-xs)}.v6-hero-demo{padding:var(--space-xs)}}
+@media (prefers-reduced-motion:reduce){.v6-motion [data-flow-step]{opacity:1!important;transform:none!important;transition:none!important}.v6-workflow .v6-steps::after{transform:scaleX(1)!important}.v6-workscene img{transform:none!important;transition:none!important}}

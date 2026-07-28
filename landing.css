@@ -87,6 +87,44 @@ body { overflow-x: clip; }
 }
 
 .v6-hero-copy { align-self: center; min-width: 0; }
+.v6-hero-visual {
+  position: relative;
+  min-width: 0;
+  padding: 0 0 clamp(11rem, 28vw, 17rem) clamp(4.5rem, 11vw, 7rem);
+}
+
+.v6-workscene {
+  position: absolute;
+  inset: 0 clamp(3rem, 8vw, 5rem) 0 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-demo);
+  background: var(--color-paper-3);
+}
+
+
+.v6-workscene img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: 49% center;
+  transition: transform 1000ms var(--ease-out);
+}
+
+.v6-workscene figcaption {
+  position: absolute;
+  z-index: 1;
+  inset: auto auto var(--space-md) var(--space-md);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: 0.5rem;
+  background: rgba(8, 22, 44, 0.86);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.v6-hero-visual:hover .v6-workscene img { transform: scale(1.018); }
 
 .v6-hero h1 {
   max-width: 9ch;
@@ -408,7 +446,7 @@ body { overflow-x: clip; }
 
 @media (min-width: 60rem) {
   .landing-v6 { --v6-page: min(calc(100% - 5rem), var(--page-max)); }
-  .v6-hero { grid-template-columns: minmax(0, 0.94fr) minmax(28rem, 1.06fr); gap: clamp(var(--space-2xl), 6vw, var(--space-4xl)); padding-block: var(--space-2xl) var(--space-3xl); }
+  .v6-hero { grid-template-columns: minmax(18rem, 0.72fr) minmax(36rem, 1.28fr); gap: clamp(var(--space-xl), 4vw, var(--space-3xl)); padding-block: var(--space-2xl) var(--space-3xl); }
   .v6-section-head { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
   .v6-steps li { grid-template-columns: 5rem minmax(16rem, 0.7fr) minmax(0, 1.3fr); }
   .v6-steps li > div { display: contents; }
