@@ -90,38 +90,7 @@ body { overflow-x: clip; }
 .v6-hero-visual {
   position: relative;
   min-width: 0;
-  padding: 0 0 clamp(11rem, 28vw, 17rem) clamp(4.5rem, 11vw, 7rem);
-}
-
-.v6-workscene {
-  position: absolute;
-  inset: 0 clamp(3rem, 8vw, 5rem) 0 0;
-  margin: 0;
-  overflow: hidden;
-  border-radius: var(--radius-demo);
-  background: var(--color-paper-3);
-}
-
-
-.v6-workscene img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: 49% center;
-  transition: transform 420ms var(--ease-out);
-}
-
-.v6-workscene figcaption {
-  position: absolute;
-  z-index: 1;
-  inset: auto auto var(--space-md) var(--space-md);
-  padding: var(--space-2xs) var(--space-xs);
-  border-radius: 0.5rem;
-  background: rgba(8, 22, 44, 0.86);
-  color: #fff;
-  font-size: var(--text-sm);
-  font-weight: 700;
+  padding: 0;
 }
 
 
@@ -438,7 +407,6 @@ body { overflow-x: clip; }
 .v6-statement.is-visible p { opacity: 1; transform: none; }
 
 @media (hover: hover) and (pointer: fine) {
-  .v6-hero-visual:hover .v6-workscene img { transform: scale(1.012); }
   .landing-v6 .btn:hover, .v6-overview-head button:hover, .v6-invoice > button:hover { transform: translateY(-1px); }
   .v6-login:hover, .v6-locale button:hover, .v6-pocket-steps button:hover, .v6-demo-tabs button:hover { background: var(--color-paper-3); color: var(--color-ink); }
   .v6-hero-actions > a:hover, .v6-footer :is(a, button):hover { color: var(--color-accent); }
@@ -493,4 +461,11 @@ body { overflow-x: clip; }
   .v6-enter { opacity: 1; transform: none; animation: none; }
   .v6-statement p, .v6-pocket-stage > *, .v6-product [data-demo-view], .v6-faq h3 button > span:last-child, .v6-faq article > div { transform: none; clip-path: none; transition: opacity var(--dur-micro) linear; }
   .v6-statement p { opacity: 1; }
+}
+
+/* Hero composition: product preview is the only visual proof. */
+.v6-hero-demo {
+  width: 100%;
+  margin: 0;
+  align-self: stretch;
 }

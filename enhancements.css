@@ -125,15 +125,11 @@
 @media (max-width:59.99rem){
   .v6-hero{gap:clamp(2.5rem,8vw,4rem)}
   .v6-hero-visual{display:grid;gap:var(--space-md);padding:0}
-  .v6-workscene{position:relative;inset:auto;width:100%;min-height:0;aspect-ratio:16/10}
-  .v6-workscene img{object-position:center 42%}
   .v6-hero-demo{width:100%;margin:0;align-self:stretch}
   .v6-hero-demo .v6-product [data-demo-view],.v6-hero-demo .v6-invoice,.v6-hero-demo .v6-payment{min-height:24rem}
 }
 @media (max-width:39.99rem){
   .v6-hero{padding-block:clamp(2.5rem,12vw,4.5rem)}
-  .v6-workscene{aspect-ratio:4/3;border-radius:var(--radius-card)}
-  .v6-workscene figcaption{inset:auto auto var(--space-sm) var(--space-sm)}
   .v6-demo-toolbar{min-height:0;padding:var(--space-xs);align-items:flex-start;flex-direction:column}
   .v6-hero-demo .v6-demo-tabs{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
   .v6-hero-demo .v6-demo-tabs button{min-width:0;padding-inline:var(--space-2xs);font-size:var(--text-sm)}
@@ -156,4 +152,4 @@
   .v6-hero-demo .v6-metrics div+div{border-top:var(--rule-hair) solid var(--color-rule);border-inline-start:0}
   .v6-hero-demo .v6-metrics dd{margin:0}
 }
-@media (prefers-reduced-motion:reduce){.v6-motion [data-flow-step]{opacity:1!important;transform:none!important;transition:none!important}.v6-workflow .v6-steps::after{transform:scaleX(1)!important}.v6-workscene img{transform:none!important;transition:none!important}}
+@media (prefers-reduced-motion:reduce){.v6-motion [data-flow-step]{opacity:1!important;transform:none!important;transition:none!important}.v6-workflow .v6-steps::after{transform:scaleX(1)!important}}
