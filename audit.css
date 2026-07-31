@@ -1,0 +1,194 @@
+/* Production hardening: interaction targets, mixed-currency chart and resilient layouts. */
+.auth-reset {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 4px 0 0;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand-blue, #1d4ed8);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-reset:hover { text-decoration: underline; }
+.auth-reset:disabled { cursor: wait; opacity: .55; }
+
+.landing-v6 .v6-hero-demo .v6-demo-tabs button,
+.locale button,
+.auth-locale button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.chart-currencies .bar-group {
+  min-width: 0;
+}
+
+.chart-currencies .currency-bars {
+  display: flex;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+}
+
+.chart-currencies .currency-bars > i {
+  width: min(14px, 42%);
+  min-height: 3px;
+}
+
+.chart-currencies i.czk,
+.chart-legend i.czk {
+  background: #35d2c3;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 14px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.chart-legend span {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.chart-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: #1d4ed8;
+}
+
+.metric strong {
+  overflow-wrap: anywhere;
+}
+
+/* App shell polish: remove duplicate navigation copy and keep account controls stable. */
+@media (min-width: 60rem) {
+  .app .sidebar > .brand + .nav-label {
+    display: none;
+  }
+
+  .app .sidebar > .side-nav:first-of-type {
+    margin-block-start: 2px;
+  }
+
+  .app .user-row {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 40px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .app .user-row > .avatar {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 50%;
+    line-height: 1;
+  }
+
+  .app .user-row > div:not(.avatar) {
+    min-width: 0;
+  }
+
+  .app .user-row strong,
+  .app .user-row span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .app .user-row button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+  }
+}
+
+.app .top-actions .icon-button {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid transparent;
+}
+
+.app .top-actions .icon-button:hover {
+  border-color: var(--color-rule);
+}
+
+.app .top-actions .icon-button:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+.app .top-actions [data-profile] .avatar {
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+body .toast {
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  left: auto;
+  width: max-content;
+  max-width: min(420px, calc(100vw - 32px));
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 3px solid rgba(29, 78, 216, .28);
+  outline-offset: 2px;
+}
+
+@media (max-width: 560px) {
+  .metric strong {
+    font-size: clamp(18px, 5.8vw, 24px);
+  }
+
+  .chart-legend {
+    justify-content: center;
+  }
+
+  body .toast {
+    right: 12px;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    left: 12px;
+    width: auto;
+    max-width: none;
+    padding: 13px 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

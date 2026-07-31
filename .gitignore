@@ -1,6 +1,14 @@
 .codex/
 .claude/
-work/
+work/*
+!work/build.js
+!work/cifra-core.js
+!work/cifra-premium-rebuild.html
+!work/landing-v6.html
+!work/landing-v6.js
+!work/vendor-qrcode.js
+!work/vystav-finance.js
+!work/vystav-ui.css
 *.log
 node_modules/
 .env

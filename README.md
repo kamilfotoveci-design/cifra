@@ -1,20 +1,49 @@
-# Cifra
+# Vystav
 
-Jednoduchá CZ/SK fakturácia pre živnostníkov a malé firmy.
+Webová aplikácia pre vystavovanie faktúr v Česku a na Slovensku. Podporuje firemné profily, klientov, uložené položky, EUR/CZK, DPH, PDF, českú QR Platbu, slovenský PAY by square, export a synchronizáciu cez Supabase.
 
-Prototype web app with:
+## Lokálny vývoj
 
-- landing page with product preview
-- CZ/SK language switcher
-- login/register demo flow
-- dashboard with invoice overview
-- invoice creation modal with QR payment option
-- responsive layout for desktop and mobile
+Požiadavka: Node.js 20 alebo novší.
 
-## Local preview
+```bash
+npm run verify
+```
 
-Open `index.html` directly in a browser, or run any static server from the repository root.
+Príkaz skontroluje syntax, spustí regresné testy, vytvorí produkčný build a testy zopakuje nad výsledným zdrojom. Výstupom sú:
+
+- `index.html`
+- `outputs/faktury-dashboard.html`
+
+## Supabase
+
+SQL súbory spúšťaj v Supabase SQL Editore v tomto poradí:
+
+1. `supabase/schema.sql`
+2. migrácie v `supabase/migrations` podľa dátumu
+
+Najnovšia migrácia `20260731_security_and_atomic_invoices.sql`:
+
+- sprísňuje RLS položiek faktúr,
+- pridáva index podľa používateľa,
+- pridáva transakčné uloženie faktúry spolu s položkami.
+
+Používaj iba verejný publishable kľúč v klientovi. Service-role kľúč ani databázové heslo nesmú byť súčasťou repozitára.
 
 ## Cloudflare Pages
 
-Use the repository root as the build output directory. No build command is required for this prototype.
+- Framework preset: `None`
+- Build command: `npm run build`
+- Output directory: `/`
+
+Súbory `_headers` a `_redirects` sa kopírujú aj do priečinka `outputs`.
+
+## Testy
+
+```bash
+npm test
+npm run check
+npm run build
+```
+
+Automatické testy pokrývajú zaokrúhľovanie peňazí, DPH, desatinné množstvá, oddelenie cache používateľov, databázové hardening pravidlá a jazykový kód.
