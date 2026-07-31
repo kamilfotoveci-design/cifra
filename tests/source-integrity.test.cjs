@@ -27,3 +27,13 @@ test("Czech document language uses the valid BCP 47 code", () => {
   assert.match(core, /state\.locale==="CZ"\?"cs":"sk"/);
   assert.doesNotMatch(core, /documentElement\.lang=state\.locale\.toLowerCase/);
 });
+
+
+test("client empty-state actions and notification popover are wired", () => {
+  assert.match(core, /\$\$\("\[data-create=client\]"\)\.forEach/);
+  assert.match(core, /toggleNotificationMenu/);
+  assert.match(core, /data-notification-menu/);
+  assert.match(core, /\$\$\("\[data-notification-invoice\]",panel\)\.forEach/);
+  assert.match(core, /\$\$\("\[data-create=\'client\'\]",page\)\.forEach/);
+  assert.doesNotMatch(core, /Všetky upozornenia máš prečítané/);
+});
