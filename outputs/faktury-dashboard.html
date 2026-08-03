@@ -1628,7 +1628,7 @@ Object.assign(uiCopy.SK,landingCopy.SK);Object.assign(uiCopy.CZ,landingCopy.CZ);
 async function query(table){const local=readLocal(table);if(!state.session||!supabaseClient)return local;try{const {data,error}=await supabaseClient.from(table).select("*").order("created_at",{ascending:false});if(error)throw error;const remote=data||[];if(table==="profiles")return remote;const key=item=>table==="invoice_items"?[item.invoice_id,item.description,item.quantity,item.unit,item.unit_price,item.total].join("|"):String(item.id),merged=new Map(local.map(item=>[key(item),item]));remote.forEach(item=>merged.set(key(item),{...merged.get(key(item)),...item}));const list=[...merged.values()].sort((a,b)=>String(b.created_at||"").localeCompare(String(a.created_at||"")));writeLocal(table,list);return list}catch(error){console.error(`query ${table}`,error);updateNetworkState(navigator.onLine?"pending":"offline");return local}}
 function upsertLocal(table,item){const list=readLocal(table).filter(x=>String(x.id)!==String(item.id));list.unshift(item);writeLocal(table,list);return item}
 function removeLocal(table,id){writeLocal(table,readLocal(table).filter(x=>String(x.id)!==String(id)))}
-async function saveInvoiceRemoteAtomic(id,payload,items){const rpc=await supabaseClient.rpc("save_invoice_with_items",{p_id:id,p_invoice:payload,p_items:items});if(!rpc.error)return rpc.data;const missing=/save_invoice_with_items|schema cache|function public\./i.test(String(rpc.error?.message||rpc.error));if(!missing)throw rpc.error;const saved=await saveRemote("invoices",payload,id);const removed=await supabaseClient.from("invoice_items").delete().eq("invoice_id",saved.id);if(removed.error)throw removed.error;if(items.length){const inserted=await supabaseClient.from("invoice_items").insert(items.map(line=>({...line,invoice_id:saved.id,user_id:state.session.user.id})));if(inserted.error)throw inserted.error}return saved}async function saveRemote(table,payload,id){if(!state.session||!supabaseClient)return null;const result=id?await supabaseClient.from(table).update(payload).eq("id",id).select().single():await supabaseClient.from(table).insert({...payload,user_id:state.session.user.id}).select().single();if(result.error)throw result.error;return result.data}
+async function saveInvoiceRemoteAtomic(id,payload,items){if(!state.session||!supabaseClient)throw new Error("Authentication required");const rpc=await supabaseClient.rpc("save_invoice_with_items",{p_id:id,p_invoice:payload,p_items:items||[]});if(rpc.error)throw rpc.error;return rpc.data}async function saveRemote(table,payload,id){if(!state.session||!supabaseClient)return null;const result=id?await supabaseClient.from(table).update(payload).eq("id",id).select().single():await supabaseClient.from(table).insert({...payload,user_id:state.session.user.id}).select().single();if(result.error)throw result.error;return result.data}
 function isRetryableSyncError(error){const status=Number(error?.status||error?.statusCode||0),message=String(error?.message||error||"");return !navigator.onLine||status===408||status===429||status>=500||/AbortError|TimeoutError|Network timeout|Failed to fetch|Load failed|NetworkError/i.test(String(error?.name||"")+" "+message)}function schemaNotice(error){if(!navigator.onLine)return networkText("pending");if(/AbortError|TimeoutError|Network timeout|Failed to fetch/i.test(String(error?.name||"")+" "+String(error?.message||error)))return state.locale==="CZ"?"P\u0159ipojen\u00ed je pomal\u00e9. Zm\u011bna je ulo\u017een\u00e1 a synchronizuje se pozd\u011bji.":"Pripojenie je pomal\u00e9. Zmena je ulo\u017een\u00e1 a zosynchronizuje sa nesk\u00f4r.";if(/column|schema cache|does not exist/i.test(String(error?.message||error)))return state.locale==="CZ"?"Datab\u00e1ze pot\u0159ebuje aktualizaci. Spus\u0165 nejnov\u011bj\u0161\u00ed SQL migraci ze slo\u017eky supabase/migrations.":"Datab\u00e1za potrebuje aktualiz\u00e1ciu. Spusti najnov\u0161iu SQL migr\u00e1ciu z prie\u010dinka supabase/migrations.";return t("error")}const profileData=()=>state.profile||{};
 function nextNumber(){const year=new Date().getFullYear(),max=state.invoices.reduce((n,x)=>Math.max(n,Number(String(x.number||"").replace(/\D/g,""))||0),year*10000);return String(Math.max(max+1,year*10000+1))}
 function mod97(value){let remainder=0;for(let i=0;i<value.length;i+=7)remainder=Number(String(remainder)+value.slice(i,i+7))%97;return remainder}
@@ -2064,6 +2064,137 @@ renderView=function(kind){
   var result=baseRenderViewNotificationsV5(kind);
   syncNotificationIndicatorV5();
   return result
+};
+
+/* Backend reliability v6: authoritative sync, atomic invoices and honest errors. */
+function reportBackendErrorV6(scope,error){
+  var message=String(error?.message||error||""),fingerprint=`${scope}:${error?.code||""}:${message}`;
+  console.error(`backend ${scope}`,error);
+  updateNetworkState(isRetryableSyncError(error)?(navigator.onLine?"pending":"offline"):"pending");
+  if(state.backendErrorFingerprint!==fingerprint){state.backendErrorFingerprint=fingerprint;notify(schemaNotice(error),5600)}
+}
+function pendingIdsV6(table){
+  return new Set(readOutbox().filter(op=>op.table===table).map(op=>String(op.id)))
+}
+query=async function(table){
+  var local=readLocal(table);
+  if(!state.session||!supabaseClient)return local;
+  try{
+    var {data,error}=await supabaseClient.from(table).select("*").order("created_at",{ascending:false});
+    if(error)throw error;
+    var remote=data||[];
+    if(table==="profiles")return remote;
+    var key=item=>table==="invoice_items"?[item.invoice_id,item.description,item.quantity,item.unit,item.unit_price,item.total].join("|"):String(item.id);
+    var merged=new Map(remote.map(item=>[key(item),item]));
+    var pending=pendingIdsV6(table),pendingInvoices=table==="invoice_items"?pendingIdsV6("invoices"):new Set();
+    local.forEach(item=>{if(pending.has(String(item.id))||pendingInvoices.has(String(item.invoice_id)))merged.set(key(item),{...merged.get(key(item)),...item})});
+    var list=[...merged.values()].sort((a,b)=>String(b.created_at||"").localeCompare(String(a.created_at||"")));
+    writeLocal(table,list);state.backendErrorFingerprint="";return list
+  }catch(error){
+    updateNetworkState(navigator.onLine?"pending":"offline");
+    if(!isRetryableSyncError(error))throw error;
+    console.error(`query ${table}`,error);return local
+  }
+};
+saveInvoiceRemoteAtomic=async function(id,payload,items){
+  if(!state.session||!supabaseClient)throw new Error("Authentication required");
+  var {data,error}=await supabaseClient.rpc("save_invoice_with_items",{p_id:id,p_invoice:payload,p_items:items||[]});
+  if(error)throw error;
+  return data
+};
+flushOutbox=async function(){
+  if(state.syncing||!navigator.onLine||!state.session||!supabaseClient)return;
+  var queue=readOutbox();if(!queue.length){updateNetworkState("online");return}
+  state.syncing=true;updateNetworkState("syncing");
+  try{
+    for(var op of [...queue]){
+      if(op.kind==="delete"){
+        var deletion=supabaseClient.from(op.table).delete().eq("id",op.id);
+        if(op.table!=="profiles")deletion=deletion.eq("user_id",state.session.user.id);
+        var deleted=await deletion;if(deleted.error)throw deleted.error
+      }else if(op.table==="invoices"&&Array.isArray(op.items)){
+        await saveInvoiceRemoteAtomic(op.id,op.payload,op.items)
+      }else{
+        var payload=op.table==="profiles"?{id:state.session.user.id,...op.payload}:{id:op.id,user_id:state.session.user.id,...op.payload};
+        var request=op.mode==="update"?supabaseClient.from(op.table).update(op.payload).eq("id",op.id):supabaseClient.from(op.table).upsert(payload,{onConflict:"id"});
+        if(op.mode==="update"&&op.table!=="profiles")request=request.eq("user_id",state.session.user.id);
+        var result=await request;if(result.error)throw result.error
+      }
+      queue=readOutbox().filter(item=>!(mutationKey(item)===mutationKey(op)&&item.queued_at===op.queued_at));writeOutbox(queue)
+    }
+    state.backendErrorFingerprint="";updateNetworkState("online")
+  }catch(error){reportBackendErrorV6("outbox",error)}finally{state.syncing=false}
+};
+saveRecord=async function(table,payload,id=null){
+  var remoteError=null,remoteSaved=false,item={id:id||uuid(),...payload,created_at:new Date().toISOString()};
+  try{
+    if(state.session&&!navigator.onLine)throw new Error("offline");
+    var saved=await saveRemote(table,payload,id);if(saved){item={...item,...saved};remoteSaved=true}
+  }catch(error){
+    remoteError=error;
+    if(state.session&&isRetryableSyncError(error))queueMutation({table,id:item.id,kind:"upsert",mode:"upsert",payload});
+    else if(state.session){reportBackendErrorV6(`save ${table}`,error);return}
+  }
+  upsertLocal(table,item);state[table]=remoteSaved?await query(table):readLocal(table);closeDialog();renderView(table);notify(remoteError?schemaNotice(remoteError):t("saved"))
+};
+removeRecord=async function(table,id){
+  var message=state.locale==="CZ"?"Opravdu chcete tento záznam odstranit? Tuto akci nelze vrátit.":"Naozaj chcete tento záznam odstrániť? Túto akciu nemožno vrátiť.";
+  if(!window.confirm(message))return;
+  var remoteError=null,remoteSaved=false;
+  try{
+    if(state.session&&!navigator.onLine)throw new Error("offline");
+    if(state.session&&supabaseClient){var request=supabaseClient.from(table).delete().eq("id",id);if(table!=="profiles")request=request.eq("user_id",state.session.user.id);var {error}=await request;if(error)throw error;remoteSaved=true}
+  }catch(error){
+    remoteError=error;
+    if(state.session&&isRetryableSyncError(error))queueMutation({table,id,kind:"delete"});
+    else if(state.session){reportBackendErrorV6(`delete ${table}`,error);return}
+  }
+  removeLocal(table,id);state[table]=remoteSaved?await query(table):readLocal(table);renderView(table==="invoices"?"invoices":table);notify(remoteError?schemaNotice(remoteError):t("deleted"))
+};
+updateInvoiceStatus=async function(id,status){
+  var inv=state.invoices.find(x=>String(x.id)===String(id));if(!inv)return;
+  var previous=inv.status,remoteError=null;
+  try{
+    if(state.session&&!navigator.onLine)throw new Error("offline");
+    if(state.session&&supabaseClient){var {error}=await supabaseClient.from("invoices").update({status}).eq("id",id).eq("user_id",state.session.user.id);if(error)throw error}
+  }catch(error){
+    remoteError=error;
+    if(state.session&&isRetryableSyncError(error))queueMutation({table:"invoices",id,kind:"upsert",mode:"update",payload:{status}});
+    else if(state.session){inv.status=previous;reportBackendErrorV6("invoice status",error);return}
+  }
+  inv.status=status;upsertLocal("invoices",inv);syncNotificationIndicatorV5();notify(remoteError?schemaNotice(remoteError):t("saved"));openInvoiceDetail(id)
+};
+bindSettings=function(){
+  var form=$("#settingsForm");enhanceMobileForms(form);updateAccountHint(form);
+  form?.elements?.iban?.addEventListener("input",()=>updateAccountHint(form));form?.elements?.account_country?.addEventListener("change",()=>updateAccountHint(form));
+  form?.addEventListener("submit",async event=>{
+    event.preventDefault();if(form.dataset.submitting==="true")return;setFormBusy(form,true);
+    try{
+      var fields=Object.fromEntries(new FormData(form));fields.iban=storeAccount(fields.iban,fields.account_country);
+      if(fields.iban&&!paymentIban(fields.iban,fields.account_country)){notify(qrIssueText("account"),5600);form.elements.iban.focus();return}
+      delete fields.account_country;fields.logo_data=await readImageFile(form.elements.logo_file.files[0],900,360)||state.profile?.logo_data||"";fields.stamp_data=await readImageFile(form.elements.stamp_file.files[0],900,500)||state.profile?.stamp_data||"";delete fields.logo_file;delete fields.stamp_file;
+      var remoteError=null;
+      try{
+        if(state.session&&!navigator.onLine)throw new Error("offline");
+        if(state.session&&supabaseClient){var {error}=await supabaseClient.from("profiles").upsert({id:state.session.user.id,...fields});if(error)throw error}
+      }catch(error){
+        remoteError=error;
+        if(state.session&&isRetryableSyncError(error))queueMutation({table:"profiles",id:state.session.user.id,kind:"upsert",mode:"upsert",payload:fields});
+        else if(state.session){reportBackendErrorV6("save profile",error);return}
+      }
+      state.profile={...state.profile,...fields};localStorage.setItem(localKey("profile"),JSON.stringify(state.profile));renderUser();notify(remoteError?schemaNotice(remoteError):t("saved"))
+    }finally{if(form.isConnected)setFormBusy(form,false)}
+  })
+};
+loadData=async function(){
+  renderAppLoading();
+  try{
+    await flushOutbox();
+    var names=["invoices","clients","items","profiles"],results=await Promise.allSettled(names.map(name=>query(name))),firstError=null;
+    results.forEach((result,index)=>{var name=names[index];if(result.status==="fulfilled"){if(name!=="profiles")state[name]=result.value}else{firstError=firstError||result.reason;state[name]=name==="profiles"?[]:readLocal(name)}});
+    var profiles=results[3].status==="fulfilled"?results[3].value:[],localProfile=JSON.parse(localStorage.getItem(localKey("profile"))||"{}"),remoteProfile=state.session?(profiles.find(x=>x.id===state.session.user.id)||{}):{};
+    state.profile={...localProfile,...remoteProfile,logo_data:remoteProfile.logo_data||localProfile.logo_data||"",stamp_data:remoteProfile.stamp_data||localProfile.stamp_data||""};renderUser();renderView("dashboard");if(firstError)reportBackendErrorV6("load",firstError)
+  }finally{app?.removeAttribute("aria-busy");updateNetworkState(navigator.onLine?(readOutbox().length?"pending":"online"):"offline")}
 };
 
 var baseToggleProfileMenuV4=toggleProfileMenu;toggleProfileMenu=function(){baseToggleProfileMenuV4();syncRuntimeCopyV4()};renderStyles();renderAppStyles();wire();if(supabaseClient){supabaseClient.auth.getSession().then(async({data,error})=>{if(error){console.error("session",error);updateNetworkState(navigator.onLine?"pending":"offline");return}state.session=data.session;if(state.session&&!isContactRoute()){show(app);await loadData()}});supabaseClient.auth.onAuthStateChange((_event,session)=>{state.session=session;if(session&&navigator.onLine)flushOutbox()})}

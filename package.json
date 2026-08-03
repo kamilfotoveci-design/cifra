@@ -7,7 +7,8 @@
     "build": "node work/build.js",
     "check": "node --check work/cifra-core.js && node --check work/vystav-finance.js && node --check work/build.js && node --check work/landing-v6.js",
     "test": "node --test --test-isolation=none tests/*.test.cjs",
-    "verify": "npm run check && npm test && npm run build && npm test"
+    "verify": "npm run check && npm test && npm run build && npm test",
+    "backend:smoke": "node scripts/backend-smoke.cjs"
   },
   "engines": {
     "node": ">=20"

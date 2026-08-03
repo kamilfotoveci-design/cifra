@@ -47,3 +47,13 @@ npm run build
 ```
 
 Automatické testy pokrývajú zaokrúhľovanie peňazí, DPH, desatinné množstvá, oddelenie cache používateľov, databázové hardening pravidlá a jazykový kód.
+
+## Kontrola živého backendu
+
+Po nasadení migrácií over živý Supabase projekt príkazom:
+
+```bash
+npm run backend:smoke
+```
+
+Najnovšia idempotentná migrácia je `supabase/migrations/20260803_backend_reliability.sql`. Doplňuje chýbajúce stĺpce, RLS, atómové uloženie faktúr, validačné triggery a aktualizáciu časových značiek.
