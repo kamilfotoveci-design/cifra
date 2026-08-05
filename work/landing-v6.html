@@ -1,33 +1,58 @@
 <section class="screen landing-v6" id="landing">
   <nav class="v6-nav" aria-label="Hlavná navigácia">
-    <a class="v6-logo" href="#landing" aria-label="VYSTAV — úvod"><img src="__VYSTAV_LOGO__" alt="VYSTAV" /></a>
+    <a class="v6-logo" href="#landing" aria-label="VYSTAV, úvod"><img src="__VYSTAV_LOGO__" alt="VYSTAV" /></a>
+    <div class="v6-nav-links" aria-label="Sekcie stránky">
+      <a href="#ako-to-funguje" data-v6-copy="navHow">Ako to funguje</a>
+      <a href="#funkcie" data-v6-copy="navFeatures">Funkcie</a>
+      <a href="#faq" data-v6-copy="navFaq">Časté otázky</a>
+    </div>
     <div class="v6-nav-actions">
       <div class="v6-locale" role="group" aria-label="Jazyk">
         <button type="button" class="active" data-language="SK" aria-pressed="true">SK</button>
         <button type="button" data-language="CZ" aria-pressed="false">CZ</button>
       </div>
       <button class="v6-login" type="button" data-auth="login" data-v6-copy="login">Prihlásiť sa</button>
-      <button class="btn btn-primary v6-nav-cta" type="button" data-auth="register" data-v6-copy="start">Začať</button>
+      <button class="btn btn-primary v6-nav-cta" type="button" data-auth="register" data-v6-copy="heroCta">Vystaviť faktúru zdarma</button>
+      <button type="button" class="v6-menu-toggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Otvoriť menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
     </div>
+  </nav>
+
+  <nav id="mobileNav" class="v6-mobile-nav" aria-label="Mobilná navigácia" hidden>
+    <a href="#ako-to-funguje" data-v6-copy="navHow">Ako to funguje</a>
+    <a href="#funkcie" data-v6-copy="navFeatures">Funkcie</a>
+    <a href="#faq" data-v6-copy="navFaq">Časté otázky</a>
+    <div class="v6-locale" role="group" aria-label="Jazyk">
+      <button type="button" class="active" data-language="SK" aria-pressed="true">SK</button>
+      <button type="button" data-language="CZ" aria-pressed="false">CZ</button>
+    </div>
+    <button class="v6-login" type="button" data-auth="login" data-v6-copy="login">Prihlásiť sa</button>
+    <button class="btn btn-primary" type="button" data-auth="register" data-v6-copy="heroCta">Vystaviť faktúru zdarma</button>
   </nav>
 
   <main>
     <header class="v6-hero">
       <div class="v6-hero-copy v6-enter" style="--v6-order:0">
-        <h1 data-v6-copy="heroTitle">Faktúry vždy poruke.</h1>
+        <p class="v6-eyebrow" data-v6-copy="heroEyebrow">Fakturácia pre Česko a Slovensko</p>
+        <h1 data-v6-copy="heroTitle">Faktúry bez stresu. Peniaze načas.</h1>
         <p data-v6-copy="heroCopy">Vystav doklad, pridaj QR platbu a sleduj úhradu. V češtine aj slovenčine, na počítači aj v mobile.</p>
         <div class="v6-hero-actions">
-          <button class="btn btn-primary" type="button" data-auth="register" data-v6-copy="heroCta">Vystaviť prvú faktúru</button>
-          <a href="#ako-to-funguje" data-v6-copy="howLink">Ako to funguje</a>
+          <button class="btn btn-primary" type="button" data-auth="register" data-v6-copy="heroCta">Vystaviť faktúru zdarma</button>
+          <a href="#ukazka" data-v6-copy="tourLink">Pozrieť ukážku</a>
         </div>
-        <p class="v6-note" data-v6-copy="heroNote">Bez karty. Účet vytvoríš za chvíľu.</p>
+        <ul class="v6-reassurance">
+          <li data-v6-copy="reassureOne">Bez platobnej karty</li>
+          <li data-v6-copy="reassureTwo">Prvá faktúra za pár minút</li>
+          <li data-v6-copy="reassureThree">Pre Česko aj Slovensko</li>
+        </ul>
       </div>
 
       <div class="v6-hero-visual v6-enter" style="--v6-order:1">
 
-      <section class="v6-hero-demo" aria-label="Interaktívny náhľad aplikácie">
+      <section class="v6-hero-demo" id="ukazka" aria-label="Interaktívny náhľad aplikácie">
         <div class="v6-demo-toolbar">
-          <span data-v6-copy="demoTitle">Interaktívny náhľad</span>
+          <span data-v6-copy="demoTitle">Skutočný produkt, nie ukážka</span>
         <div class="v6-demo-tabs" role="tablist" aria-label="Ukážka produktu">
           <button type="button" role="tab" aria-selected="true" data-demo-tab="overview" data-v6-copy="tabOverview">Prehľad</button>
           <button type="button" role="tab" aria-selected="false" data-demo-tab="invoice" data-v6-copy="tabInvoice">Faktúra</button>
@@ -48,6 +73,7 @@
               <div><span>20260023 · Studio Sever</span><b class="is-paid" data-v6-copy="paid">Uhradené</b><strong>860,00 €</strong></div>
               <div><span>20260022 · Ján Horák</span><b data-v6-copy="sent">Odoslané</b><strong>640,00 €</strong></div>
             </div>
+            <p class="v6-demo-note" data-v6-copy="demoNoteOverview">Vidíš, čo je uhradené a čo ešte čaká na peniaze.</p>
           </div>
         </div>
         <div data-demo-view="invoice" hidden>
@@ -57,11 +83,12 @@
             <div class="v6-invoice-line"><span data-v6-copy="consultation">Konzultácia značky</span><b>1 × 1 240,00 €</b></div>
             <div class="v6-invoice-sum"><span data-v6-copy="total">Celkom</span><strong>1 240,00 €</strong></div>
             <button type="button" data-demo-jump="payment" data-v6-copy="showPayment">Zobraziť QR platbu</button>
+            <p class="v6-demo-note" data-v6-copy="demoNoteInvoice">Čistý PDF s logom a pečiatkou, pripravený na odoslanie.</p>
           </article>
         </div>
         <div data-demo-view="payment" hidden>
           <div class="v6-payment">
-            <div><span data-v6-copy="payment">QR platba</span><h3 data-v6-copy="paymentReady">Údaje sú pripravené.</h3><p data-v6-copy="paymentCopy">Banková aplikácia načíta účet, sumu aj variabilný symbol.</p><dl><div><dt data-v6-copy="amount">Suma</dt><dd>1 240,00 €</dd></div><div><dt data-v6-copy="variable">Variabilný symbol</dt><dd>20260024</dd></div><div><dt>IBAN</dt><dd>SK31 1100 0000 0029 4000 0007</dd></div></dl></div>
+            <div><span data-v6-copy="payment">QR platba</span><h3 data-v6-copy="paymentReady">Údaje sú pripravené.</h3><p data-v6-copy="paymentCopy">Banková aplikácia načíta účet, sumu aj variabilný symbol.</p><dl><div><dt data-v6-copy="amount">Suma</dt><dd>1 240,00 €</dd></div><div><dt data-v6-copy="variable">Variabilný symbol</dt><dd>20260024</dd></div><div><dt>IBAN</dt><dd>SK31 1100 0000 0029 4000 0007</dd></div></dl><p class="v6-demo-note" data-v6-copy="demoNotePayment">Klient naskenuje a zaplatí presnú sumu, bez prepisovania.</p></div>
             <div id="landingDemoQr" aria-label="QR kód platby"></div>
           </div>
         </div>
@@ -88,45 +115,128 @@
       </ol>
     </section>
 
-    <section class="v6-capabilities" aria-labelledby="capabilitiesTitle">
-      <div class="v6-section-head"><h2 id="capabilitiesTitle" data-v6-copy="capabilitiesTitle">Všetko, čo patrí k faktúre.</h2><p data-v6-copy="capabilitiesCopy">Funkcie sú zoradené podľa práce, nie podľa technických názvov.</p></div>
-      <dl class="v6-ledger">
-        <div><dt data-v6-copy="capOne">Správne údaje</dt><dd data-v6-copy="capOneCopy">Klienti, položky, DPH, variabilný symbol, IBAN aj lokálne číslo účtu.</dd></div>
-        <div><dt data-v6-copy="capTwo">Reprezentatívny výstup</dt><dd data-v6-copy="capTwoCopy">PDF s firemným logom, pečiatkou a jemným brandingom VYSTAV.</dd></div>
-        <div><dt data-v6-copy="capThree">Rýchla platba</dt><dd data-v6-copy="capThreeCopy">QR Platba pre Česko a PAY by square pre Slovensko.</dd></div>
-        <div><dt data-v6-copy="capFour">Prehľad po odoslaní</dt><dd data-v6-copy="capFourCopy">Stavy, vyhľadávanie, štatistiky a export do CSV alebo Excelu.</dd></div>
-      </dl>
+    <section class="v6-features" id="funkcie" aria-labelledby="funkcieTitle">
+      <h2 id="funkcieTitle" class="v6-visually-hidden" data-v6-copy="featuresTitle">Funkcie</h2>
+
+      <article class="v6-feature">
+        <div class="v6-feature-copy">
+          <h3 data-v6-copy="featOneTitle">Faktúra, ktorá vyzerá profesionálne.</h3>
+          <p data-v6-copy="featOneCopy">Klient, položky, DPH, splatnosť a účet. Uložené údaje nabudúce len vyberieš. Hotový PDF s logom a pečiatkou je pripravený na odoslanie.</p>
+        </div>
+        <div class="v6-feature-visual v6-feature-invoice" aria-hidden="true">
+          <div class="v6-feature-invoice-row"><span data-v6-copy="supplier">Dodávateľ</span><b>Studio Sever s.r.o.</b></div>
+          <div class="v6-feature-invoice-row"><span data-v6-copy="customer">Odberateľ</span><b>Ateliér Lipa s.r.o.</b></div>
+          <div class="v6-feature-invoice-line"><span data-v6-copy="consultation">Konzultácia značky</span><b>1 240,00 €</b></div>
+          <div class="v6-feature-invoice-sum"><span data-v6-copy="total">Celkom</span><strong>1 240,00 €</strong></div>
+        </div>
+      </article>
+
+      <article class="v6-feature v6-feature-reverse">
+        <div class="v6-feature-copy">
+          <h3 data-v6-copy="featTwoTitle">QR platba, ktorú netreba prepisovať.</h3>
+          <p data-v6-copy="featTwoCopy">Česká QR Platba aj slovenské PAY by square, s presnou sumou a variabilným symbolom. Klient naskenuje v bankovej aplikácii a je hotovo.</p>
+        </div>
+        <div class="v6-feature-visual v6-feature-payment" aria-hidden="true">
+          <div class="v6-feature-qr"></div>
+          <div class="v6-feature-payment-rows">
+            <div><span data-v6-copy="amount">Suma</span><b>1 240,00 €</b></div>
+            <div><span data-v6-copy="variable">Variabilný symbol</span><b>20260024</b></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="v6-feature">
+        <div class="v6-feature-copy">
+          <h3 data-v6-copy="featThreeTitle">Vždy vieš, čo je uhradené.</h3>
+          <p data-v6-copy="featThreeCopy">Stavy Uhradené, Čaká na úhradu a Po splatnosti na jednom mieste, s vyhľadávaním a filtrom podľa stavu.</p>
+        </div>
+        <div class="v6-feature-visual v6-feature-status" aria-hidden="true">
+          <div><span>20260024</span><b class="is-waiting" data-v6-copy="waiting">Čaká na úhradu</b></div>
+          <div><span>20260023</span><b class="is-paid" data-v6-copy="paid">Uhradené</b></div>
+          <div><span>20260021</span><b class="is-overdue" data-v6-copy="overdue">Po splatnosti</b></div>
+        </div>
+      </article>
+
+      <article class="v6-feature v6-feature-reverse">
+        <div class="v6-feature-copy">
+          <h3 data-v6-copy="featFourTitle">Faktúry dostupné, nech si kdekoľvek.</h3>
+          <p data-v6-copy="featFourCopy">Cloudový účet funguje na počítači aj v mobile. Export do CSV alebo Excelu kedykoľvek, keď potrebuješ dáta inde.</p>
+        </div>
+        <div class="v6-feature-visual v6-feature-export" aria-hidden="true">
+          <div><span>vystav-faktury.csv</span><b>CSV</b></div>
+          <div><span>vystav-faktury.xlsx</span><b>XLSX</b></div>
+        </div>
+      </article>
     </section>
 
     <section class="v6-scenario" aria-labelledby="scenarioTitle">
-      <div><h2 id="scenarioTitle" data-v6-copy="scenarioTitle">Ráno vystavíš. Klient zaplatí z mobilu.</h2><p data-v6-copy="scenarioCopy">VYSTAV uloží klienta, pripraví PDF a vloží platobný QR kód. Keď sa k práci vrátiš, doklad aj jeho stav nájdeš v prehľade.</p></div>
+      <div><h2 id="scenarioTitle" data-v6-copy="scenarioTitle">Od vystavenia po úhradu bez zbytočných krokov.</h2><p data-v6-copy="scenarioCopy">Namiesto tabuľky, samostatného PDF a ručného sledovania platby je to jeden súvislý postup: od vyplnenia po označenie ako uhradené.</p></div>
       <ol><li><time>09:12</time><span data-v6-copy="scenarioOne">Faktúra uložená</span></li><li><time>09:14</time><span data-v6-copy="scenarioTwo">PDF odoslané klientovi</span></li><li><time>11:48</time><span data-v6-copy="scenarioThree">Platba označená ako uhradená</span></li></ol>
     </section>
 
     <section class="v6-pricing" aria-labelledby="pricingTitle">
       <div><h2 id="pricingTitle" data-v6-copy="pricingTitle">Začni bez záväzku.</h2><p data-v6-copy="pricingCopy">Najprv si prejdi celý postup. Platobnú kartu pri registrácii nepotrebuješ.</p></div>
-      <button class="btn btn-primary" type="button" data-auth="register" data-v6-copy="heroCta">Vystaviť prvú faktúru</button>
+      <button class="btn btn-primary" type="button" data-auth="register" data-v6-copy="heroCta">Vystaviť faktúru zdarma</button>
     </section>
 
-    <section class="v6-faq" aria-labelledby="faqTitle">
+    <section class="v6-security" aria-labelledby="securityTitle">
+      <div class="v6-section-head"><h2 id="securityTitle" data-v6-copy="securityTitle">Dáta, ktorým môžeš dôverovať.</h2><p data-v6-copy="securityCopy">Toto sú konkrétne veci, ktoré VYSTAV robí s tvojimi dátami, nič viac a nič menej.</p></div>
+      <dl class="v6-ledger">
+        <div><dt data-v6-copy="secOneTitle">Dáta v cloude, viazané na tvoj účet</dt><dd data-v6-copy="secOneCopy">Faktúry, klienti aj firemné údaje sú uložené v tvojom účte a nedostupné iným používateľom.</dd></div>
+        <div><dt data-v6-copy="secTwoTitle">Prihlásenie e-mailom alebo cez Google</dt><dd data-v6-copy="secTwoCopy">Bez ďalších hesiel na zapamätanie, ak si zvolíš prihlásenie cez Google.</dd></div>
+        <div><dt data-v6-copy="secThreeTitle">Export dát kedykoľvek</dt><dd data-v6-copy="secThreeCopy">Faktúry si vieš stiahnuť do CSV alebo Excelu, keď ich potrebuješ inde.</dd></div>
+        <div><dt data-v6-copy="secFourTitle">Žiadne sledovanie</dt><dd data-v6-copy="secFourCopy">Používame iba nevyhnutné úložisko pre prihlásenie a jazyk, žiadnu analytiku.</dd></div>
+      </dl>
+    </section>
+
+    <section class="v6-support" aria-labelledby="supportTitle">
+      <h2 id="supportTitle" data-v6-copy="supportTitle">Podpora priamo od tvorcu.</h2>
+      <p data-v6-copy="founderCopy">Napíš mi priamo, keď niečo nefunguje alebo niečo chýba. Odpovedám sám.</p>
+      <a class="v6-support-email" href="mailto:kamil.hortik@gmail.com" data-v6-copy="founderCta">Napísať e-mail</a>
+    </section>
+
+    <section class="v6-faq" id="faq" aria-labelledby="faqTitle">
       <h2 id="faqTitle" data-v6-copy="faqTitle">Najčastejšie otázky.</h2>
       <div class="v6-faq-list">
         <article><h3><button type="button" aria-expanded="false"><span data-v6-copy="faqOne">Funguje VYSTAV v Česku aj na Slovensku?</span><span aria-hidden="true">+</span></button></h3><div hidden><p data-v6-copy="faqOneCopy">Áno. Rozhranie prepneš medzi slovenčinou a češtinou a platobný QR kód sa vytvorí podľa krajiny a účtu.</p></div></article>
         <article><h3><button type="button" aria-expanded="false"><span data-v6-copy="faqTwo">Môžem zadať číslo účtu namiesto IBAN?</span><span aria-hidden="true">+</span></button></h3><div hidden><p data-v6-copy="faqTwoCopy">Pri českom účte môžeš zadať predčíslie, číslo účtu a kód banky. VYSTAV z nich pripraví údaje pre českú QR platbu.</p></div></article>
         <article><h3><button type="button" aria-expanded="false"><span data-v6-copy="faqThree">Dostanem faktúru ako PDF?</span><span aria-hidden="true">+</span></button></h3><div hidden><p data-v6-copy="faqThreeCopy">Áno. Pred odoslaním vidíš náhľad a môžeš stiahnuť reprezentatívne PDF s logom, položkami a platobnými údajmi.</p></div></article>
         <article><h3><button type="button" aria-expanded="false"><span data-v6-copy="faqFour">Sú údaje dostupné aj na inom zariadení?</span><span aria-hidden="true">+</span></button></h3><div hidden><p data-v6-copy="faqFourCopy">Áno. Po prihlásení sa faktúry a firemné údaje ukladajú do tvojho účtu v cloude.</p></div></article>
+        <article><h3><button type="button" aria-expanded="false"><span data-v6-copy="faqFive">Môžem exportovať svoje dáta?</span><span aria-hidden="true">+</span></button></h3><div hidden><p data-v6-copy="faqFiveCopy">Áno. Faktúry si kedykoľvek stiahneš do CSV alebo Excelu.</p></div></article>
       </div>
     </section>
 
     <section class="v6-final">
-      <div><h2 data-v6-copy="finalTitle">Prvá faktúra môže odísť dnes.</h2><p data-v6-copy="finalCopy">Vytvor účet, doplň firemné údaje a VYSTAV ťa prevedie zvyškom.</p></div>
-      <button class="btn btn-primary" type="button" data-auth="register" data-v6-copy="startAccount">Vytvoriť účet</button>
+      <div><h2 data-v6-copy="finalTitle">Prvá faktúra môže byť hotová ešte dnes.</h2><p data-v6-copy="finalCopy">Vytvor účet, doplň firemné údaje a VYSTAV ťa prevedie zvyškom.</p></div>
+      <div class="v6-final-actions">
+        <button class="btn btn-primary" type="button" data-auth="register" data-v6-copy="heroCta">Vystaviť faktúru zdarma</button>
+        <a href="#ukazka" data-v6-copy="tourLink">Pozrieť ukážku</a>
+      </div>
+    </section>
+
+    <section class="v6-legal" id="ochrana-udajov" aria-labelledby="legalTitle">
+      <h2 id="legalTitle" data-v6-copy="legalTitle">Ochrana údajov.</h2>
+      <p data-v6-copy="legalOne">Faktúry, klienti a firemné údaje sú uložené v cloude (Supabase) a viazané výhradne na tvoj účet. Iný používateľ sa k nim nedostane.</p>
+      <p data-v6-copy="legalTwo">V prehliadači si lokálne ukladáme iba jazykové nastavenie a potvrdenie tejto správy o úložisku. Žiadnu analytiku ani sledovacie skripty nepoužívame.</p>
+      <p data-v6-copy="legalThree">Otázky k svojim údajom môžeš kedykoľvek poslať na <a href="mailto:kamil.hortik@gmail.com">kamil.hortik@gmail.com</a>.</p>
     </section>
   </main>
 
   <footer class="v6-footer">
-    <a class="v6-logo" href="#landing" aria-label="VYSTAV — úvod"><img src="__VYSTAV_LOGO__" alt="VYSTAV" /></a>
-    <p data-v6-copy="footer">Faktúry, ktoré máš poruke.</p>
-    <div><a href="/kontakt" data-contact-link data-v6-copy="contact">Kontakt</a><button type="button" data-auth="login" data-v6-copy="login">Prihlásiť sa</button><span>© 2026 VYSTAV</span></div>
+    <a class="v6-logo" href="#landing" aria-label="VYSTAV, úvod"><img src="__VYSTAV_LOGO__" alt="VYSTAV" /></a>
+    <div class="v6-footer-main">
+      <p data-v6-copy="footer">Faktúry, ktoré máš poruke.</p>
+      <nav class="v6-footer-links" aria-label="Odkazy">
+        <a href="#ako-to-funguje" data-v6-copy="navHow">Ako to funguje</a>
+        <a href="#funkcie" data-v6-copy="navFeatures">Funkcie</a>
+        <a href="#faq" data-v6-copy="navFaq">Časté otázky</a>
+        <a href="#ochrana-udajov" data-v6-copy="legalTitle">Ochrana údajov</a>
+      </nav>
+      <div class="v6-locale" role="group" aria-label="Jazyk">
+        <button type="button" class="active" data-language="SK" aria-pressed="true">SK</button>
+        <button type="button" data-language="CZ" aria-pressed="false">CZ</button>
+      </div>
+    </div>
+    <div><a href="/kontakt" data-contact-link data-v6-copy="contact">Kontakt</a><button type="button" data-auth="login" data-v6-copy="login">Prihlásiť sa</button><button type="button" data-auth="register" data-v6-copy="startAccount">Vytvoriť účet</button><span>© 2026 VYSTAV</span></div>
   </footer>
 </section>
