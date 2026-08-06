@@ -46,6 +46,7 @@ body { overflow-x: clip; }
   justify-content: space-between;
   gap: var(--space-xl);
   min-height: 5rem;
+  padding-inline: var(--space-lg);
   background: var(--color-paper-2);
   border: var(--rule-hair) solid transparent;
   border-radius: 0;
