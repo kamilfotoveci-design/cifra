@@ -18,3 +18,4 @@ tmp/
 .impeccable/
 outputs/faktury-dashboard-remap.html
 outputs/assets/fonts/
+supabase/.temp/
