@@ -71,7 +71,7 @@ body { overflow-x: clip; }
 .v6-locale { gap: var(--space-3xs); padding-inline-end: var(--space-md); border-inline-end: var(--rule-hair) solid var(--color-rule); }
 
 .v6-nav-links { display: none; align-items: center; gap: var(--space-lg); }
-.v6-nav-links a { color: var(--color-ink-2); font-weight: 500; font-size: var(--text-sm); }
+.v6-nav-links a { color: var(--color-ink-2); font-weight: 500; font-size: var(--text-sm); text-decoration: none; }
 
 .v6-menu-toggle {
   display: inline-grid;
@@ -107,7 +107,7 @@ body { overflow-x: clip; }
 }
 .v6-mobile-nav[hidden] { display: grid; visibility: hidden; pointer-events: none; }
 .v6-mobile-nav.is-open { opacity: 1; transform: none; }
-.v6-mobile-nav a { padding-block: var(--space-sm); color: var(--color-ink); font-weight: 700; }
+.v6-mobile-nav a { padding-block: var(--space-sm); color: var(--color-ink); font-weight: 700; text-decoration: none; }
 .v6-mobile-nav .v6-locale { padding-block: var(--space-xs) var(--space-sm); border-inline-end: 0; border-block-end: var(--rule-hair) solid var(--color-rule); }
 .v6-mobile-nav .v6-login,
 .v6-mobile-nav .btn { justify-self: stretch; text-align: center; }
