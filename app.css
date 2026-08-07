@@ -889,6 +889,20 @@ body .field select {
   font-size: 16px;
 }
 
+body .field textarea {
+  display: block;
+  width: 100%;
+  min-height: 160px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-rule-strong);
+  border-radius: var(--radius-control);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
 body .line-items {
   overflow: visible;
   border: 0;
