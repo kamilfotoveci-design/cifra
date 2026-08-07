@@ -392,8 +392,9 @@ html[lang="cz"] .app .invoice-table td:nth-child(3)::before {
 .app .invoice-table td[colspan] {
   grid-column: 1 / -1;
   grid-row: auto;
-  padding: 8px 0 !important;
+  padding: 32px 20px !important;
   color: var(--color-muted) !important;
+  text-align: center;
 }
 
 .app .table-link {
@@ -1412,7 +1413,8 @@ body .toast {
   }
 
   .app .invoice-table td[colspan] {
-    padding: 30px 20px !important;
+    padding: 32px 20px !important;
+    text-align: center;
   }
 
   .app .data-grid {
