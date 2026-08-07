@@ -71,3 +71,15 @@ Nasadenie (jednorazovo, mimo tohto repozitára):
 5. Spusti `supabase/migrations/20260806_payment_reminders.sql` v Supabase SQL Editore (rovnaký postup ako pri predošlých migráciách vyššie).
 
 Function nikdy nepoužíva service-role kľúč — pracuje s JWT prihláseného používateľa, takže rovnaké RLS pravidlá ako v aplikácii platia aj tu.
+
+## Opakované faktúry, prehľad podľa veku a verejný odkaz
+
+Migrácia `supabase/migrations/20260807_recurring_and_public_invoices.sql`:
+
+- pridáva `invoices.is_recurring` (checkbox „Opakovaná faktúra" vo formulári faktúry) a `invoices.public_token` (náhodné UUID, jedinečné pre každú faktúru),
+- znovu vytvára `save_invoice_with_items` s podporou `is_recurring`,
+- pridáva funkciu `get_public_invoice(p_token)` — jediné miesto, kde má anonymný návštevník prístup k dátam faktúry, iba na základe presnej zhody tokenu. Žiadna tabuľka nemá RLS politiku pre `anon`, prístup ide vždy len cez túto funkciu.
+
+Táto migrácia nevyžaduje žiadnu novú Edge Function ani nový secret — stačí ju spustiť v Supabase SQL Editore rovnako ako predošlé.
+
+Na dashboarde pribudol prehľad neuhradených faktúr podľa veku (do splatnosti / 1–30 / 31–60 / 60+ dní) a panel s opakovanými faktúrami, ktoré je čas zopakovať (tlačidlo použije už existujúcu funkciu duplikácie faktúry). V detaile faktúry pribudlo tlačidlo „Kopírovať verejný odkaz" — skopíruje `/faktura/<token>`, verejne dostupnú, needitovateľnú stránku s náhľadom faktúry a QR platbou, bez prihlásenia.
