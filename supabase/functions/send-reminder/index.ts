@@ -27,6 +27,10 @@ const COPY = {
       `Dobrý deň,\n\npripomínam faktúru ${number} na sumu ${amount}, splatnú ${dueOn}` +
       `${variableSymbol ? ` (variabilný symbol ${variableSymbol})` : ""}.\n\n` +
       `Ak je už uhradená, tento e-mail prosím ignorujte.\n\nĎakujem,\n${name}`,
+    invoiceSubject: (number: string) => `Faktúra ${number} · Vystav`,
+    invoiceBody: (name: string, number: string, amount: string, variableSymbol: string) =>
+      `Dobrý deň,\n\nv prílohe posielam faktúru ${number} na sumu ${amount}.\n` +
+      `Variabilný symbol: ${variableSymbol}\n\nĎakujem,\n${name}`,
   },
   CZ: {
     subject: (number: string) => `Připomínka: faktura ${number} po splatnosti`,
@@ -37,6 +41,10 @@ const COPY = {
       `Dobrý den,\n\npřipomínám fakturu ${number} na částku ${amount}, splatnou ${dueOn}` +
       `${variableSymbol ? ` (variabilní symbol ${variableSymbol})` : ""}.\n\n` +
       `Pokud je již uhrazená, tento e-mail prosím ignorujte.\n\nDěkuji,\n${name}`,
+    invoiceSubject: (number: string) => `Faktura ${number} · Vystav`,
+    invoiceBody: (name: string, number: string, amount: string, variableSymbol: string) =>
+      `Dobrý den,\n\nv příloze posílám fakturu ${number} na částku ${amount}.\n` +
+      `Variabilní symbol: ${variableSymbol}\n\nDěkuji,\n${name}`,
   },
 };
 
@@ -58,7 +66,7 @@ Deno.serve(async (req) => {
   if (!resendKey) return json({ error: "RESEND_API_KEY is not configured" }, 500);
   const fromEmail = Deno.env.get("REMINDER_FROM_EMAIL") ?? "onboarding@resend.dev";
 
-  let payload: { invoiceId?: string; locale?: string; pdfBase64?: string; pdfFilename?: string; subject?: string; body?: string };
+  let payload: { invoiceId?: string; locale?: string; pdfBase64?: string; pdfFilename?: string; subject?: string; body?: string; kind?: string };
   try {
     payload = await req.json();
   } catch {
@@ -68,6 +76,9 @@ Deno.serve(async (req) => {
   if (!invoiceId) return json({ error: "invoiceId is required" }, 400);
   const locale = payload.locale === "CZ" ? "CZ" : "SK";
   const copy = COPY[locale];
+  // "reminder" (default, backward compatible) = nudge about an overdue balance;
+  // "invoice" = sending/resending the invoice itself, allowed even if already paid.
+  const kind = payload.kind === "invoice" ? "invoice" : "reminder";
 
   // Scoped with the caller's own JWT (not the service-role key) so the existing
   // "invoices own rows" / "profiles own row" RLS policies enforce ownership.
@@ -86,7 +97,7 @@ Deno.serve(async (req) => {
   if (invoiceError) return json({ error: invoiceError.message }, 500);
   if (!invoice) return json({ error: copy.notFound }, 404);
   if (!invoice.customer_email) return json({ error: copy.noEmail }, 400);
-  if (invoice.status === "paid") return json({ error: copy.alreadyPaid }, 400);
+  if (kind === "reminder" && invoice.status === "paid") return json({ error: copy.alreadyPaid }, 400);
 
   const { data: profile } = await supabase
     .from("profiles")
@@ -106,10 +117,13 @@ Deno.serve(async (req) => {
 
   // The frontend lets the sender review/edit the subject and body before
   // sending (an editable popup, not a fire-and-forget template) - honor that
-  // if provided, otherwise fall back to the default template.
-  const subject = (payload.subject && payload.subject.trim()) || copy.subject(invoice.number);
-  const bodyText = (payload.body && payload.body.trim())
-    || copy.body(senderName, invoice.number, amountText, dueOnText, invoice.variable_symbol ?? "");
+  // if provided, otherwise fall back to the default template for this kind.
+  const defaultSubject = kind === "invoice" ? copy.invoiceSubject(invoice.number) : copy.subject(invoice.number);
+  const defaultBody = kind === "invoice"
+    ? copy.invoiceBody(senderName, invoice.number, amountText, invoice.variable_symbol ?? invoice.number)
+    : copy.body(senderName, invoice.number, amountText, dueOnText, invoice.variable_symbol ?? "");
+  const subject = (payload.subject && payload.subject.trim()) || defaultSubject;
+  const bodyText = (payload.body && payload.body.trim()) || defaultBody;
 
   const resendResponse = await fetch("https://api.resend.com/emails", {
     method: "POST",
