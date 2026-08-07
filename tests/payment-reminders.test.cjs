@@ -29,3 +29,12 @@ test("frontend wires the reminder button to a real send function", () => {
   assert.match(core, /functions\/v1\/send-reminder/);
   assert.match(core, /inv\.customer_email/);
 });
+
+test("reminder attaches the invoice PDF instead of duplicating the PDF renderer", () => {
+  assert.match(core, /async function downloadInvoicePdf\(id,download=true\)/);
+  assert.match(core, /downloadInvoicePdf\(inv,false\)/);
+  assert.match(core, /return pdf\.output\("datauristring"\)/);
+  assert.match(core, /pdfBase64/);
+  assert.match(edgeFunction, /pdfBase64/);
+  assert.match(edgeFunction, /attachments/);
+});

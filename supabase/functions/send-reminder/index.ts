@@ -58,7 +58,7 @@ Deno.serve(async (req) => {
   if (!resendKey) return json({ error: "RESEND_API_KEY is not configured" }, 500);
   const fromEmail = Deno.env.get("REMINDER_FROM_EMAIL") ?? "onboarding@resend.dev";
 
-  let payload: { invoiceId?: string; locale?: string };
+  let payload: { invoiceId?: string; locale?: string; pdfBase64?: string; pdfFilename?: string };
   try {
     payload = await req.json();
   } catch {
@@ -100,6 +100,10 @@ Deno.serve(async (req) => {
     new Date(`${invoice.due_on}T12:00:00`),
   );
 
+  const attachments = payload.pdfBase64
+    ? [{ filename: payload.pdfFilename || `faktura-${invoice.number}.pdf`, content: payload.pdfBase64 }]
+    : undefined;
+
   const resendResponse = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -111,6 +115,7 @@ Deno.serve(async (req) => {
       to: [invoice.customer_email],
       subject: copy.subject(invoice.number),
       text: copy.body(senderName, invoice.number, amountText, dueOnText, invoice.variable_symbol ?? ""),
+      ...(attachments ? { attachments } : {}),
     }),
   });
 
