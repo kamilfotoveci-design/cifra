@@ -58,7 +58,7 @@ Deno.serve(async (req) => {
   if (!resendKey) return json({ error: "RESEND_API_KEY is not configured" }, 500);
   const fromEmail = Deno.env.get("REMINDER_FROM_EMAIL") ?? "onboarding@resend.dev";
 
-  let payload: { invoiceId?: string; locale?: string; pdfBase64?: string; pdfFilename?: string };
+  let payload: { invoiceId?: string; locale?: string; pdfBase64?: string; pdfFilename?: string; subject?: string; body?: string };
   try {
     payload = await req.json();
   } catch {
@@ -104,6 +104,13 @@ Deno.serve(async (req) => {
     ? [{ filename: payload.pdfFilename || `faktura-${invoice.number}.pdf`, content: payload.pdfBase64 }]
     : undefined;
 
+  // The frontend lets the sender review/edit the subject and body before
+  // sending (an editable popup, not a fire-and-forget template) - honor that
+  // if provided, otherwise fall back to the default template.
+  const subject = (payload.subject && payload.subject.trim()) || copy.subject(invoice.number);
+  const bodyText = (payload.body && payload.body.trim())
+    || copy.body(senderName, invoice.number, amountText, dueOnText, invoice.variable_symbol ?? "");
+
   const resendResponse = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -113,8 +120,8 @@ Deno.serve(async (req) => {
     body: JSON.stringify({
       from: `${senderName} <${fromEmail}>`,
       to: [invoice.customer_email],
-      subject: copy.subject(invoice.number),
-      text: copy.body(senderName, invoice.number, amountText, dueOnText, invoice.variable_symbol ?? ""),
+      subject,
+      text: bodyText,
       ...(attachments ? { attachments } : {}),
     }),
   });

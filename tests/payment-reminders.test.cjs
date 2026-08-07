@@ -38,3 +38,18 @@ test("reminder attaches the invoice PDF instead of duplicating the PDF renderer"
   assert.match(edgeFunction, /pdfBase64/);
   assert.match(edgeFunction, /attachments/);
 });
+
+test("reminder opens an editable subject/body popup before sending, instead of sending immediately", () => {
+  assert.match(core, /function reminderTemplateDefaults\(/);
+  assert.match(core, /function reminderFormMarkup\(/);
+  assert.match(core, /function openReminderDialog\(/);
+  assert.match(core, /data-remind-detail\]",page\)\?\.addEventListener\("click",\(\)=>openReminderDialog\(inv\)\)/);
+  assert.match(core, /async function sendPaymentReminder\(inv,overrides=\{\}\)/);
+  assert.doesNotMatch(core, /data-remind-detail\]",page\)\?\.addEventListener\("click",\(\)=>sendPaymentReminder\(inv\)\)/, "the button must open the editable dialog, not send immediately");
+});
+
+test("edge function honors an owner-edited subject/body, falling back to the default template", () => {
+  assert.match(edgeFunction, /payload\.subject/);
+  assert.match(edgeFunction, /payload\.body/);
+  assert.match(edgeFunction, /copy\.subject\(invoice\.number\)/);
+});
