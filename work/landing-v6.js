@@ -147,6 +147,29 @@
     menuToggle.setAttribute('aria-label', copy[locale][open ? 'menuClose' : 'menuOpen']);
   }
 
+  function prepareWordMotion() {
+    const headings = root.querySelectorAll('.v6-hero h1, .v6-section-head h2, .v6-showcase-copy h2, .v6-scenario h2, .v6-pricing h2, .v6-security h2, .v6-support h2, .v6-faq > h2, .v6-final h2, .v6-legal h2');
+    headings.forEach(heading => {
+      const text = heading.textContent.trim();
+      if (!text || heading.querySelector('.v6-word')) return;
+      heading.setAttribute('aria-label', text);
+      const fragment = document.createDocumentFragment();
+      text.split(/(\s+)/).forEach((part, index) => {
+        if (/^\s+$/.test(part)) {
+          fragment.appendChild(document.createTextNode(part));
+          return;
+        }
+        const word = document.createElement('span');
+        word.className = 'v6-word';
+        word.style.setProperty('--v6-word-index', String(Math.floor(index / 2)));
+        word.textContent = part;
+        word.setAttribute('aria-hidden', 'true');
+        fragment.appendChild(word);
+      });
+      heading.replaceChildren(fragment);
+    });
+  }
+
   function applyV6Locale() {
     locale = localStorage.getItem('cifra-locale') === 'CZ' ? 'CZ' : 'SK';
     document.documentElement.lang = locale === 'CZ' ? 'cs' : 'sk';
@@ -154,6 +177,7 @@
       const value = copy[locale][node.dataset.v6Copy];
       if (value) node.textContent = value;
     });
+    prepareWordMotion();
     navLinks?.setAttribute('aria-label', copy[locale].navLinksLabel);
     mobileNav?.setAttribute('aria-label', copy[locale].mobileNavLabel);
     updateMenuToggleLabel();
@@ -170,6 +194,24 @@
       });
     }, { threshold: 0.3 });
     statementObserver.observe(statement);
+  }
+
+  const scrollRevealTargets = [...root.querySelectorAll('.v6-workflow, .v6-showcase, .v6-features, .v6-scenario, .v6-pricing, .v6-security, .v6-support, .v6-faq, .v6-final, .v6-legal, .v6-footer')];
+  if (!reduceMotion && scrollRevealTargets.length) {
+    root.classList.add('v6-motion-ready');
+    scrollRevealTargets.forEach(target => target.classList.add('v6-scroll-reveal'));
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      scrollRevealTargets.forEach(target => revealObserver.observe(target));
+    } else {
+      scrollRevealTargets.forEach(target => target.classList.add('is-visible'));
+    }
   }
 
   const flow = root.querySelector('[data-flow]');
@@ -282,10 +324,31 @@
     const onParallax = () => {
       const rect = heroDemo.getBoundingClientRect();
       const progress = Math.min(1, Math.max(0, 1 - rect.top / Math.max(window.innerHeight, 1)));
-      heroDemo.style.setProperty('--v6-parallax', `${(progress * 3).toFixed(2)}px`);
+      heroDemo.style.setProperty('--v6-parallax', `${(progress * 10).toFixed(2)}px`);
+      heroDemo.style.setProperty('--v6-tilt', `${(progress * -0.8).toFixed(2)}deg`);
     };
     onParallax();
     window.addEventListener('scroll', onParallax, { passive: true });
+  }
+
+  const featureQr = root.querySelector('.v6-feature-qr');
+  if (featureQr && window.qrcode) {
+    try {
+      const target = new URL(window.location.href);
+      target.hash = 'landing';
+      const code = window.qrcode(0, 'M');
+      code.addData(target.toString());
+      code.make();
+      featureQr.innerHTML = code.createSvgTag({
+        cellSize: 3,
+        margin: 0,
+        scalable: true,
+        alt: 'QR odkaz na Načas',
+        title: 'Otvoriť Načas'
+      });
+    } catch (error) {
+      console.error('landing url qr', error);
+    }
   }
 
   applyV6Locale();
