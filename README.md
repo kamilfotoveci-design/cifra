@@ -1,4 +1,4 @@
-# Vystav
+# Načas
 
 Webová aplikácia pre vystavovanie faktúr v Česku a na Slovensku. Podporuje firemné profily, klientov, uložené položky, EUR/CZK, DPH, PDF, českú QR Platbu, slovenský PAY by square, export a synchronizáciu cez Supabase.
 

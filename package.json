@@ -1,8 +1,8 @@
 {
-  "name": "vystav",
+  "name": "nacas",
   "private": true,
   "version": "1.0.0",
-  "description": "Vystav invoicing application",
+  "description": "Načas invoicing application for Czech and Slovak small businesses",
   "scripts": {
     "build": "node work/build.js",
     "check": "node --check work/cifra-core.js && node --check work/vystav-finance.js && node --check work/build.js && node --check work/landing-v6.js",

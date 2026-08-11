@@ -1,37 +1,37 @@
-/* Vystav — shared brand and product tokens */
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · brand: Načas · designed-as-app */
 :root {
   --color-paper: #ffffff;
-  --color-paper-2: #f8fafc;
-  --color-paper-3: #f1f5f9;
-  --color-ink: #1e293b;
-  --color-ink-2: #334155;
-  --color-muted: #64748b;
-  --color-rule: #e2e8f0;
-  --color-rule-strong: #cbd5e1;
-  --color-accent: #1d4ed8;
-  --color-accent-hover: #1e40af;
-  --color-accent-soft: #eff6ff;
+  --color-paper-2: #f7f8fa;
+  --color-paper-3: #f6f5f1;
+  --color-ink: #172033;
+  --color-ink-2: #344054;
+  --color-muted: #667085;
+  --color-rule: #d8dee8;
+  --color-rule-strong: #b8c2d1;
+  --color-accent: #3157d5;
+  --color-accent-hover: #2446b8;
+  --color-accent-soft: #eef2ff;
   --color-accent-ink: #ffffff;
-  --color-focus: #2563eb;
-  --color-signature: #35d2c3;
-  --color-signature-soft: #ecfdfb;
-  --color-night: #0f172a;
-  --color-night-2: #172554;
+  --color-focus: #172033;
+  --color-signature: #3157d5;
+  --color-signature-soft: #eef2ff;
+  --color-night: #172033;
+  --color-night-2: #202c43;
   --color-night-ink: #f8fafc;
-  --color-night-muted: #cbd5e1;
-  --color-night-rule: #243654;
-  --color-success: #15805f;
-  --color-success-soft: #ecfdf5;
-  --color-warning: #a65f00;
-  --color-warning-soft: #fff7e6;
-  --color-danger: #c5322c;
-  --color-danger-soft: #fff1f0;
+  --color-night-muted: #cbd3df;
+  --color-night-rule: #34425b;
+  --color-success: #087a55;
+  --color-success-soft: #eaf7f1;
+  --color-warning: #a65c00;
+  --color-warning-soft: #fff4df;
+  --color-danger: #c43d36;
+  --color-danger-soft: #fff0ef;
 
-  --font-display: Inter, "Segoe UI Variable", Aptos, sans-serif;
+  --font-display: "Instrument Sans", Inter, "Segoe UI Variable", Aptos, sans-serif;
   --font-body: Inter, "Segoe UI Variable", Aptos, sans-serif;
   --font-ui: var(--font-body);
-  --font-mono: var(--font-body);
-  --font-support: Manrope, Inter, "Segoe UI Variable", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --font-support: var(--font-body);
 
   --space-3xs: 0.125rem;
   --space-2xs: 0.25rem;
@@ -57,18 +57,18 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-micro: 140ms;
-  --dur-short: 220ms;
-  --dur-long: 480ms;
+  --dur-micro: 150ms;
+  --dur-short: 230ms;
+  --dur-long: 420ms;
 
   --rule-hair: 1px;
   --radius-control: 8px;
   --radius-card: 12px;
   --radius-demo: 14px;
   --page-max: 1240px;
-  --shadow-whisper: 0 28px 80px rgb(30 41 59 / 10%);
-  --shadow-card: 0 1px 2px rgb(15 23 42 / 6%), 0 8px 24px rgb(15 23 42 / 6%);
-  --shadow-product: 0 12px 32px rgb(15 23 42 / 10%), 0 2px 8px rgb(15 23 42 / 8%);
+  --shadow-whisper: none;
+  --shadow-card: 0 1px 2px rgb(23 32 51 / 6%);
+  --shadow-product: 0 8px 24px rgb(23 32 51 / 8%);
 
   --z-base: 1;
   --z-raised: 10;

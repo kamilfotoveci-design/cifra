@@ -27,7 +27,7 @@ const COPY = {
       `Dobrý deň,\n\npripomínam faktúru ${number} na sumu ${amount}, splatnú ${dueOn}` +
       `${variableSymbol ? ` (variabilný symbol ${variableSymbol})` : ""}.\n\n` +
       `Ak je už uhradená, tento e-mail prosím ignorujte.\n\nĎakujem,\n${name}`,
-    invoiceSubject: (number: string) => `Faktúra ${number} · Vystav`,
+    invoiceSubject: (number: string) => `Faktúra ${number} · Načas`,
     invoiceBody: (name: string, number: string, amount: string, variableSymbol: string) =>
       `Dobrý deň,\n\nv prílohe posielam faktúru ${number} na sumu ${amount}.\n` +
       `Variabilný symbol: ${variableSymbol}\n\nĎakujem,\n${name}`,
@@ -41,7 +41,7 @@ const COPY = {
       `Dobrý den,\n\npřipomínám fakturu ${number} na částku ${amount}, splatnou ${dueOn}` +
       `${variableSymbol ? ` (variabilní symbol ${variableSymbol})` : ""}.\n\n` +
       `Pokud je již uhrazená, tento e-mail prosím ignorujte.\n\nDěkuji,\n${name}`,
-    invoiceSubject: (number: string) => `Faktura ${number} · Vystav`,
+    invoiceSubject: (number: string) => `Faktura ${number} · Načas`,
     invoiceBody: (name: string, number: string, amount: string, variableSymbol: string) =>
       `Dobrý den,\n\nv příloze posílám fakturu ${number} na částku ${amount}.\n` +
       `Variabilní symbol: ${variableSymbol}\n\nDěkuji,\n${name}`,
@@ -104,7 +104,7 @@ Deno.serve(async (req) => {
     .select("company_name, full_name")
     .eq("id", invoice.user_id)
     .maybeSingle();
-  const senderName = profile?.company_name || profile?.full_name || "VYSTAV";
+  const senderName = profile?.company_name || profile?.full_name || "Načas";
 
   const amountText = formatAmount(invoice.amount, invoice.currency, locale);
   const dueOnText = new Intl.DateTimeFormat(locale === "CZ" ? "cs-CZ" : "sk-SK").format(

@@ -1,50 +1,41 @@
-# Product
-<!-- impeccable:product-schema 1 -->
+# Načas — produktový rámec
 
-## Platform
-web
+## Pre koho
 
-## Users
-Primárne živnostníci, freelanceri a malé firmy v Česku a na Slovensku. Používatelia často nie sú účtovníci; potrebujú vystaviť správnu faktúru rýchlo, bez zbytočnej administratívy a bez učenia sa zložitého systému.
+Načas je fakturačná aplikácia pre českých a slovenských živnostníkov a malé firmy, ktoré chcú vystaviť profesionálny doklad bez zložitého účtovného systému.
 
-## Product Purpose
-Cifra je jednoduchý fakturačný nástroj na tvorbu, úpravu, odoslanie a sledovanie faktúr. Pomáha používateľovi dostať faktúru od prázdneho formulára k zákazníkovi v priebehu pár minút a pridať QR platbu bez manuálneho prepisovania údajov.
+## Hlavná úloha
 
-## Positioning
-Rýchla, pokojná a dôveryhodná fakturácia pre ľudí, ktorí chcú mať podnikanie pod kontrolou bez účtovníckeho chaosu. Cifra má byť zrozumiteľnejšia a priamejšia než robustné účtovné systémy, pričom pôsobí profesionálne pred zákazníkom.
+Používateľ má vedieť:
 
-## Operating Context
-Webová aplikácia používaná najmä na notebooku a desktope, s použiteľným mobilným zobrazením. Trh je Česko a Slovensko, preto musí rozhranie počítať s lokálnymi formátmi dát, mien, bankových údajov, variabilného symbolu a QR platby. Verejná landing page má viesť k registrácii; prihlásená časť má sústrediť používateľa na prehľad faktúr a ďalší jasný krok.
+1. uložiť kompletné firemné a klientske údaje,
+2. vytvoriť alebo duplikovať faktúru,
+3. pridať položky, DPH, splatnosť, účet a variabilný symbol,
+4. skontrolovať reprezentatívny náhľad a PDF,
+5. pridať funkčný český QR Platba alebo slovenský PAY by square kód,
+6. odoslať doklad a sledovať stav úhrady,
+7. exportovať dáta do CSV alebo Excelu.
 
-## Capabilities and Constraints
-- Vytvorenie a úprava faktúry.
-- Údaje dodávateľa, odberateľa, položiek, DPH, splatnosti a platby.
-- Automatický výpočet súm a generovanie QR platby.
-- Náhľad, export/odoslanie faktúry a evidencia stavu úhrady.
-- Priamy onboarding s krátkym návodom a zrozumiteľnými prázdnymi stavmi.
-- Rozhranie musí zostať jednoduché aj pri rozširovaní o kontakty, nastavenia a platby.
-- Prototyp je samostatný HTML súbor; interakcie majú byť funkčné bez narušenia vizuálnej stability, responzivity alebo čitateľnosti.
+## Produktový prísľub
 
-## Brand Commitments
-- Jasnosť pred dekoráciou.
-- Profesionálny, moderný a pokojný dojem bez low-cost SaaS estetiky.
-- Veľkorysá typografia, silná hierarchia a čitateľný text.
-- Dôvera, presnosť a kontrola pri finančných údajoch.
-- Každá obrazovka má používateľovi ukázať, čo sa stalo a čo môže urobiť ďalej.
+**Od práce k platbe. Načas.**
 
-## Evidence on Hand
-- Používateľ definoval cieľ ako fakturáciu s QR kódom, úpravami a funkčným loginom, landing page a dashboardom.
-- Používateľ opakovane označil malé texty, náhodné fonty, tiene, rozpadnutý layout a AI-slop estetiku za problémy.
-- Existujúci prototyp je v `outputs/faktury-dashboard.html` a používa značku Cifra.
-- Referenčný smer: vizuálne pokojná produktová aplikácia podobná SubSentry, doménovo inšpirovaná jednoduchou fakturáciou ako FaktuRyWeb.
+Rozhranie má znižovať prepisovanie a opakovanie. Uložený klient a položka majú urýchliť ďalšiu faktúru; duplikovanie má zachovať údaje a nechať používateľa meniť iba to, čo sa zmenilo.
 
-## Product Principles
-1. Jeden hlavný krok na obrazovku.
-2. Faktúra musí byť rýchlejšia než tabuľka alebo dokument.
-3. Peniaze a termíny zobrazovať výrazne, jednoznačne a bez vizuálneho šumu.
-4. Predvolené hodnoty a automatizácia znižujú prepisovanie, nie kontrolu.
-5. Komponenty, spacing a typografia tvoria jeden konzistentný systém.
-6. Prístupnosť a responzivita sú súčasťou kvality, nie dodatočná oprava.
+## Jazyk a lokalizácia
 
-## Accessibility & Inclusion
-Text a ovládacie prvky musia zostať čitateľné pri bežnom zväčšení, mať dostatočný kontrast a jasné focus/hover/disabled stavy. Klikateľné plochy majú byť pohodlné aj na dotyk. Stav faktúry, chyba ani úspech nesmú byť komunikované iba farbou; používateľ musí dostať aj textové vysvetlenie.
+- Používateľ môže kedykoľvek prepnúť SK/CZ.
+- Faktúra v EUR používa slovenské pomenovania a PAY by square, ak sú platobné údaje platné.
+- Faktúra v CZK používa české pomenovania a QR Platba, ak sú platobné údaje platné.
+- Formát dátumu, meny a stavov sa riadi jazykom dokumentu.
+
+## Dôvera a dáta
+
+- Účty a dáta sú uložené v Supabase a oddelené pravidlami RLS.
+- Aplikácia nesmie predstierať uloženie, odoslanie ani synchronizáciu.
+- Každá akcia musí mať loading, úspech, chybu a bezpečné opakovanie.
+- Lokálne kľúče zostávajú spätne kompatibilné počas rebrandu, aby sa nestratili rozpracované dáta.
+
+## Definition of done
+
+Funkcia je hotová až vtedy, keď funguje s myšou aj klávesnicou, na mobile aj desktope, v slovenčine aj češtine, pri prázdnych aj reálnych dátach a zobrazuje zrozumiteľnú chybu pri zlyhaní backendu.

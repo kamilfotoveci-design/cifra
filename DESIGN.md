@@ -1,88 +1,62 @@
-# Vystav — locked product design system
+# Načas — produktový dizajnový systém
 
-Vystav is a calm invoicing workspace for Czech and Slovak freelancers and small firms. Every surface should feel precise, legible and composed. The product earns trust through clarity, not decoration.
+## Smer
 
-## Genre
+Modern minimal. Marketing rozpráva krátky príbeh od práce po platbu; aplikácia je sústredený pracovný nástroj. Dôveryhodnosť vzniká z typografie, konzistentných rozostupov, funkčných stavov a reálneho produktu.
 
-Modern-minimal with a restrained financial-product character.
+## Základné pravidlá
 
-## Structure
+- Paleta, typografia a tón sú definované v `BRAND.md` a `tokens.css`.
+- Používame 4/8 px rytmus. Bežné medzery sú 8, 12, 16, 24, 40 a 64 px.
+- Obsah landing page má maximum 1240 px. Aplikácia využíva dostupnú plochu, no formuláre drží v čitateľnej šírke.
+- Telo textu má 16 px a riadkovanie približne 1.55. Form labels neklesajú pod 14 px.
+- Rozhranie je border-first. Tieň je povolený iba na dočasne zdvihnutých prvkoch, napríklad menu alebo dialóg.
+- Modrá znamená značku, odkaz a primárnu akciu. Zelená, oranžová a červená patria iba stavom.
 
-- Marketing: one decisive hero, one live product canvas, one concise capability sequence and one closing action.
-- Product: stable navigation, divided information bands, clear tables and forms, one primary action per screen.
-- Documents: white paper, typographic hierarchy, generous margins and quiet Vystav icon.
+## Povrchy
 
-## Brand
+- Landing: Warm Paper `#F6F5F1` a biela.
+- App shell: App Background `#F7F8FA`.
+- Sidebar: Deep Ink `#172033`.
+- Formuláre, tabuľky a faktúry: biela s hranou Rule `#D8DEE8`.
+- Aktívna navigácia: tónovaná modrá plocha, nie žiariaci rám.
 
-- Primary blue: `#1D4ED8`.
-- Accent turquoise: `#35D2C3`.
-- Dark text: `#1E293B`.
-- Light background: `#F8FAFC`.
-- Supporting colour is semantic only: green for paid, amber for waiting, red for overdue.
-- No decorative gradients, glass panels, floating pills, oversized rounding, ornamental shadows or icon confetti.
+## Komponenty
 
-## Typography
+- Tlačidlo: výška najmenej 44 px, radius 8 px, jasný hover, focus, active a disabled stav.
+- Input: viditeľná hranica, label nad poľom, focus ring s dostatočným kontrastom; placeholder nikdy nenahrádza label.
+- Panel: jeden súvislý obsahový celok, nie dekoratívna karta.
+- Tabuľka: pravé zarovnanie súm, konzistentné dátumy, celý riadok môže byť cieľom iba ak je zjavne klikateľný.
+- Dialóg: jedna úloha, jasný titul, primárna akcia vpravo a bezpečné zavretie cez Escape.
+- Toast: stručný výsledok akcie; nesmie zakrývať navigáciu ani hlavný CTA.
 
-- Display and body: Inter.
-- Supporting emphasis: Manrope, used sparingly.
-- Weights: 400 for reading, 500 for controls and data, 700 for headings and primary actions.
-- Financial values use tabular numerals.
-- Body copy is 16–18 px. Operational metadata never falls below 13 px.
-- Headlines are compact, sentence case and tightly tracked. Tiny all-caps labels are not part of the brand.
+## Responzivita
 
-## Components
+- 320–479 px: jedna kolóna, 16 px okraje, ovládacie prvky na celú šírku podľa potreby.
+- 480–767 px: stále jedna hlavná kolóna, kompaktné riadky a spodná/mobilná navigácia.
+- 768–1199 px: adaptívna mriežka a zbaliteľný sidebar.
+- 1200 px a viac: plný pracovný shell bez orezaných rámov.
+- Tabuľky na mobile prechádzajú na čitateľné riadky/karty; horizontálny scroll je posledná možnosť.
 
-- Controls: 48 px standard height, 8 px radius.
-- Panels: 12–14 px radius, 1 px cool rule, no default shadow.
-- Primary buttons: brand-blue fill, white text, compact copy tied to a real action.
-- Turquoise is a signature detail, not a second competing CTA colour.
-- Secondary actions: text or hairline border, never a competing filled colour.
-- Product previews use real DOM and real states rather than decorative device frames.
+## Pohyb a interakcia
 
-## Layout
+- Hover: 150 ms; mierna zmena farby alebo posun najviac 1 px.
+- Menu a popover: 200 ms, opacity + translateY 4 px.
+- Dialóg: 230 ms, opacity + scale 0.985.
+- Zmena pohľadu: 230 ms, opacity + translateY 6 px.
+- Landing reveal: 360–420 ms; bez nekonečných dekoratívnych slučiek.
+- Všetky animácie používajú transform a opacity a musia byť prerušeniteľné.
+- Pri reduced motion sa prechody skracujú alebo vypnú.
 
-- Maximum content width: 1240 px.
-- The landing page uses generous vertical rhythm and no more than one enriched product composition per viewport.
-- App layouts stack before typography shrinks.
-- Repeated equal cards are replaced by divided bands, ledgers or tables.
+## Zakázané vzory
 
-## Motion
+- gradientové hero pozadia,
+- svietiace orby a sklenené panely,
+- stocková fotografia ako náhrada produktového dôkazu,
+- ikonka dokumentu s fajkou,
+- texty v malých verzálkach s veľkým trackingom,
+- tri a viac rovnako výrazných CTA,
+- tieň na každom paneli,
+- falošné dáta vydávané za živé používateľské dáta.
 
-- Micro feedback: 140–180 ms.
-- Section and product transitions: 320–520 ms with `cubic-bezier(0.16, 1, 0.3, 1)`.
-- Motion changes opacity and transform only.
-- Reduced-motion mode removes spatial movement and keeps short opacity feedback.
-
-## Voice
-
-- Direct, useful and local.
-- Prefer concrete verbs: Vystaviť, odoslať, skontrolovať, zaplatiť.
-- Never use inflated claims, invented metrics, technical theatre or “AI” language.
-- Slovak and Czech copy have equal status and are written naturally, not mechanically translated.
-
-## Logo rules
-
-- Use the supplied primary logo and standalone icon without distortion or recolouring.
-- Minimum wordmark width: 120 px.
-- Clear space: at least the visual height of the letter V around the mark.
-- Monochrome is reserved for one-colour documents.
-
-## Source of truth
-
-`tokens.css` contains shared tokens. `brand.css` is the final identity layer. `work/vystav-ui.css` retains the established application components and behaviour.
-
-```css
-/* Hallmark · genre: modern-minimal · marketing: product canvas · app: calm workspace · theme: Vystav Blue + Turquoise · designed-as-app */
-```
-## Iconography and support
-
-- Interface icons use one 24 px, 1.8 px stroke SVG language with rounded caps and joins.
-- Icons support visible labels; they never replace meaning on their own.
-- Product support is available from the footer and authenticated navigation at `kamil.hortik@gmail.com`.
-- The cookie notice describes only necessary storage, persists acknowledgement and does not imply unused analytics.
-
-## Motion signature
-
-- The authored landing moment is the invoice trace: the VYSTAV signature line draws, the product surface receives one restrained light pass and QR payment gets one short scan when opened.
-- Authenticated navigation uses a 190 ms continuity transition; frequent controls use only immediate pressed feedback.
-- Motion uses transform, opacity and clip-path, with a complete `prefers-reduced-motion` path in `enhancements.css`.
+/* Hallmark · genre: modern-minimal · marketing: Narrative Workflow · app: Workbench · theme: Načas Blue / Deep Ink / Warm Paper · enrichment: real product UI · nav: N9 · footer: Ft5 · designed-as-app */

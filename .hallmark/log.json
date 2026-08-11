@@ -1,67 +1,33 @@
 [
   {
+    "date": "2026-08-11",
+    "scope": "landing + product app + PDF",
+    "macrostructure": "Narrative Workflow + Workbench",
+    "theme": "custom Načas palette (#3157D5 / #172033 / #F6F5F1)",
+    "theme_axes": "light / grotesk sans / cool blue",
+    "enrichment": "real product UI without decorative photography or fake browser chrome",
+    "nav": "N9 edge-aligned minimal",
+    "footer": "Ft5 statement",
+    "brief": "Full identity migration from VYSTAV to Načas with a deadline-line symbol, Instrument Sans display typography, restrained motion and preserved product functionality"
+  },
+  {
     "date": "2026-07-28",
     "scope": "landing",
     "macrostructure": "Narrative Workflow",
-    "theme": "locked VYSTAV brand manual (#1D4ED8 + #35D2C3)",
-    "enrichment": "one live pocket invoice workflow with manual steps",
+    "theme": "legacy VYSTAV brand",
+    "enrichment": "live invoice workflow",
     "nav": "N9 edge-aligned minimal",
     "footer": "Ft5 statement",
-    "brief": "Mobile-first editorial SaaS landing with SK/CZ copy, interactive invoice preview, payment QR and restrained explanatory motion"
+    "brief": "Mobile-first product landing with SK/CZ copy, invoice preview and payment QR"
   },
   {
     "date": "2026-07-27",
     "scope": "landing + product app",
     "macrostructure": "Product Canvas",
-    "theme": "supplied VYSTAV brand manual (#1D4ED8 + #35D2C3)",
+    "theme": "legacy VYSTAV brand",
     "enrichment": "single live product canvas",
     "nav": "N1b restrained",
     "footer": "Ft2 compact",
-    "brief": "Minimal luxury redesign using the supplied logo, Inter typography, one product proof, three-step workflow and consistent application identity"
-  },
-  {
-    "value": [
-      {
-        "date": "2026-07-23",
-        "scope": "landing + product app",
-        "macrostructure": "Feature Stack",
-        "theme": "studied-DNA (Stripe + Mercury + Linear + Wise, Vystav Cobalt)",
-        "enrichment": "live product canvas",
-        "nav": "N1b",
-        "footer": "Ft1",
-        "brief": "Full-system redesign of the Vystav landing, authentication, dashboard, tables, forms, invoice detail and responsive shell"
-      },
-      {
-        "date": "2026-07-23",
-        "scope": "landing",
-        "macrostructure": "Split Studio",
-        "theme": "Cobalt",
-        "enrichment": "tier-A live product demo",
-        "nav": "N9",
-        "footer": "Ft2",
-        "brief": "Anti-slop landing refinement with restrained product-led motion and tonal interaction states"
-      },
-      {
-        "date": "2026-07-23",
-        "scope": "landing",
-        "macrostructure": "Statement + Proof",
-        "theme": "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
-        "enrichment": "E1 tier-A live product demo",
-        "nav": "N2",
-        "footer": "Ft5",
-        "brief": "Complete landing redesign with editorial statement, real product stage, invoice-to-payment proof flow, and ledger feature list"
-      },
-      {
-        "date": "2026-07-22",
-        "scope": "landing",
-        "macrostructure": "Workbench",
-        "theme": "studied-DNA (source: idoklad.cz; Vystav Cobalt tokens)",
-        "enrichment": "E1 tier-A live product demo",
-        "nav": "N1b",
-        "footer": "Ft5",
-        "brief": "Vystav landing page with interactive invoice and QR demo"
-      }
-    ],
-    "Count": 4
+    "brief": "Minimal product-led landing and application identity"
   }
 ]

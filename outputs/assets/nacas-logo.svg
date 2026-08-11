@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 48" role="img" aria-labelledby="title desc">
+  <title id="title">Na&#269;as</title>
+  <desc id="desc">Nacas wordmark with a fluid n symbol and deadline point</desc>
+  <path d="M7 37V23C7 15.6 11.8 11 19 11s12 4.6 12 12v14" fill="none" stroke="#3157D5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="31" cy="6" r="3" fill="#172033"/>
+  <text x="46" y="35" fill="#172033" font-family="Instrument Sans, Inter, Arial, sans-serif" font-size="34" font-weight="650" letter-spacing="-1.25">na&#269;as</text>
+</svg>

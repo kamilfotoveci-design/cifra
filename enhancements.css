@@ -1,4 +1,4 @@
-/* VYSTAV motion, icon and support layer */
+/* Načas motion, icon and support layer */
 :root{--motion-view:190ms;--ease-brand:cubic-bezier(.16,1,.3,1)}
 .ui-icon{width:20px;height:20px;flex:0 0 20px;display:inline-grid;place-items:center;color:currentColor}.ui-icon svg,.support-sheet-icon svg,.cookie-notice-icon svg{width:100%;height:100%;display:block}.btn .ui-icon{width:18px;height:18px;flex-basis:18px;margin-inline-end:8px}.text-button .ui-icon{margin-inline-end:6px}.app .side-nav button{gap:10px}.app .side-nav button .ui-icon{opacity:.82}.app .side-nav button.active .ui-icon{opacity:1;color:var(--color-signature)}.app .quick-item>.ui-icon{width:36px;height:36px;flex-basis:36px;padding:var(--space-xs);border-radius:9px;background:var(--color-accent-soft);color:var(--color-accent)}.app .quick-item>div{min-width:0;flex:1}.app .quick-item button .ui-icon,.app .row-menu .ui-icon,.app .line-remove .ui-icon{width:18px;height:18px}.app .metric-icon{border-radius:8px}.app .metric-icon .ui-icon{width:17px;height:17px}.app .help-row .ui-icon{color:var(--color-signature)}.app .mobile-nav-more{gap:5px;flex-direction:column}.app .mobile-nav-more .ui-icon{width:19px;height:19px}.app .page{opacity:1;transform:none;transition:opacity 160ms var(--ease-brand),transform var(--motion-view) var(--ease-brand)}.app .page.view-enter{opacity:.72;transform:translate3d(0,5px,0)}
 .v5-product::before{transform:scaleX(0);transform-origin:left;animation:brand-line-in 760ms 360ms var(--ease-brand) forwards}@keyframes brand-line-in{to{transform:scaleX(1)}}.v5-product-body{position:relative;isolation:isolate}.v5-product-body::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(104deg,transparent 0 46%,rgb(53 210 195 / 10%) 49%,transparent 52% 100%);transform:translateX(-110%);animation:product-glint 900ms 620ms var(--ease-brand) both}@keyframes product-glint{to{transform:translateX(110%)}}
@@ -18,7 +18,7 @@
 .app .invoice-paper-v2{min-height:0;padding:38px 40px 42px;overflow:hidden;border:1px solid var(--rule);border-radius:12px;background:#fff;color:#182337;box-shadow:none}
 .app .invoice-paper-v2 .invoice-paper-head{align-items:flex-start;padding:0 0 24px;border-bottom:1px solid #dce3ed}
 .app .invoice-brand-lockup{display:flex;min-height:48px;align-items:center;gap:18px}
-.app .invoice-vystav-mark{width:38px;height:38px;object-fit:contain;flex:0 0 38px}
+.app .invoice-nacas-mark{width:38px;height:38px;object-fit:contain;flex:0 0 38px}
 .app .invoice-paper-v2 .invoice-logo{width:auto;max-width:128px;height:42px;margin:0;padding-left:18px;border-left:1px solid #dce3ed;object-fit:contain;object-position:left center}
 .app .invoice-paper-v2 .invoice-paper-meta{display:grid;justify-items:end;gap:4px;text-align:right}
 .app .invoice-paper-v2 .invoice-paper-meta>span{margin:0;color:#68758a;font:700 12px/1.2 var(--font-sans);letter-spacing:.08em}
@@ -30,7 +30,7 @@
 .app .invoice-status-paid{background:#eaf7f1;color:#157653}.app .invoice-status-late{background:#fff0ed;color:#b42318}
 .app .invoice-paper-v2 .invoice-parties{display:grid;grid-template-columns:1fr 1fr;gap:44px;padding:25px 0 27px}
 .app .invoice-paper-v2 .invoice-parties>div{align-content:start;gap:4px}
-.app .invoice-paper-v2 .invoice-parties small{margin-bottom:5px;color:#1d4ed8;font:700 11px/1.2 var(--font-sans);letter-spacing:.07em}
+.app .invoice-paper-v2 .invoice-parties small{margin-bottom:5px;color:#3157d5;font:700 11px/1.2 var(--font-sans);letter-spacing:.07em}
 .app .invoice-paper-v2 .invoice-parties strong{font-size:16px;line-height:1.35}
 .app .invoice-paper-v2 .invoice-parties span{min-height:0;color:#68758a;font-size:12px;line-height:1.45}
 .app .invoice-paper-v2 .invoice-parties span:empty{display:none}
@@ -40,21 +40,21 @@
 .app .invoice-paper-v2 .invoice-paper-table td{padding:11px 8px;border-bottom:1px solid #e6ebf2;vertical-align:top}
 .app .invoice-summary{display:grid;grid-template-columns:minmax(0,1fr) minmax(205px,.7fr);gap:28px;margin-top:26px;align-items:start}
 .app .invoice-paper-v2 .invoice-payment{display:grid;gap:8px;padding-top:3px;color:#68758a;font-size:12px}
-.app .invoice-payment>small{margin-bottom:2px;color:#1d4ed8;font-size:10px;font-weight:700;letter-spacing:.07em}
+.app .invoice-payment>small{margin-bottom:2px;color:#3157d5;font-size:10px;font-weight:700;letter-spacing:.07em}
 .app .invoice-payment>span{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px}
 .app .invoice-payment i{font-style:normal}.app .invoice-payment strong{color:#182337;font-weight:600;overflow-wrap:anywhere}
 .app .invoice-payment p{display:grid;gap:4px;margin:8px 0 0;padding-top:10px;border-top:1px solid #e6ebf2;color:#182337;line-height:1.45}
 .app .invoice-payment p b{color:#68758a;font-size:10px;letter-spacing:.05em;text-transform:uppercase}
 .app .invoice-paper-v2 .invoice-sums{min-width:0;gap:8px;color:#68758a;font-size:12px}
 .app .invoice-paper-v2 .invoice-sums b{margin-top:2px;padding-top:12px;border-top:1px solid #dce3ed;color:#182337;font-size:13px}
-.app .invoice-paper-v2 .invoice-sums b strong{color:#1d4ed8;font-size:19px;letter-spacing:-.02em}
+.app .invoice-paper-v2 .invoice-sums b strong{color:#3157d5;font-size:19px;letter-spacing:-.02em}
 .app .invoice-paper-v2 .invoice-qr{grid-column:1/-1;justify-self:start;display:grid;grid-template-columns:88px auto;align-items:center;gap:12px;margin-top:2px;color:#68758a;font-size:10px}
 .app .invoice-paper-v2 .invoice-qr img{grid-row:1;width:88px;height:88px}.app .invoice-paper-v2 .invoice-qr span{grid-column:2;max-width:16ch;line-height:1.35}
 .app .invoice-paper-v2 .invoice-stamp{position:static;display:block;width:110px;height:58px;margin:18px 0 0 auto;object-fit:contain;object-position:right center}
 @media(max-width:720px){
   .app .invoice-paper-v2{padding:24px 20px 30px;overflow:hidden;border-radius:10px}
   .app .invoice-paper-v2 .invoice-paper-head{flex-direction:row;gap:20px}
-  .app .invoice-vystav-mark{width:32px;height:32px;flex-basis:32px}.app .invoice-paper-v2 .invoice-logo{max-width:86px;height:32px;padding-left:12px}
+  .app .invoice-nacas-mark{width:32px;height:32px;flex-basis:32px}.app .invoice-paper-v2 .invoice-logo{max-width:86px;height:32px;padding-left:12px}
   .app .invoice-paper-v2 .invoice-paper-meta{justify-items:end;text-align:right}.app .invoice-paper-v2 .invoice-paper-meta>strong{font-size:21px}
   .app .invoice-meta-dates{display:grid;gap:2px}.app .invoice-meta-dates small{font-size:10px}
   .app .invoice-paper-v2 .invoice-parties{grid-template-columns:1fr;gap:22px;padding:22px 0}

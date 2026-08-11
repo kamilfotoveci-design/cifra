@@ -1,4 +1,4 @@
-/* VYSTAV brand layer · Inter · #1D4ED8 · #35D2C3 · calm product canvas */
+/* Načas brand layer · Instrument Sans + Inter · deadline-line identity · calm product canvas */
 body,
 button,
 input,
@@ -345,10 +345,10 @@ h3,
   width: 34px;
   height: 35px;
   flex: 0 0 34px;
-  background: url("__VYSTAV_ICON__") center / contain no-repeat;
+  background: url("__NACAS_ICON__") center / contain no-repeat;
 }
 .auth-card .brand,
-.sidebar > .brand { align-items: center; gap: 10px; color: var(--color-ink); font-weight: 700; letter-spacing: .02em; text-transform: uppercase; }
+.sidebar > .brand { align-items: center; gap: 10px; color: var(--color-ink); font-weight: 650; letter-spacing: -.02em; text-transform: none; }
 .sidebar > .brand { color: var(--color-night-ink); }
 .app .main { background: var(--color-paper-2); }
 .app .panel,
