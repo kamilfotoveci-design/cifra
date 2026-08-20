@@ -1,0 +1,171 @@
+/* Light mode is the product default. This layer deliberately sits after
+   the reference theme so the app has one readable surface system. */
+:root {
+  --light-canvas: #f5f7fa;
+  --light-surface: #ffffff;
+  --light-surface-subtle: #f8fafc;
+  --light-ink: #142033;
+  --light-ink-soft: #40506a;
+  --light-muted: #68768b;
+  --light-rule: #d8e0eb;
+  --light-rule-strong: #b8c5d6;
+  --light-blue: #3157d5;
+  --light-blue-dark: #2446b8;
+  --light-blue-soft: #edf2ff;
+  --light-green: #087a55;
+  --light-green-soft: #eaf7f1;
+  --light-amber: #9b620f;
+  --light-amber-soft: #fff4df;
+  --light-red: #b42318;
+  --light-red-soft: #fff0ef;
+}
+
+/* Core app surfaces */
+.app {
+  --color-paper: var(--light-surface);
+  --color-paper-2: var(--light-canvas);
+  --color-paper-3: var(--light-surface-subtle);
+  --color-ink: var(--light-ink);
+  --color-ink-2: var(--light-ink-soft);
+  --color-muted: var(--light-muted);
+  --color-rule: var(--light-rule);
+  --color-rule-strong: var(--light-rule-strong);
+  --color-accent: var(--light-blue);
+  --color-accent-hover: var(--light-blue-dark);
+  --color-accent-soft: var(--light-blue-soft);
+  --color-accent-ink: #fff;
+  --color-focus: var(--light-blue);
+  --color-success: var(--light-green);
+  --color-success-soft: var(--light-green-soft);
+  --color-warning: var(--light-amber);
+  --color-warning-soft: var(--light-amber-soft);
+  --color-danger: var(--light-red);
+  --color-danger-soft: var(--light-red-soft);
+  background: var(--light-canvas);
+  color: var(--light-ink);
+}
+
+.app .main,
+.app .page { background: var(--light-canvas); color: var(--light-ink); }
+.app .topbar { background: rgb(255 255 255 / 96%); border-color: var(--light-rule); backdrop-filter: blur(12px); }
+.app .breadcrumb { color: var(--light-muted); }
+.app .breadcrumb strong { color: var(--light-ink); }
+.app .top-actions .locale { background: var(--light-surface-subtle); border-color: var(--light-rule); }
+.app .top-actions .locale button { color: var(--light-muted); }
+.app .top-actions .locale button.active { background: var(--light-surface); color: var(--light-blue); }
+.app .top-actions .icon-button { color: var(--light-muted); }
+.app .top-actions .icon-button:hover { background: var(--light-blue-soft); color: var(--light-blue); }
+
+.app .sidebar { background: #172033; border-color: #2d3a51; color: #cbd3df; }
+.app .sidebar > .brand img { filter: none; }
+.app .sidebar > .nav-label { color: #91a0b7; }
+.app .side-nav button { color: #cbd3df; }
+.app .side-nav button.active { background: #24395f; border-color: #3a6be0; color: #fff; }
+.app .side-nav button:hover:not(.active) { background: #202d44; color: #fff; }
+
+.app .panel,
+.app .metrics,
+.app .settings-form,
+.app .invoice-paper,
+.app .invoice-paper-v2,
+.app .data-card,
+.app .report-card { background: var(--light-surface); color: var(--light-ink); border-color: var(--light-rule); box-shadow: none; }
+.app .panel-head { border-color: var(--light-rule); }
+.app .panel-head h2,
+.app .metric strong,
+.app .settings-section h2,
+.app .data-card strong,
+.app .report-card strong { color: var(--light-ink); }
+.app .panel-head p,
+.app .metric-top,
+.app .metric-foot,
+.app .data-card p,
+.app .report-card span,
+.app .report-card small { color: var(--light-muted); }
+.app .metric { background: transparent; }
+.app .metric:nth-child(odd), .app .metric:nth-child(n + 3) { border-color: var(--light-rule); }
+.app .metric:nth-child(1)>strong { color: var(--light-blue); }
+.app .metric:nth-child(2)>strong { color: var(--light-amber); }
+.app .metric:nth-child(3)>strong { color: var(--light-red); }
+.app .metric:nth-child(4)>strong { color: var(--light-green); }
+
+.app .search input,
+.app .settings-grid input,
+.app .settings-grid select,
+.app .field input,
+.app .field select,
+.app .field textarea,
+.app .detail-side select,
+.app .client-fields input,
+.app .client-fields textarea { background: var(--light-surface); border-color: var(--light-rule-strong); color: var(--light-ink); }
+.app input::placeholder, .app textarea::placeholder { color: #8b98aa; }
+.app .settings-grid label, .app .client-fields label { color: var(--light-ink); }
+.app .settings-grid small, .app .client-fields small { color: var(--light-muted); }
+.app .search input:focus, .app .settings-grid input:focus, .app .settings-grid select:focus, .app .field input:focus, .app .field select:focus, .app .field textarea:focus { border-color: var(--light-blue); box-shadow: 0 0 0 3px rgb(49 87 213 / 12%); outline: 0; }
+
+.app .invoice-table thead th { background: var(--light-surface-subtle); color: var(--light-muted); border-color: var(--light-rule); }
+.app .invoice-table td { color: var(--light-ink); border-color: var(--light-rule); }
+.app .invoice-table tbody tr:hover { background: #f8faff; }
+.app .invoice-table td small { color: var(--light-muted); }
+.app .status-waiting { background: var(--light-amber-soft); color: var(--light-amber); }
+.app .status-paid { background: var(--light-green-soft); color: var(--light-green); }
+.app .status-late { background: var(--light-red-soft); color: var(--light-red); }
+.app .invoice-table .amount { color: var(--light-ink); }
+.app .invoice-table tbody tr:has(.status-paid) .amount { color: var(--light-green); }
+.app .invoice-table tbody tr:has(.status-late) .amount { color: var(--light-red); }
+.app .invoice-table tbody tr:has(.status-waiting) .amount { color: var(--light-amber); }
+
+.app .chart-wrap, .app .chart { background: var(--light-surface); }
+.app .chart { border-color: var(--light-rule); }
+.app .bar-group i { background: var(--light-blue); }
+.app .bar-group span, .app .legend { color: var(--light-muted); }
+.app .mobile-nav-sheet, .app .profile-menu, .app .notification-menu { background: var(--light-surface); border-color: var(--light-rule); box-shadow: 0 8px 24px rgb(23 32 51 / 12%); }
+.app .mobile-nav-sheet button { color: var(--light-ink); }
+.app .mobile-nav-sheet button.active { background: var(--light-blue-soft); color: var(--light-blue); }
+.app .notification-menu header, .app .notification-menu article { border-color: var(--light-rule); }
+
+/* Facture preview stays paper-white even when the app is dark-themed later. */
+.app .invoice-paper-v2,
+.app .invoice-paper-v2 * { color-scheme: light; }
+.app .invoice-paper-v2 { background: #fff; color: #182337; }
+
+/* Landing has a quiet light canvas with a single navy product preview. */
+.landing-v6 { background: var(--light-canvas); color: var(--light-ink); }
+.landing-v6 .v6-nav { background: var(--light-canvas); border-color: transparent; }
+.landing-v6 .v6-nav.is-scrolled { background: rgb(245 247 250 / 96%); border-color: var(--light-rule); box-shadow: none; }
+.landing-v6 .v6-logo img { filter: none; }
+.landing-v6 .v6-nav-links a, .landing-v6 .v6-login, .landing-v6 .v6-hero-actions a { color: var(--light-ink-soft); }
+.landing-v6 .v6-nav-links a:hover, .landing-v6 .v6-login:hover, .landing-v6 .v6-hero-actions a:hover { color: var(--light-blue); }
+.landing-v6 .v6-locale { border-color: var(--light-rule); }
+.landing-v6 .v6-locale button { color: var(--light-muted); }
+.landing-v6 .v6-locale button.active { background: var(--light-blue-soft); color: var(--light-blue); }
+.landing-v6 .v6-hero h1, .landing-v6 .v6-section-head h2, .landing-v6 .v6-feature-copy h3, .landing-v6 .v6-scenario h2, .landing-v6 .v6-pricing h2, .landing-v6 .v6-security h2, .landing-v6 .v6-support h2, .landing-v6 .v6-faq > h2, .landing-v6 .v6-final h2 { color: var(--light-ink); }
+.landing-v6 .v6-eyebrow { color: var(--light-blue); }
+.landing-v6 .v6-hero-copy > p:not(.v6-note), .landing-v6 .v6-section-head p, .landing-v6 .v6-feature-copy p, .landing-v6 .v6-scenario p, .landing-v6 .v6-pricing p, .landing-v6 .v6-security p, .landing-v6 .v6-support p, .landing-v6 .v6-legal p { color: var(--light-ink-soft); }
+.landing-v6 .v6-hero-demo, .landing-v6 .v6-product, .landing-v6 .v6-feature-visual { background: var(--light-surface); border-color: var(--light-rule-strong); box-shadow: none; }
+.landing-v6 .v6-demo-toolbar, .landing-v6 .v6-trust, .landing-v6 .v6-reassurance, .landing-v6 .v6-workflow, .landing-v6 .v6-features, .landing-v6 .v6-scenario, .landing-v6 .v6-pricing, .landing-v6 .v6-security, .landing-v6 .v6-support, .landing-v6 .v6-faq, .landing-v6 .v6-final, .landing-v6 .v6-legal, .landing-v6 .v6-footer { border-color: var(--light-rule); }
+.landing-v6 .v6-demo-tabs button[aria-selected="true"], .landing-v6 .v6-overview-head button { background: var(--light-blue); color: #fff; }
+.landing-v6 .v6-demo-tabs button, .landing-v6 .v6-overview-head h3, .landing-v6 .v6-payment h3, .landing-v6 .v6-invoice strong, .landing-v6 .v6-doc-list strong { color: var(--light-ink); }
+.landing-v6 .v6-overview-head span, .landing-v6 .v6-metrics dt, .landing-v6 .v6-doc-list span, .landing-v6 .v6-demo-note { color: var(--light-muted); }
+.landing-v6 .v6-metrics, .landing-v6 .v6-metrics div, .landing-v6 .v6-doc-list > div, .landing-v6 .v6-invoice-line, .landing-v6 .v6-invoice-sum { border-color: var(--light-rule); }
+.landing-v6 .v6-metrics dd, .landing-v6 .v6-invoice-sum strong { color: var(--light-ink); }
+.landing-v6 .v6-trust, .landing-v6 .v6-footer { color: var(--light-muted); }
+.landing-v6 .v6-statement p { color: var(--light-ink); }
+.landing-v6 .v6-steps li, .landing-v6 .v6-faq-list article, .landing-v6 .v6-ledger > div { border-color: var(--light-rule); }
+.landing-v6 .v6-steps > li > span, .landing-v6 .v6-ledger dt { color: var(--light-blue); }
+.landing-v6 .v6-steps p, .landing-v6 .v6-ledger dd { color: var(--light-muted); }
+.landing-v6 .v6-feature-visual span, .landing-v6 .v6-feature-payment-rows span { color: var(--light-muted); }
+.landing-v6 .v6-feature-payment-rows div, .landing-v6 .v6-feature-status > div, .landing-v6 .v6-feature-export > div { border-color: var(--light-rule); }
+.landing-v6 .v6-support-email, .landing-v6 .v6-final { background: var(--light-ink); color: #fff; border-color: var(--light-ink); }
+.landing-v6 .v6-faq-list button { color: var(--light-ink); }
+.landing-v6 .v6-faq-list button > span:last-child { color: var(--light-blue); }
+.landing-v6 .v6-legal a, .landing-v6 .v6-footer a { color: var(--light-blue); }
+.landing-v6 .v6-footer p, .landing-v6 .v6-footer span { color: var(--light-muted); }
+
+@media (max-width: 59.99rem) {
+  .app .sidebar { background: rgb(255 255 255 / 98%); border-color: var(--light-rule); color: var(--light-muted); }
+  .app .sidebar > .brand, .app .sidebar > .nav-label, .app .sidebar > .side-bottom { display: none; }
+  .app .side-nav button { color: var(--light-muted); }
+  .app .side-nav button.active { background: var(--light-blue-soft); border-color: transparent; color: var(--light-blue); }
+  .app .side-nav button:hover:not(.active) { background: var(--light-surface-subtle); color: var(--light-ink); }
+}

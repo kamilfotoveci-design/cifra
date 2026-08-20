@@ -9,7 +9,7 @@ const ui=fs.readFileSync('work/vystav-ui.css','utf8');
 const brand=fs.readFileSync('brand.css','utf8');
 const landingCss=fs.readFileSync('landing.css','utf8');
 const landingJs=fs.readFileSync('work/landing-v6.js','utf8');
-const appCss=['app.css','enhancements.css','compliance-theme.css','audit.css'].map(file=>fs.readFileSync(file,'utf8')).join(String.fromCharCode(10));
+const appCss=['app.css','enhancements.css','compliance-theme.css','light-polish.css','audit.css'].map(file=>fs.readFileSync(file,'utf8')).join(String.fromCharCode(10));
 const logoData='data:image/svg+xml;base64,'+fs.readFileSync('outputs/assets/nacas-logo.svg').toString('base64');
 const iconData='data:image/svg+xml;base64,'+fs.readFileSync('outputs/assets/nacas-icon.svg').toString('base64');
 const loginData='data:image/jpeg;base64,'+fs.readFileSync('outputs/assets/vystav-login-studio.jpg').toString('base64');
