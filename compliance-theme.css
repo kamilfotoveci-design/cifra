@@ -1,0 +1,155 @@
+/* Compliance Platform adaptation for Načas.
+   Operational dark surfaces, compact metadata, border-led hierarchy. */
+:root {
+  --ops-bg: #09090b;
+  --ops-surface: #18181b;
+  --ops-surface-2: #202023;
+  --ops-text: #fafafa;
+  --ops-muted: #a1a1aa;
+  --ops-border: #2b2b30;
+  --ops-blue: #5d7cff;
+  --ops-blue-soft: rgb(93 124 255 / 14%);
+  --ops-green: #35c79b;
+  --ops-amber: #e3a84b;
+}
+
+.app {
+  --color-paper: var(--ops-surface);
+  --color-paper-2: var(--ops-bg);
+  --color-paper-3: var(--ops-surface-2);
+  --color-ink: var(--ops-text);
+  --color-ink-2: #d4d4d8;
+  --color-muted: var(--ops-muted);
+  --color-rule: var(--ops-border);
+  --color-rule-strong: #3f3f46;
+  --color-accent: var(--ops-blue);
+  --color-accent-hover: #7590ff;
+  --color-accent-soft: var(--ops-blue-soft);
+  --color-focus: var(--ops-blue);
+  --color-success: var(--ops-green);
+  --color-warning: var(--ops-amber);
+  background: var(--ops-bg);
+  color: var(--ops-text);
+}
+
+.app .main { background: var(--ops-bg); }
+.app .topbar { background: rgb(9 9 11 / 94%); border-color: var(--ops-border); }
+.app .breadcrumb, .app .breadcrumb strong { color: var(--ops-muted); }
+.app .breadcrumb strong { color: var(--ops-text); }
+.app .top-actions .locale { background: var(--ops-surface); border-color: var(--ops-border); }
+.app .top-actions .locale button { color: var(--ops-muted); }
+.app .top-actions .locale button.active { background: var(--ops-blue); color: #fff; }
+.app .top-actions .icon-button { color: var(--ops-muted); }
+.app .top-actions .icon-button:hover { background: var(--ops-surface-2); color: var(--ops-text); }
+
+.app .page-intro h1 { color: var(--ops-text); }
+.app .page-intro p { color: var(--ops-muted); }
+.app .panel,
+.app .metrics,
+.app .settings-form,
+.app .invoice-paper,
+.app .invoice-paper-v2 { background: var(--ops-surface); border-color: var(--ops-border); }
+.app .panel-head { border-bottom-color: var(--ops-border); }
+.app .panel-head h2, .app .metric strong, .app .settings-section h2 { color: var(--ops-text); }
+.app .panel-head p, .app .metric-top, .app .metric-foot { color: var(--ops-muted); }
+.app .metric { background: transparent; }
+.app .metric:nth-child(odd), .app .metric:nth-child(n + 3) { border-color: var(--ops-border); }
+.app .metric strong { font-variant-numeric: tabular-nums; }
+.app .metric:nth-child(1)>strong { color: var(--ops-blue); }
+.app .metric:nth-child(2)>strong { color: var(--ops-amber); }
+.app .metric:nth-child(3)>strong { color: #e57373; }
+.app .metric:nth-child(4)>strong { color: var(--ops-green); }
+
+.app .sidebar { background: var(--ops-bg); border-color: var(--ops-border); color: var(--ops-muted); }
+.app .sidebar > .brand img { filter: brightness(0) invert(1); }
+.app .sidebar > .nav-label { color: #71717a; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; }
+.app .side-nav button { color: var(--ops-muted); }
+.app .side-nav button.active { background: var(--ops-surface-2); border-color: var(--ops-blue); color: var(--ops-text); }
+.app .side-nav button:hover:not(.active) { background: var(--ops-surface); color: var(--ops-text); }
+
+.app .search input,
+.app .settings-grid input,
+.app .settings-grid select,
+.app .field input,
+.app .field select,
+.app .field textarea,
+.app .detail-side select,
+.app .client-fields input,
+.app .client-fields textarea { background: var(--ops-bg); border-color: var(--ops-border); color: var(--ops-text); }
+.app .search input::placeholder,
+.app input::placeholder,
+.app textarea::placeholder { color: #71717a; }
+.app .search input:focus,
+.app .settings-grid input:focus,
+.app .settings-grid select:focus,
+.app .field input:focus,
+.app .field select:focus,
+.app .field textarea:focus { border-color: var(--ops-blue); box-shadow: 0 0 0 3px rgb(93 124 255 / 16%); }
+.app .settings-grid label,
+.app .client-fields label { color: var(--ops-text); }
+.app .settings-grid small,
+.app .client-fields small { color: var(--ops-muted); }
+
+.app .invoice-table thead th { background: var(--ops-surface-2); border-color: var(--ops-border); color: var(--ops-muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .03em; }
+.app .invoice-table td { border-color: var(--ops-border); color: var(--ops-text); }
+.app .invoice-table tbody tr:hover { background: #202023; }
+.app .invoice-table td small { color: var(--ops-muted); }
+.app .status { border-color: transparent; }
+.app .status-waiting { background: rgb(227 168 75 / 15%); color: #f0bd6f; }
+.app .status-paid { background: rgb(53 199 155 / 14%); color: #67d8b2; }
+.app .status-late { background: rgb(229 115 115 / 14%); color: #ee9292; }
+
+.app .chart-wrap, .app .chart, .app .bar-group i { background: var(--ops-surface); }
+.app .chart, .app .bar-group i { border-color: var(--ops-border); }
+.app .bar-group i { background: var(--ops-blue); }
+.app .bar-group span, .app .legend { color: var(--ops-muted); }
+.app .mobile-nav-sheet, .app .profile-menu, .app .notification-menu { background: var(--ops-surface); border-color: var(--ops-border); box-shadow: 0 8px 24px rgb(0 0 0 / 30%); }
+.app .mobile-nav-sheet button { color: var(--ops-text); }
+.app .mobile-nav-sheet button.active { background: var(--ops-blue-soft); color: var(--ops-blue); }
+.app .notification-menu header, .app .notification-menu article { border-color: var(--ops-border); }
+
+/* Landing follows the same operating-room tone while keeping blue as action color. */
+.landing-v6 { --v6-page: min(calc(100% - 3rem), 1200px); background: var(--ops-bg); color: var(--ops-text); }
+.landing-v6 .v6-nav { background: var(--ops-bg); border-color: transparent; }
+.landing-v6 .v6-nav.is-scrolled { background: rgb(9 9 11 / 92%); border-color: var(--ops-border); box-shadow: none; }
+.landing-v6 .v6-logo img { filter: brightness(0) invert(1); }
+.landing-v6 .v6-nav-links a, .landing-v6 .v6-login, .landing-v6 .v6-hero-actions a { color: var(--ops-muted); }
+.landing-v6 .v6-nav-links a:hover, .landing-v6 .v6-login:hover, .landing-v6 .v6-hero-actions a:hover { color: #fff; }
+.landing-v6 .v6-locale { border-color: var(--ops-border); }
+.landing-v6 .v6-locale button { color: var(--ops-muted); }
+.landing-v6 .v6-locale button.active { background: var(--ops-surface-2); color: #fff; }
+.landing-v6 .v6-hero h1, .landing-v6 .v6-section-head h2, .landing-v6 .v6-feature-copy h3, .landing-v6 .v6-scenario h2, .landing-v6 .v6-pricing h2, .landing-v6 .v6-security h2, .landing-v6 .v6-support h2, .landing-v6 .v6-faq > h2, .landing-v6 .v6-final h2 { color: #fff; }
+.landing-v6 .v6-eyebrow { color: var(--ops-blue); }
+.landing-v6 .v6-hero-copy > p:not(.v6-note), .landing-v6 .v6-section-head p, .landing-v6 .v6-feature-copy p, .landing-v6 .v6-scenario p, .landing-v6 .v6-pricing p, .landing-v6 .v6-security p, .landing-v6 .v6-support p, .landing-v6 .v6-legal p { color: var(--ops-muted); }
+.landing-v6 .v6-hero-demo, .landing-v6 .v6-product, .landing-v6 .v6-feature-visual { background: var(--ops-surface); border-color: var(--ops-border); box-shadow: none; }
+.landing-v6 .v6-demo-toolbar, .landing-v6 .v6-trust, .landing-v6 .v6-reassurance, .landing-v6 .v6-workflow, .landing-v6 .v6-features, .landing-v6 .v6-scenario, .landing-v6 .v6-pricing, .landing-v6 .v6-security, .landing-v6 .v6-support, .landing-v6 .v6-faq, .landing-v6 .v6-final, .landing-v6 .v6-legal, .landing-v6 .v6-footer { border-color: var(--ops-border); }
+.landing-v6 .v6-demo-tabs button[aria-selected="true"], .landing-v6 .v6-overview-head button { background: var(--ops-blue); color: #fff; }
+.landing-v6 .v6-demo-tabs button, .landing-v6 .v6-overview-head h3, .landing-v6 .v6-payment h3, .landing-v6 .v6-invoice strong, .landing-v6 .v6-doc-list strong { color: #fff; }
+.landing-v6 .v6-overview-head span, .landing-v6 .v6-metrics dt, .landing-v6 .v6-doc-list span, .landing-v6 .v6-demo-note { color: var(--ops-muted); }
+.landing-v6 .v6-metrics, .landing-v6 .v6-metrics div, .landing-v6 .v6-doc-list > div, .landing-v6 .v6-invoice-line, .landing-v6 .v6-invoice-sum { border-color: var(--ops-border); }
+.landing-v6 .v6-metrics dd, .landing-v6 .v6-invoice-sum strong { color: #fff; }
+.landing-v6 .v6-trust, .landing-v6 .v6-footer { color: var(--ops-muted); }
+.landing-v6 .v6-statement p { color: #fff; }
+.landing-v6 .v6-steps li, .landing-v6 .v6-faq-list article, .landing-v6 .v6-ledger > div { border-color: var(--ops-border); }
+.landing-v6 .v6-steps > li > span, .landing-v6 .v6-ledger dt { color: var(--ops-blue); font-family: var(--font-mono); font-size: 12px; }
+.landing-v6 .v6-steps p, .landing-v6 .v6-ledger dd { color: var(--ops-muted); }
+.landing-v6 .v6-feature-visual { color: var(--ops-text); }
+.landing-v6 .v6-feature-visual span, .landing-v6 .v6-feature-payment-rows span { color: var(--ops-muted); }
+.landing-v6 .v6-feature-payment-rows div, .landing-v6 .v6-feature-status > div, .landing-v6 .v6-feature-export > div { border-color: var(--ops-border); }
+.landing-v6 .v6-support-email, .landing-v6 .v6-final { background: var(--ops-surface); color: #fff; border-color: var(--ops-border); }
+.landing-v6 .v6-faq-list button { color: #fff; }
+.landing-v6 .v6-faq-list button > span:last-child { color: var(--ops-blue); }
+.landing-v6 .v6-legal a, .landing-v6 .v6-footer a { color: var(--ops-blue); }
+.landing-v6 .v6-footer p, .landing-v6 .v6-footer span { color: var(--ops-muted); }
+
+.app .metric-top, .app .invoice-table thead th, .app .status, .landing-v6 .v6-trust, .landing-v6 .v6-eyebrow { font-family: var(--font-mono); }
+
+@media (max-width: 59.99rem) {
+  .app .sidebar { background: var(--ops-bg); }
+  .app .sidebar .side-nav button.active { background: var(--ops-surface-2); }
+  .landing-v6 { --v6-page: min(calc(100% - 2rem), 720px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app *, .landing-v6 * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
