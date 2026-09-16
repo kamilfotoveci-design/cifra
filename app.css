@@ -890,6 +890,19 @@ body .field select {
   font-size: 16px;
 }
 
+body .field input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+body .field-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
 body .field textarea {
   display: block;
   width: 100%;
