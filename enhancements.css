@@ -21,7 +21,7 @@
 .app .invoice-nacas-mark{width:38px;height:38px;object-fit:contain;flex:0 0 38px}
 .app .invoice-paper-v2 .invoice-logo{width:auto;max-width:128px;height:42px;margin:0;padding-left:18px;border-left:1px solid #dce3ed;object-fit:contain;object-position:left center}
 .app .invoice-paper-v2 .invoice-paper-meta{display:grid;justify-items:end;gap:4px;text-align:right}
-.app .invoice-paper-v2 .invoice-paper-meta>span{margin:0;color:#68758a;font:700 12px/1.2 var(--font-sans);letter-spacing:.08em}
+.app .invoice-paper-v2 .invoice-paper-meta>span{margin:0;color:#68758a;font:700 12px/1.2 var(--font-body);letter-spacing:.08em}
 .app .invoice-paper-v2 .invoice-paper-meta>strong{margin:0;color:#182337;font-size:27px;line-height:1.05;letter-spacing:-.02em}
 .app .invoice-meta-dates{display:flex;gap:14px;margin-top:3px}
 .app .invoice-meta-dates small{margin:0;color:#68758a;font-size:12px}
@@ -30,7 +30,7 @@
 .app .invoice-status-paid{background:#eaf7f1;color:#157653}.app .invoice-status-late{background:#fff0ed;color:#b42318}
 .app .invoice-paper-v2 .invoice-parties{display:grid;grid-template-columns:1fr 1fr;gap:44px;padding:25px 0 27px}
 .app .invoice-paper-v2 .invoice-parties>div{align-content:start;gap:4px}
-.app .invoice-paper-v2 .invoice-parties small{margin-bottom:5px;color:#3157d5;font:700 11px/1.2 var(--font-sans);letter-spacing:.07em}
+.app .invoice-paper-v2 .invoice-parties small{margin-bottom:5px;color:#3157d5;font:700 11px/1.2 var(--font-body);letter-spacing:.07em}
 .app .invoice-paper-v2 .invoice-parties strong{font-size:16px;line-height:1.35}
 .app .invoice-paper-v2 .invoice-parties span{min-height:0;color:#68758a;font-size:12px;line-height:1.45}
 .app .invoice-paper-v2 .invoice-parties span:empty{display:none}
