@@ -71,11 +71,13 @@
 .app .data-card,
 .app .report-card { background: var(--light-surface); color: var(--light-ink); border-color: var(--light-rule); box-shadow: none; }
 .app .panel-head { border-color: var(--light-rule); }
+.app .page-intro h1,
 .app .panel-head h2,
 .app .metric strong,
 .app .settings-section h2,
 .app .data-card strong,
 .app .report-card strong { color: var(--light-ink); }
+.app .page-intro p,
 .app .panel-head p,
 .app .metric-top,
 .app .metric-foot,
