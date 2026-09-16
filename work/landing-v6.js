@@ -259,9 +259,11 @@
       tl.fromTo(words, { opacity: 0 }, { opacity: 1, duration: 0.38, ease: 'v6Signature', stagger: 0.035 }, 0.06);
     }
 
-    const featureVisuals = section.querySelectorAll('.v6-feature-visual');
-    if (featureVisuals.length) {
-      tl.fromTo(featureVisuals, { y: 0 }, { y: -4, duration: 0.6, ease: 'v6Signature' }, 0);
+    const showcaseVisual = section.querySelector('.v6-showcase-visual');
+    if (showcaseVisual) {
+      tl.fromTo(showcaseVisual, { opacity: 0, y: '2.5rem', scale: 0.96 }, {
+        opacity: 1, y: 0, scale: 1, duration: 0.75, ease: 'v6Signature'
+      }, 0.04);
     }
 
     const staggerItems = section.querySelectorAll('.v6-steps li, .v6-ledger > div, .v6-faq article');
@@ -273,6 +275,20 @@
 
   if (canAnimate && scrollRevealTargets.length) {
     scrollRevealTargets.forEach(buildSectionReveal);
+  }
+
+  // Subtle scroll-linked drift on each product visual — a quiet sense of depth as
+  // the section moves through the viewport, on top of the one-time reveal above.
+  // Targets the inner product element (not .v6-showcase-visual itself) so this
+  // continuous scrub never fights the one-time entrance tween over the same
+  // transform — they animate two different nodes.
+  if (canAnimate && matchMedia('(pointer: fine)').matches) {
+    root.querySelectorAll('.v6-showcase-visual > *').forEach(inner => {
+      gsap.fromTo(inner, { y: '-1rem' }, {
+        y: '1rem', ease: 'none',
+        scrollTrigger: { trigger: inner, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+      });
+    });
   }
 
   const faqTimers = new WeakMap();

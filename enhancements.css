@@ -307,59 +307,15 @@ body { font-synthesis: none; -webkit-font-smoothing: antialiased; }
 .app .settings-grid small,
 .app .client-fields small { color: var(--ui-muted); }
 
-/* Landing: one strong hero and editorial rules instead of stacked cards. */
-.landing-v6 { --v6-page: min(calc(100% - 3rem), 1180px); background: #f7f8fa; }
-.landing-v6 .v6-nav { min-height: 72px; padding-inline: 0; background: #f7f8fa; }
-.landing-v6 .v6-nav.is-scrolled { transform: none; border-radius: 0; border-color: var(--ui-rule); background: rgb(247 248 250 / 96%); box-shadow: none; }
-.landing-v6 .v6-nav-links a { color: var(--ui-ink-soft); }
-.landing-v6 .v6-nav-links a:hover,
-.landing-v6 .v6-login:hover { color: var(--ui-blue); }
-.landing-v6 .v6-logo img { width: 7.2rem; }
-.landing-v6 .v6-locale { border-color: transparent; background: transparent; }
-.landing-v6 .v6-locale button.active { background: var(--ui-blue); color: #fff; }
-.landing-v6 .v6-login { color: var(--ui-ink); }
-.landing-v6 .v6-hero { min-height: 640px; padding-block: 72px 96px; grid-template-columns: minmax(0, .83fr) minmax(0, 1.17fr); gap: clamp(36px, 7vw, 96px); }
-.landing-v6 .v6-eyebrow { color: var(--ui-blue); font-size: 14px; font-weight: 600; letter-spacing: .01em; }
-.landing-v6 .v6-hero h1 { max-width: 11ch; font-size: clamp(3.4rem, 6.2vw, 5.8rem); letter-spacing: -.065em; }
-.landing-v6 .v6-hero-copy > p:not(.v6-note) { color: var(--ui-ink-soft); }
-.landing-v6 .v6-hero-actions a { color: var(--ui-ink); }
-.landing-v6 .v6-hero-actions a:hover { color: var(--ui-blue); }
-.landing-v6 .v6-reassurance { border-top: 1px solid var(--ui-rule); }
-.landing-v6 .v6-hero-demo { border-radius: var(--ui-radius); background: #f1f4f8; box-shadow: none; }
-.landing-v6 .v6-demo-toolbar { border-bottom: 1px solid var(--ui-rule); }
-.landing-v6 .v6-demo-tabs { border: 0; background: transparent; }
-.landing-v6 .v6-demo-tabs button { border-radius: 7px; color: var(--ui-muted); }
-.landing-v6 .v6-demo-tabs button[aria-selected="true"] { background: var(--ui-ink); color: #fff; }
-.landing-v6 .v6-product { border-color: var(--ui-rule); border-radius: 8px; box-shadow: none; }
-.landing-v6 .v6-overview-head h3,
-.landing-v6 .v6-payment h3,
-.landing-v6 .v6-invoice strong { font-family: var(--font-display); }
-.landing-v6 .v6-overview-head button { border-radius: 7px; background: var(--ui-blue); }
-.landing-v6 .v6-metrics { border-color: var(--ui-rule); }
-.landing-v6 .v6-doc-list > div { border-color: var(--ui-rule); }
-.landing-v6 .v6-trust { border-block: 1px solid var(--ui-rule); color: var(--ui-muted); }
-.landing-v6 .v6-statement { padding-block: 100px; }
-.landing-v6 .v6-statement p { max-width: 18ch; font-family: var(--font-display); font-size: clamp(2.2rem, 4vw, 4rem); letter-spacing: -.055em; }
-.landing-v6 .v6-workflow,
-.landing-v6 .v6-features,
-.landing-v6 .v6-scenario,
-.landing-v6 .v6-pricing,
-.landing-v6 .v6-security,
-.landing-v6 .v6-support,
-.landing-v6 .v6-faq,
-.landing-v6 .v6-final,
-.landing-v6 .v6-legal { border-top-color: var(--ui-rule); }
-.landing-v6 .v6-section-head h2,
-.landing-v6 .v6-feature-copy h3,
-.landing-v6 .v6-scenario h2,
-.landing-v6 .v6-pricing h2,
-.landing-v6 .v6-security h2,
-.landing-v6 .v6-support h2,
-.landing-v6 .v6-faq > h2,
-.landing-v6 .v6-final h2 { font-family: var(--font-display); letter-spacing: -.05em; }
-.landing-v6 .v6-feature-visual { border-radius: var(--ui-radius); box-shadow: none; }
-.landing-v6 .v6-faq-list article { border-color: var(--ui-rule); }
-.landing-v6 .v6-footer { border-top-color: var(--ui-rule); }
+/* NOTE: an entire legacy "editorial landing" override pass used to live here,
+   targeting .v6-workflow/.v6-features/.v6-scenario/.v6-pricing/.v6-demo-tabs/
+   .v6-trust/.v6-feature-visual and overriding --v6-page, nav padding, and hero
+   sizing at higher specificity than landing.css. Those classes no longer exist
+   (see the 2026-09 landing rebuild) and the rest was silently fighting the
+   current landing.css on every page load — removed rather than left as dead
+   weight that still wins the cascade.
+   Font-family on section headings is intentionally NOT restored here: landing.css
+   already sets --font-display on the same selectors. */
 
 @media (min-width: 60rem) {
   .app .sidebar { position: fixed; inset: 0 auto 0 0; width: 240px; height: 100svh; padding: 24px 12px; display: flex; flex-direction: column; border-inline-end: 1px solid #2d3a51; border-block-start: 0; }
@@ -382,22 +338,10 @@ body { font-synthesis: none; -webkit-font-smoothing: antialiased; }
 }
 
 @media (max-width: 59.99rem) {
-  .landing-v6 { --v6-page: min(calc(100% - 2rem), 720px); }
-  .landing-v6 .v6-hero { grid-template-columns: 1fr; min-height: 0; padding-block: 56px 72px; }
-  .landing-v6 .v6-hero h1 { max-width: 12ch; }
   .app .page { padding-inline: 18px; }
 }
 
 @media (max-width: 39.99rem) {
-  .landing-v6 { --v6-page: min(calc(100% - 1.5rem), 520px); }
-  .landing-v6 .v6-nav { min-height: 64px; }
-  .landing-v6 .v6-logo img { width: 6.5rem; }
-  .landing-v6 .v6-hero { padding-block: 42px 56px; }
-  .landing-v6 .v6-hero h1 { font-size: clamp(2.9rem, 14vw, 4.1rem); }
-  .landing-v6 .v6-hero-actions { align-items: stretch; flex-direction: column; }
-  .landing-v6 .v6-hero-actions .btn,
-  .landing-v6 .v6-hero-actions a { width: 100%; justify-content: center; }
-  .landing-v6 .v6-statement { padding-block: 72px; }
   .app .page-intro h1 { font-size: 2rem; }
   .app .panel-head { padding-inline: 18px; }
   .app .table-tools { padding-inline: 18px; }

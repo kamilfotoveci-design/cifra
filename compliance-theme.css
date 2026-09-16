@@ -109,7 +109,7 @@
 .app .notification-menu header, .app .notification-menu article { border-color: var(--ops-border); }
 
 /* Landing follows the same operating-room tone while keeping blue as action color. */
-.landing-v6 { --v6-page: min(calc(100% - 3rem), 1200px); background: var(--ops-bg); color: var(--ops-text); }
+.landing-v6 { background: var(--ops-bg); color: var(--ops-text); }
 .landing-v6 .v6-nav { background: var(--ops-bg); border-color: transparent; }
 .landing-v6 .v6-nav.is-scrolled { background: rgb(9 9 11 / 92%); border-color: var(--ops-border); box-shadow: none; }
 .landing-v6 .v6-logo img { filter: brightness(0) invert(1); }
@@ -147,7 +147,6 @@
 @media (max-width: 59.99rem) {
   .app .sidebar { background: var(--ops-bg); }
   .app .sidebar .side-nav button.active { background: var(--ops-surface-2); }
-  .landing-v6 { --v6-page: min(calc(100% - 2rem), 720px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

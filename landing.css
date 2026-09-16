@@ -5,6 +5,7 @@
   --v6-dur-quick: 120ms;
   --v6-dur-standard: 420ms;
   --v6-dur-slow: 680ms;
+  --v6-section-pad: clamp(3rem, 7vw, 6rem);
   min-height: 100%;
   overflow: clip;
   background: var(--color-paper-2);
@@ -49,7 +50,7 @@ body { overflow-x: clip; }
   align-items: center;
   justify-content: space-between;
   gap: var(--space-xl);
-  min-height: 5rem;
+  min-height: 5.5rem;
   padding-inline: var(--space-lg);
   background: var(--color-paper-2);
   border: var(--rule-hair) solid transparent;
@@ -85,7 +86,7 @@ body { overflow-x: clip; }
 .v6-logo { display: inline-flex; align-items: center; min-height: 2.75rem; }
 .v6-logo img { display: block; width: 7.5rem; height: auto; }
 .v6-nav-actions, .v6-locale, .v6-hero-actions { display: flex; align-items: center; }
-.v6-nav-actions { gap: var(--space-md); }
+.v6-nav-actions { gap: var(--space-lg); }
 .v6-locale { gap: var(--space-3xs); padding-inline-end: var(--space-md); border-inline-end: var(--rule-hair) solid var(--color-rule); }
 
 .v6-nav-links { display: none; align-items: center; gap: var(--space-lg); }
@@ -320,7 +321,7 @@ body { overflow-x: clip; }
   letter-spacing: -0.03em;
 }
 
-.v6-showcase, .v6-cloud, .v6-faq { padding-block: var(--space-2xl) var(--space-3xl); }
+.v6-showcase, .v6-cloud, .v6-faq { padding-block: var(--v6-section-pad); }
 .v6-cloud { border-top: var(--rule-hair) solid var(--color-rule); }
 .v6-section-head { display: grid; gap: var(--space-lg); margin-bottom: var(--space-2xl); }
 .v6-section-head h2, .v6-showcase-copy h2, .v6-faq > h2, .v6-final h2 {
@@ -472,7 +473,7 @@ body { overflow-x: clip; }
 }
 .v6-faq p { margin: 0; color: var(--color-muted); line-height: 1.65; }
 
-.v6-final { display: grid; gap: var(--space-xl); align-items: end; padding-block: var(--space-3xl); border-top: var(--rule-hair) solid var(--color-rule-strong); }
+.v6-final { display: grid; gap: var(--space-xl); align-items: end; padding-block: clamp(4rem, 9vw, 7rem); border-top: var(--rule-hair) solid var(--color-rule-strong); }
 .v6-final p { margin-top: var(--space-md); }
 .v6-final .btn { justify-self: start; }
 .v6-final-note { grid-column: 1 / -1; margin: 0; color: var(--color-muted); font-size: var(--text-sm); }
@@ -521,8 +522,8 @@ body { overflow-x: clip; }
 
 .v6-demo-note { max-width: 34rem; margin: var(--space-md) 0 0; color: var(--color-muted); font-size: var(--text-sm); line-height: 1.55; }
 
-.v6-security { padding-block: var(--space-2xl) var(--space-3xl); border-top: var(--rule-hair) solid var(--color-rule); }
-.v6-support { padding-block: var(--space-2xl); border-top: var(--rule-hair) solid var(--color-rule); }
+.v6-security { padding-block: var(--v6-section-pad); border-top: var(--rule-hair) solid var(--color-rule); }
+.v6-support { padding-block: var(--v6-section-pad); border-top: var(--rule-hair) solid var(--color-rule); }
 .v6-support h2 { max-width: 20ch; margin: 0; color: var(--color-ink); font-size: var(--text-xl); letter-spacing: -0.02em; }
 .v6-support p { max-width: 34rem; margin: var(--space-sm) 0 0; color: var(--color-muted); line-height: 1.6; }
 .v6-support-email { display: inline-flex; margin-top: var(--space-lg); color: var(--color-accent); font-weight: 700; text-decoration-color: var(--color-rule-strong); text-underline-offset: 0.3rem; }
@@ -564,10 +565,11 @@ body { overflow-x: clip; }
 @media (min-width: 60rem) {
   .v6-nav-links { display: flex; }
   .v6-menu-toggle, .v6-mobile-nav { display: none; }
+  .v6-nav { padding-inline: var(--space-xl); gap: var(--space-2xl); }
   .landing-v6 { --v6-page: min(calc(100% - 5rem), var(--page-max)); }
   .v6-hero { grid-template-columns: minmax(20rem, 0.95fr) minmax(32rem, 1.05fr); gap: clamp(var(--space-xl), 4vw, var(--space-3xl)); padding-block: var(--space-2xl) var(--space-3xl); }
   .v6-section-head { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
-  .v6-showcase { grid-template-columns: minmax(16rem, 0.58fr) minmax(0, 1.42fr); gap: clamp(var(--space-2xl), 7vw, var(--space-4xl)); }
+  .v6-showcase { grid-template-columns: minmax(22rem, 1.1fr) minmax(0, 0.9fr); gap: clamp(var(--space-xl), 5vw, var(--space-3xl)); }
   .v6-showcase-copy { position: sticky; top: var(--space-xl); }
   .v6-final { grid-template-columns: minmax(0, 1fr) auto; }
   .v6-final .btn { justify-self: end; }
