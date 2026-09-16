@@ -140,7 +140,7 @@
   const hasGsap = !!(window.gsap && window.ScrollTrigger && window.CustomEase);
   if (hasGsap) {
     gsap.registerPlugin(ScrollTrigger, CustomEase);
-    CustomEase.create('v6Signature', 'M0,0,C0.16,1,0.3,1,1,1'); // == cubic-bezier(0.16,1,0.3,1), the project's --v6-ease-signature / --ease-out
+    CustomEase.create('v6Signature', 'M0,0,C0.23,1,0.32,1,1,1'); // == cubic-bezier(0.23,1,0.32,1), a stronger ease-out with real weight behind it
   }
   const canAnimate = hasGsap && !reduceMotion;
 
@@ -221,9 +221,9 @@
       const heroWords = heroHeading.querySelectorAll('.v6-word');
       if (heroWords.length) {
         heroTl.fromTo(heroWords, {
-          opacity: 0, y: '0.9em', rotate: 4
+          opacity: 0, y: '0.5em'
         }, {
-          opacity: 1, y: 0, rotate: 0, duration: 0.62, ease: 'v6Signature', stagger: 0.052
+          opacity: 1, y: 0, duration: 0.5, ease: 'v6Signature', stagger: 0.045
         }, 0.22);
       }
     }
@@ -251,35 +251,31 @@
 
     tl.fromTo(section, {
       opacity: 0,
-      y: '2.25rem',
-      scale: 0.97,
-      rotationX: 3,
-      transformOrigin: '50% 0%',
-      filter: 'blur(3px)'
+      y: '1.75rem'
     }, {
-      opacity: 1, y: 0, scale: 1, rotationX: 0, filter: 'blur(0px)',
-      duration: 0.68, ease: 'v6Signature'
+      opacity: 1, y: 0,
+      duration: 0.6, ease: 'v6Signature'
     }, 0);
 
     const headings = section.querySelectorAll('h2, h3');
     if (headings.length) {
-      tl.fromTo(headings, { clipPath: 'inset(0% 0% 100% 0%)', y: '1.25rem' }, {
-        clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.62, ease: 'v6Signature'
-      }, 0.09);
-      tl.fromTo(headings, { opacity: 0.2 }, { opacity: 1, duration: 0.42, ease: 'v6Signature' }, 0.09);
+      tl.fromTo(headings, { clipPath: 'inset(0% 0% 100% 0%)', y: '1rem' }, {
+        clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.56, ease: 'v6Signature'
+      }, 0.06);
+      tl.fromTo(headings, { opacity: 0.2 }, { opacity: 1, duration: 0.38, ease: 'v6Signature' }, 0.06);
     }
 
     const words = section.querySelectorAll('h2 .v6-word, h3 .v6-word');
     if (words.length) {
-      tl.fromTo(words, { y: '1em', rotate: 4 }, {
-        y: 0, rotate: 0, duration: 0.56, ease: 'v6Signature', stagger: 0.042
-      }, 0.08);
-      tl.fromTo(words, { opacity: 0 }, { opacity: 1, duration: 0.42, ease: 'v6Signature', stagger: 0.042 }, 0.08);
+      tl.fromTo(words, { y: '0.5em' }, {
+        y: 0, duration: 0.46, ease: 'v6Signature', stagger: 0.035
+      }, 0.06);
+      tl.fromTo(words, { opacity: 0 }, { opacity: 1, duration: 0.38, ease: 'v6Signature', stagger: 0.035 }, 0.06);
     }
 
     const featureVisuals = section.querySelectorAll('.v6-feature-visual');
     if (featureVisuals.length) {
-      tl.fromTo(featureVisuals, { y: 0, scale: 1 }, { y: -5, scale: 1.012, duration: 0.68, ease: 'v6Signature' }, 0);
+      tl.fromTo(featureVisuals, { y: 0 }, { y: -4, duration: 0.6, ease: 'v6Signature' }, 0);
     }
 
     const staggerItems = section.querySelectorAll('.v6-steps li, .v6-ledger > div, .v6-faq article');
