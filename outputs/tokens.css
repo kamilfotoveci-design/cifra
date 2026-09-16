@@ -1,4 +1,11 @@
 /* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · brand: Načas · designed-as-app */
+/* Inter, self-served via jsdelivr (not Google Fonts, to keep the "no tracking"
+   privacy promise) as the crisp fallback for platforms where -apple-system
+   doesn't resolve to real SF Pro (Windows/Linux/Android). */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url("https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap; src: url("https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.woff2") format("woff2"); }
 :root {
   --color-paper: #ffffff;
   --color-paper-2: #f7f8fa;
@@ -27,8 +34,8 @@
   --color-danger: #c43d36;
   --color-danger-soft: #fff0ef;
 
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable", Aptos, sans-serif;
-  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable", Aptos, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI Variable", Aptos, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI Variable", Aptos, sans-serif;
   --font-ui: var(--font-body);
   --font-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
   --font-support: var(--font-body);
