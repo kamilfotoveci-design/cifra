@@ -56,12 +56,17 @@
 .app .top-actions .icon-button { color: var(--light-muted); }
 .app .top-actions .icon-button:hover { background: var(--light-blue-soft); color: var(--light-blue); }
 
-.app .sidebar { background: #172033; border-color: #2d3a51; color: #cbd3df; }
+.app .sidebar { background: var(--light-canvas); border-color: var(--light-rule); color: var(--light-ink-soft); }
+.app .sidebar > .brand { color: var(--light-ink); }
 .app .sidebar > .brand img { filter: none; }
-.app .sidebar > .nav-label { color: #91a0b7; }
-.app .side-nav button { color: #cbd3df; }
-.app .side-nav button.active { background: #24395f; border-color: #3a6be0; color: #fff; }
-.app .side-nav button:hover:not(.active) { background: #202d44; color: #fff; }
+.app .sidebar > .nav-label { color: var(--light-muted); }
+.app .side-nav button { color: var(--light-ink-soft); }
+.app .side-nav button.active { background: var(--light-blue-soft); border-color: transparent; color: var(--light-blue); box-shadow: none; font-weight: 600; }
+.app .side-nav button:hover:not(.active) { background: color-mix(in srgb, var(--light-ink) 5%, transparent); color: var(--light-ink); }
+.app .side-nav .count { color: var(--light-muted); }
+.app .help-row { color: var(--light-muted); }
+.app .user-row { border-color: var(--light-rule); color: var(--light-ink); }
+.app .user-row span { color: var(--light-muted); }
 
 .app .panel,
 .app .metrics,

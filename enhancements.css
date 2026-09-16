@@ -267,9 +267,8 @@ body { font-synthesis: none; -webkit-font-smoothing: antialiased; }
 .app .panel-head h2 { font-family: var(--font-display); font-size: 1.15rem; }
 .app .panel-head p { color: var(--ui-muted); }
 
-.app .metrics { background: var(--ui-surface); }
-.app .metric { padding: 20px 22px; }
-.app .metric strong { font-family: var(--font-display); font-size: 1.55rem; }
+.app .metrics { background: transparent; }
+.app .metric strong { font-family: var(--font-display); font-size: 2rem; letter-spacing: -0.02em; }
 .app .metric-top,
 .app .metric-foot { color: var(--ui-muted); }
 .app .metric:nth-child(1)>strong { color: var(--ui-blue); }
@@ -596,7 +595,7 @@ body { font-synthesis: none; -webkit-font-smoothing: antialiased; }
 }
 .aging-bucket:last-child { border-inline-end: 0; }
 .aging-bucket span { display: block; color: var(--color-muted); font-size: 13px; }
-.aging-bucket strong { display: block; margin: 8px 0 4px; font: 700 1.2rem/1.1 var(--font-body); font-variant-numeric: tabular-nums; }
+.aging-bucket strong { display: block; margin: 8px 0 4px; font: 700 1.5rem/1.1 var(--font-body); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
 .aging-bucket small { color: var(--color-muted); font-size: 12px; }
 .field-checkbox { display: flex; align-items: center; gap: 8px; min-height: 46px; font-size: 15px; font-weight: 500; cursor: pointer; }
 .field-checkbox input { width: 18px; height: 18px; accent-color: var(--color-accent); }
