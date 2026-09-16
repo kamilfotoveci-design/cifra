@@ -150,13 +150,14 @@
 .landing-v6 .v6-metrics, .landing-v6 .v6-metrics div, .landing-v6 .v6-doc-list > div, .landing-v6 .v6-invoice-line, .landing-v6 .v6-invoice-sum { border-color: var(--light-rule); }
 .landing-v6 .v6-metrics dd, .landing-v6 .v6-invoice-sum strong { color: var(--light-ink); }
 .landing-v6 .v6-trust, .landing-v6 .v6-footer { color: var(--light-muted); }
-.landing-v6 .v6-statement p { color: var(--light-ink); }
+.landing-v6 .v6-statement p { color: #fff; }
 .landing-v6 .v6-steps li, .landing-v6 .v6-faq-list article, .landing-v6 .v6-ledger > div { border-color: var(--light-rule); }
 .landing-v6 .v6-steps > li > span, .landing-v6 .v6-ledger dt { color: var(--light-blue); }
 .landing-v6 .v6-steps p, .landing-v6 .v6-ledger dd { color: var(--light-muted); }
 .landing-v6 .v6-feature-visual span, .landing-v6 .v6-feature-payment-rows span { color: var(--light-muted); }
 .landing-v6 .v6-feature-payment-rows div, .landing-v6 .v6-feature-status > div, .landing-v6 .v6-feature-export > div { border-color: var(--light-rule); }
-.landing-v6 .v6-support-email, .landing-v6 .v6-final { background: var(--light-ink); color: #fff; border-color: var(--light-ink); }
+.landing-v6 .v6-support-email, .landing-v6 .v6-final { background: transparent; color: inherit; border-color: transparent; }
+.landing-v6 .v6-support-email { color: var(--light-blue); }
 .landing-v6 .v6-faq-list button { color: var(--light-ink); }
 .landing-v6 .v6-faq-list button > span:last-child { color: var(--light-blue); }
 .landing-v6 .v6-legal a, .landing-v6 .v6-footer a { color: var(--light-blue); }
