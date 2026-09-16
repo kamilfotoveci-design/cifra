@@ -45,7 +45,7 @@
       secOneCopy: 'Faktúry, klienti aj firemné údaje sú uložené v tvojom účte a nedostupné iným používateľom.',
       secTwoTitle: 'Prihlásenie e-mailom alebo cez Google',
       secTwoCopy: 'Bez ďalších hesiel na zapamätanie, ak si zvolíš prihlásenie cez Google.',
-      secThreeTitle: 'Export dát kedykoľvek',
+      secThreeTitle: 'Export dat kedykoľvek',
       secThreeCopy: 'Faktúry si vieš stiahnuť do CSV alebo Excelu, keď ich potrebuješ inde.',
       secFourTitle: 'Žiadne sledovanie',
       secFourCopy: 'Používame iba nevyhnutné úložisko pre prihlásenie a jazyk, žiadnu analytiku.',
@@ -137,6 +137,13 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('v6-motion');
 
+  const hasGsap = !!(window.gsap && window.ScrollTrigger && window.CustomEase);
+  if (hasGsap) {
+    gsap.registerPlugin(ScrollTrigger, CustomEase);
+    CustomEase.create('v6Signature', 'M0,0,C0.16,1,0.3,1,1,1'); // == cubic-bezier(0.16,1,0.3,1), the project's --v6-ease-signature / --ease-out
+  }
+  const canAnimate = hasGsap && !reduceMotion;
+
   const navLinks = root.querySelector('.v6-nav-links');
   const mobileNav = root.querySelector('#mobileNav');
   const menuToggle = root.querySelector('.v6-menu-toggle');
@@ -183,35 +190,107 @@
     updateMenuToggleLabel();
   }
 
+  applyV6Locale();
+
+  // --- GSAP-driven entrance and scroll-reveal motion ---
+  // NOTE: prepareWordMotion() re-wraps heading text into fresh .v6-word spans every
+  // time applyV6Locale() runs (i.e. on every language toggle). The timelines below are
+  // built once, right after the very first applyV6Locale() call, and reference the
+  // .v6-word spans that exist at that moment. If a later language toggle regenerates
+  // words inside a section that has not been revealed yet, those brand-new span
+  // elements are outside any timeline and simply render at their default (fully
+  // visible) styling — they will not replay or newly trigger a reveal animation, but
+  // they can also never end up stuck invisible. This is an intentional trade-off to
+  // guarantee the "never leave content invisible" safety requirement.
+  if (canAnimate) {
+    // a) Hero entrance: hero-copy / hero-visual fade+rise, h1 clip-path reveal, h1 word stagger.
+    const heroTl = gsap.timeline();
+    const heroEnterEls = [...root.querySelectorAll('.v6-enter')];
+    if (heroEnterEls.length) {
+      heroTl.fromTo(heroEnterEls, { opacity: 0, y: '0.75rem' }, {
+        opacity: 1, y: 0, duration: 0.42, ease: 'v6Signature', stagger: 0.07
+      }, 0);
+    }
+    const heroHeading = root.querySelector('.v6-hero-copy h1');
+    if (heroHeading) {
+      heroTl.fromTo(heroHeading, {
+        clipPath: 'inset(0% 0% 100% 0%)', scale: 0.96, y: '1.5rem'
+      }, {
+        clipPath: 'inset(0% 0% 0% 0%)', scale: 1, y: 0, duration: 0.82, ease: 'v6Signature'
+      }, 0.14);
+      const heroWords = heroHeading.querySelectorAll('.v6-word');
+      if (heroWords.length) {
+        heroTl.fromTo(heroWords, {
+          opacity: 0, y: '0.9em', rotate: 4
+        }, {
+          opacity: 1, y: 0, rotate: 0, duration: 0.62, ease: 'v6Signature', stagger: 0.052
+        }, 0.22);
+      }
+    }
+  }
+
   const statement = root.querySelector('.v6-statement');
-  if (statement && 'IntersectionObserver' in window && !reduceMotion) {
-    statement.classList.add('v6-reveal');
-    const statementObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        statement.classList.add('is-visible');
-        statementObserver.unobserve(statement);
-      });
-    }, { threshold: 0.3 });
-    statementObserver.observe(statement);
+  if (statement && canAnimate) {
+    const statementP = statement.querySelector('p');
+    if (statementP) {
+      gsap.timeline({ scrollTrigger: { trigger: statement, start: 'top 70%', once: true } })
+        .fromTo(statementP, { opacity: 0, y: '0.75rem' }, { opacity: 1, y: 0, duration: 0.42, ease: 'v6Signature' });
+    }
   }
 
   const scrollRevealTargets = [...root.querySelectorAll('.v6-workflow, .v6-showcase, .v6-features, .v6-scenario, .v6-pricing, .v6-security, .v6-support, .v6-faq, .v6-final, .v6-legal, .v6-footer')];
   if (!reduceMotion && scrollRevealTargets.length) {
+    // Ambient decorative loops (signal sweep, product breathe, orbit pulse, line scan,
+    // node pulse) are pure CSS and keyed off this class; keep adding it independently
+    // of whether the GSAP CDN loaded, so those effects keep working offline/CDN-blocked.
     root.classList.add('v6-motion-ready');
-    scrollRevealTargets.forEach(target => target.classList.add('v6-scroll-reveal'));
-    if ('IntersectionObserver' in window) {
-      const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-      scrollRevealTargets.forEach(target => revealObserver.observe(target));
-    } else {
-      scrollRevealTargets.forEach(target => target.classList.add('is-visible'));
+  }
+
+  function buildSectionReveal(section) {
+    const tl = gsap.timeline({ scrollTrigger: { trigger: section, start: 'top 88%', once: true } });
+
+    tl.fromTo(section, {
+      opacity: 0,
+      y: '2.25rem',
+      scale: 0.97,
+      rotationX: 3,
+      transformOrigin: '50% 0%',
+      filter: 'blur(3px)'
+    }, {
+      opacity: 1, y: 0, scale: 1, rotationX: 0, filter: 'blur(0px)',
+      duration: 0.68, ease: 'v6Signature'
+    }, 0);
+
+    const headings = section.querySelectorAll('h2, h3');
+    if (headings.length) {
+      tl.fromTo(headings, { clipPath: 'inset(0% 0% 100% 0%)', y: '1.25rem' }, {
+        clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.62, ease: 'v6Signature'
+      }, 0.09);
+      tl.fromTo(headings, { opacity: 0.2 }, { opacity: 1, duration: 0.42, ease: 'v6Signature' }, 0.09);
     }
+
+    const words = section.querySelectorAll('h2 .v6-word, h3 .v6-word');
+    if (words.length) {
+      tl.fromTo(words, { y: '1em', rotate: 4 }, {
+        y: 0, rotate: 0, duration: 0.56, ease: 'v6Signature', stagger: 0.042
+      }, 0.08);
+      tl.fromTo(words, { opacity: 0 }, { opacity: 1, duration: 0.42, ease: 'v6Signature', stagger: 0.042 }, 0.08);
+    }
+
+    const featureVisuals = section.querySelectorAll('.v6-feature-visual');
+    if (featureVisuals.length) {
+      tl.fromTo(featureVisuals, { y: 0, scale: 1 }, { y: -5, scale: 1.012, duration: 0.68, ease: 'v6Signature' }, 0);
+    }
+
+    const staggerItems = section.querySelectorAll('.v6-steps li, .v6-ledger > div, .v6-faq article');
+    if (staggerItems.length) {
+      tl.fromTo(staggerItems, { x: '-1rem' }, { x: 0, duration: 0.56, ease: 'v6Signature', stagger: 0.06 }, 0);
+      tl.fromTo(staggerItems, { opacity: 0.45 }, { opacity: 1, duration: 0.46, ease: 'v6Signature', stagger: 0.06 }, 0);
+    }
+  }
+
+  if (canAnimate && scrollRevealTargets.length) {
+    scrollRevealTargets.forEach(buildSectionReveal);
   }
 
   const flow = root.querySelector('[data-flow]');
@@ -320,15 +399,18 @@
   }
 
   const heroDemo = root.querySelector('.v6-hero-demo');
-  if (heroDemo && matchMedia('(pointer: fine)').matches && !reduceMotion) {
-    const onParallax = () => {
-      const rect = heroDemo.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, 1 - rect.top / Math.max(window.innerHeight, 1)));
-      heroDemo.style.setProperty('--v6-parallax', `${(progress * 10).toFixed(2)}px`);
-      heroDemo.style.setProperty('--v6-tilt', `${(progress * -0.8).toFixed(2)}deg`);
-    };
-    onParallax();
-    window.addEventListener('scroll', onParallax, { passive: true });
+  const heroHeader = root.querySelector('.v6-hero');
+  if (heroDemo && heroHeader && matchMedia('(pointer: fine)').matches && canAnimate) {
+    const parallax = { p: 0 };
+    gsap.timeline({ scrollTrigger: { trigger: heroHeader, start: 'top top', end: 'bottom top', scrub: true } })
+      .to(parallax, {
+        p: 1,
+        ease: 'none',
+        onUpdate: () => {
+          heroDemo.style.setProperty('--v6-parallax', `${(parallax.p * 10).toFixed(2)}px`);
+          heroDemo.style.setProperty('--v6-tilt', `${(parallax.p * -0.8).toFixed(2)}deg`);
+        }
+      });
   }
 
   const featureQr = root.querySelector('.v6-feature-qr');
@@ -350,6 +432,4 @@
       console.error('landing url qr', error);
     }
   }
-
-  applyV6Locale();
 })();
