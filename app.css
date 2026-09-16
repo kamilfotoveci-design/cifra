@@ -1332,7 +1332,7 @@ body .toast {
   }
 
   .app .metrics {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .app .metric {
@@ -1341,7 +1341,7 @@ body .toast {
     border-block-start: 0 !important;
   }
 
-  .app .metric:nth-child(4) {
+  .app .metric:nth-child(3) {
     border-inline-end: 0;
   }
 

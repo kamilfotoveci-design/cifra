@@ -474,42 +474,8 @@ h3,
 .contact-footer a { color: var(--color-ink-2); font-weight: 600; text-decoration: none; }
 .auth-card-brand { width: max-content; text-decoration: none; }
 
-@media (min-width: 60rem) {
-  .auth-story {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    background: var(--color-night);
-  }
-  .auth-story::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(180deg, rgb(9 20 38 / 2%) 0%, rgb(9 20 38 / 8%) 36%, rgb(9 20 38 / 82%) 72%, var(--color-night) 100%);
-  }
-  .auth-story-photo { position: absolute; inset: 0; z-index: -2; margin: 0; }
-  .auth-story-photo img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: 64% center;
-    filter: saturate(.9) contrast(.96);
-  }
-  .auth-story-brand {
-    position: relative;
-    z-index: 1;
-    width: max-content;
-    display: inline-flex;
-    align-items: center;
-  }
-  .auth-story-brand img { width: 148px; height: auto; display: block; }
-  .auth-story-copy { position: relative; z-index: 1; max-width: 500px; }
-  .auth-story-copy p,
-  .auth-story-copy span { color: rgb(255 255 255 / 78%); }
-  .auth-story-copy h2 { color: #fff; text-shadow: 0 2px 28px rgb(9 20 38 / 28%); }
-}
+/* Login is a single centered card at every width — no marketing photo panel
+   (Apple ID / Linear / Notion pattern). .auth-story stays display:none. */
 
 @media (max-width: 52rem) {
   .contact-main { grid-template-columns: 1fr; gap: 64px; padding-block: 72px 92px; }
