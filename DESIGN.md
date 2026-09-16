@@ -47,11 +47,17 @@ Modern minimal. Marketing rozpráva krátky príbeh od práce po platbu; apliká
 - Landing reveal: 360–420 ms; bez nekonečných dekoratívnych slučiek.
 - Všetky animácie používajú transform a opacity a musia byť prerušeniteľné.
 - Pri reduced motion sa prechody skracujú alebo vypnú.
+- Výnimka (2026-09, vedomé rozhodnutie): sticky navigácia a mobilné menu smú použiť skutočný
+  Liquid Glass materiál (translucencia + blur/saturate + specular hairline + hĺbkový tieň,
+  podľa `apple-design` skillu) namiesto plochej farby — vždy s `@supports`, `prefers-reduced-transparency`
+  a `prefers-contrast` fallbackom. Segmentovaný ovládač (demo tabs) smie mať jemný pružinový
+  presah (`back.out(1.2)`, GSAP) pri prepnutí — žiadne iné UI nesmie odrážať.
 
 ## Zakázané vzory
 
 - gradientové hero pozadia,
-- svietiace orby a sklenené panely,
+- svietiace orby,
+- sklenené panely mimo sticky navigácie a mobilného menu (pozri výnimku vyššie),
 - stocková fotografia ako náhrada produktového dôkazu,
 - ikonka dokumentu s fajkou,
 - texty v malých verzálkach s veľkým trackingom,

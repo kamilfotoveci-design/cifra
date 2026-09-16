@@ -313,6 +313,28 @@
     }
   }
   const demoTabs = [...root.querySelectorAll('[data-demo-tab]')];
+  const demoTabsWrap = root.querySelector('.v6-demo-tabs');
+  if (demoTabsWrap && demoTabs.length) {
+    const indicator = document.createElement('span');
+    indicator.className = 'v6-demo-tabs-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    demoTabsWrap.prepend(indicator);
+    const moveIndicator = (instant) => {
+      const active = demoTabsWrap.querySelector('[data-demo-tab][aria-selected="true"]') || demoTabs[0];
+      const x = active.offsetLeft, w = active.offsetWidth;
+      if (canAnimate && !instant) {
+        gsap.to(indicator, { x, width: w, duration: 0.5, ease: 'back.out(1.2)', overwrite: true });
+      } else if (hasGsap) {
+        gsap.set(indicator, { x, width: w });
+      } else {
+        indicator.style.transform = `translateX(${x}px)`;
+        indicator.style.width = `${w}px`;
+      }
+    };
+    moveIndicator(true);
+    demoTabs.forEach(button => button.addEventListener('click', () => moveIndicator(false)));
+    window.addEventListener('resize', () => moveIndicator(true));
+  }
   demoTabs.forEach((button, index) => {
     button.tabIndex = button.getAttribute('aria-selected') === 'true' ? 0 : -1;
     button.addEventListener('keydown', event => {

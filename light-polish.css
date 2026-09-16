@@ -132,7 +132,18 @@
 /* Landing has a quiet light canvas with a single navy product preview. */
 .landing-v6 { background: var(--light-canvas); color: var(--light-ink); }
 .landing-v6 .v6-nav { background: var(--light-canvas); border-color: transparent; }
-.landing-v6 .v6-nav.is-scrolled { background: rgb(245 247 250 / 96%); border-color: var(--light-rule); box-shadow: none; }
+.landing-v6 .v6-nav.is-scrolled {
+  background: color-mix(in srgb, var(--light-surface) 72%, transparent);
+  border-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 65%),
+    inset 0 0 0 0.5px rgb(255 255 255 / 25%),
+    0 0 0 0.5px rgb(20 32 51 / 8%),
+    var(--shadow-card);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .landing-v6 .v6-nav.is-scrolled { background: var(--light-surface); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: var(--shadow-card); }
+}
 .landing-v6 .v6-logo img { filter: none; }
 .landing-v6 .v6-nav-links a, .landing-v6 .v6-login, .landing-v6 .v6-hero-actions a { color: var(--light-ink-soft); }
 .landing-v6 .v6-nav-links a:hover, .landing-v6 .v6-login:hover, .landing-v6 .v6-hero-actions a:hover { color: var(--light-blue); }
@@ -144,8 +155,10 @@
 .landing-v6 .v6-hero-copy > p:not(.v6-note), .landing-v6 .v6-section-head p, .landing-v6 .v6-feature-copy p, .landing-v6 .v6-scenario p, .landing-v6 .v6-pricing p, .landing-v6 .v6-security p, .landing-v6 .v6-support p, .landing-v6 .v6-legal p { color: var(--light-ink-soft); }
 .landing-v6 .v6-hero-demo, .landing-v6 .v6-product, .landing-v6 .v6-feature-visual { background: var(--light-surface); border-color: var(--light-rule-strong); box-shadow: none; }
 .landing-v6 .v6-demo-toolbar, .landing-v6 .v6-trust, .landing-v6 .v6-reassurance, .landing-v6 .v6-workflow, .landing-v6 .v6-features, .landing-v6 .v6-scenario, .landing-v6 .v6-pricing, .landing-v6 .v6-security, .landing-v6 .v6-support, .landing-v6 .v6-faq, .landing-v6 .v6-final, .landing-v6 .v6-legal, .landing-v6 .v6-footer { border-color: var(--light-rule); }
-.landing-v6 .v6-demo-tabs button[aria-selected="true"], .landing-v6 .v6-overview-head button { background: var(--light-blue); color: #fff; }
-.landing-v6 .v6-demo-tabs button, .landing-v6 .v6-overview-head h3, .landing-v6 .v6-payment h3, .landing-v6 .v6-invoice strong, .landing-v6 .v6-doc-list strong { color: var(--light-ink); }
+.landing-v6 .v6-overview-head button { background: var(--light-blue); color: #fff; }
+.landing-v6 .v6-demo-tabs button[aria-selected="true"] { background: transparent; color: var(--light-ink); }
+.landing-v6 .v6-demo-tabs button { color: var(--light-ink-soft); }
+.landing-v6 .v6-overview-head h3, .landing-v6 .v6-payment h3, .landing-v6 .v6-invoice strong, .landing-v6 .v6-doc-list strong { color: var(--light-ink); }
 .landing-v6 .v6-overview-head span, .landing-v6 .v6-metrics dt, .landing-v6 .v6-doc-list span, .landing-v6 .v6-demo-note { color: var(--light-muted); }
 .landing-v6 .v6-metrics, .landing-v6 .v6-metrics div, .landing-v6 .v6-doc-list > div, .landing-v6 .v6-invoice-line, .landing-v6 .v6-invoice-sum { border-color: var(--light-rule); }
 .landing-v6 .v6-metrics dd, .landing-v6 .v6-invoice-sum strong { color: var(--light-ink); }
