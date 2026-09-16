@@ -5,7 +5,7 @@
   const copy = {
     SK: {
       login: 'Prihlásiť sa', contact: 'Kontakt',
-      navHow: 'Ako to funguje', navFeatures: 'Funkcie', navFaq: 'Časté otázky',
+      navFeatures: 'Produkt', navFaq: 'Časté otázky',
       heroEyebrow: 'Fakturácia pre Česko a Slovensko',
       heroTitle: 'Od práce k platbe. Načas.',
       heroCopy: 'Vystav profesionálny doklad, pridaj QR platbu a sleduj úhradu. V slovenčine aj češtine, na počítači aj v mobile.',
@@ -17,11 +17,7 @@
       demoNotePayment: 'Klient naskenuje a zaplatí presnú sumu, bez prepisovania.',
       customer: 'Odberateľ', total: 'Celkom',
       cloud: 'Cloudové dáta', statement: 'Doklad odošleš dnes. O platbe budeš vedieť zajtra.',
-      workflowTitle: 'Od údajov k úhrade.', workflowCopy: 'Jeden súvislý postup. Bez prepisovania údajov medzi tabuľkou, PDF a bankou.',
-      workflowOne: 'Vyplň, čo treba', workflowOneCopy: 'Odberateľ, položky, DPH, splatnosť a účet. Uložené údaje nabudúce len vyberieš.',
-      workflowTwo: 'Skontroluj doklad', workflowTwoCopy: 'Pred odoslaním vidíš čistý náhľad PDF aj správne údaje pre QR platbu.',
-      workflowThree: 'Pošli a sleduj', workflowThreeCopy: 'Faktúru odošleš klientovi a stav úhrady ostane na jednom mieste.',
-      tabOverview: 'Prehľad', tabInvoice: 'Faktúra', tabPayment: 'QR platba', overview: 'Prehľad', workspace: 'Tvoj pracovný priestor',
+      overview: 'Prehľad', workspace: 'Tvoj pracovný priestor',
       newInvoice: 'Nová faktúra', income: 'Príjmy', waiting: 'Čaká na úhradu', paid: 'Uhradené', sent: 'Odoslané', overdue: 'Po splatnosti',
       invoice: 'Faktúra', supplier: 'Dodávateľ', consultation: 'Konzultácia značky', showPayment: 'Zobraziť QR platbu',
       payment: 'QR platba', paymentReady: 'Údaje sú pripravené.', paymentCopy: 'Banková aplikácia načíta účet, sumu aj variabilný symbol.',
@@ -35,10 +31,7 @@
       featThreeCopy: 'Stavy Uhradené, Čaká na úhradu a Po splatnosti na jednom mieste, s vyhľadávaním a filtrom podľa stavu.',
       featFourTitle: 'Faktúry dostupné, nech si kdekoľvek.',
       featFourCopy: 'Cloudový účet funguje na počítači aj v mobile. Export do CSV alebo Excelu kedykoľvek, keď potrebuješ dáta inde.',
-      scenarioTitle: 'Od vystavenia po úhradu bez zbytočných krokov.',
-      scenarioCopy: 'Namiesto tabuľky, samostatného PDF a ručného sledovania platby je to jeden súvislý postup: od vyplnenia po označenie ako uhradené.',
-      scenarioOne: 'Faktúra uložená', scenarioTwo: 'PDF odoslané klientovi', scenarioThree: 'Platba označená ako uhradená',
-      pricingTitle: 'Začni bez záväzku.', pricingCopy: 'Najprv si prejdi celý postup. Platobnú kartu pri registrácii nepotrebuješ.',
+      pricingCopy: 'Najprv si prejdi celý postup. Platobnú kartu pri registrácii nepotrebuješ.',
       securityTitle: 'Dáta, ktorým môžeš dôverovať.',
       securityCopy: 'Toto sú konkrétne veci, ktoré Načas robí s tvojimi dátami, nič viac a nič menej.',
       secOneTitle: 'Dáta v cloude, viazané na tvoj účet',
@@ -69,7 +62,7 @@
     },
     CZ: {
       login: 'Přihlásit se', contact: 'Kontakt',
-      navHow: 'Jak to funguje', navFeatures: 'Funkce', navFaq: 'Časté dotazy',
+      navFeatures: 'Produkt', navFaq: 'Časté dotazy',
       heroEyebrow: 'Fakturace pro Česko a Slovensko',
       heroTitle: 'Od práce k platbě. Načas.',
       heroCopy: 'Vystav profesionální doklad, přidej QR platbu a sleduj úhradu. V češtině i slovenštině, na počítači i v mobilu.',
@@ -81,11 +74,7 @@
       demoNotePayment: 'Klient naskenuje a zaplatí přesnou částku, bez přepisování.',
       customer: 'Odběratel', total: 'Celkem',
       cloud: 'Cloudová data', statement: 'Doklad odešleš dnes. O platbě budeš vědět zítra.',
-      workflowTitle: 'Od údajů k úhradě.', workflowCopy: 'Jeden souvislý postup. Bez přepisování údajů mezi tabulkou, PDF a bankou.',
-      workflowOne: 'Vyplň, co je potřeba', workflowOneCopy: 'Odběratel, položky, DPH, splatnost a účet. Uložené údaje příště jen vybereš.',
-      workflowTwo: 'Zkontroluj doklad', workflowTwoCopy: 'Před odesláním vidíš čistý náhled PDF i správné údaje pro QR platbu.',
-      workflowThree: 'Pošli a sleduj', workflowThreeCopy: 'Fakturu odešleš klientovi a stav úhrady zůstane na jednom místě.',
-      tabOverview: 'Přehled', tabInvoice: 'Faktura', tabPayment: 'QR platba', overview: 'Přehled', workspace: 'Tvůj pracovní prostor',
+      overview: 'Přehled', workspace: 'Tvůj pracovní prostor',
       newInvoice: 'Nová faktura', income: 'Příjmy', waiting: 'Čeká na úhradu', paid: 'Uhrazeno', sent: 'Odesláno', overdue: 'Po splatnosti',
       invoice: 'Faktura', supplier: 'Dodavatel', consultation: 'Konzultace značky', showPayment: 'Zobrazit QR platbu',
       payment: 'QR platba', paymentReady: 'Údaje jsou připravené.', paymentCopy: 'Bankovní aplikace načte účet, částku i variabilní symbol.',
@@ -99,10 +88,7 @@
       featThreeCopy: 'Stavy Uhrazeno, Čeká na úhradu a Po splatnosti na jednom místě, s vyhledáváním a filtrem podle stavu.',
       featFourTitle: 'Faktury dostupné, ať jsi kdekoli.',
       featFourCopy: 'Cloudový účet funguje na počítači i v mobilu. Export do CSV nebo Excelu kdykoli, když potřebuješ data jinde.',
-      scenarioTitle: 'Od vystavení po úhradu bez zbytečných kroků.',
-      scenarioCopy: 'Místo tabulky, samostatného PDF a ručního sledování platby je to jeden souvislý postup: od vyplnění po označení jako uhrazeno.',
-      scenarioOne: 'Faktura uložena', scenarioTwo: 'PDF odesláno klientovi', scenarioThree: 'Platba označena jako uhrazená',
-      pricingTitle: 'Začni bez závazku.', pricingCopy: 'Nejprve si projdi celý postup. Platební kartu při registraci nepotřebuješ.',
+      pricingCopy: 'Nejprve si projdi celý postup. Platební kartu při registraci nepotřebuješ.',
       securityTitle: 'Data, kterým můžeš věřit.',
       securityCopy: 'Toto jsou konkrétní věci, které Načas dělá s tvými daty, nic víc a nic míň.',
       secOneTitle: 'Data v cloudu, vázaná na tvůj účet',
@@ -155,7 +141,7 @@
   }
 
   function prepareWordMotion() {
-    const headings = root.querySelectorAll('.v6-hero h1, .v6-section-head h2, .v6-showcase-copy h2, .v6-scenario h2, .v6-pricing h2, .v6-security h2, .v6-support h2, .v6-faq > h2, .v6-final h2, .v6-legal h2');
+    const headings = root.querySelectorAll('.v6-hero h1, .v6-section-head h2, .v6-showcase-copy h2, .v6-security h2, .v6-support h2, .v6-faq > h2, .v6-final h2, .v6-legal h2');
     headings.forEach(heading => {
       const text = heading.textContent.trim();
       if (!text || heading.querySelector('.v6-word')) return;
@@ -238,7 +224,7 @@
     }
   }
 
-  const scrollRevealTargets = [...root.querySelectorAll('.v6-workflow, .v6-showcase, .v6-features, .v6-scenario, .v6-pricing, .v6-security, .v6-support, .v6-faq, .v6-final, .v6-legal, .v6-footer')];
+  const scrollRevealTargets = [...root.querySelectorAll('.v6-showcase, .v6-cloud, .v6-security, .v6-support, .v6-faq, .v6-final, .v6-legal, .v6-footer')];
   if (!reduceMotion && scrollRevealTargets.length) {
     // Ambient decorative loops (signal sweep, product breathe, orbit pulse, line scan,
     // node pulse) are pure CSS and keyed off this class; keep adding it independently
@@ -289,62 +275,6 @@
     scrollRevealTargets.forEach(buildSectionReveal);
   }
 
-  const flow = root.querySelector('[data-flow]');
-  const flowSteps = [...root.querySelectorAll('[data-flow-step]')];
-
-  function setFlowStep(currentIndex) {
-    flow?.style.setProperty('--v6-flow-progress', String((currentIndex + 1) / Math.max(flowSteps.length, 1)));
-    flowSteps.forEach((step, index) => {
-      step.classList.toggle('is-current', index === currentIndex);
-      step.classList.toggle('is-past', index < currentIndex);
-      if (index === currentIndex) step.setAttribute('aria-current', 'step');
-      else step.removeAttribute('aria-current');
-    });
-  }
-
-  if (flowSteps.length) {
-    setFlowStep(reduceMotion ? flowSteps.length - 1 : 0);
-    if ('IntersectionObserver' in window && !reduceMotion) {
-      const flowObserver = new IntersectionObserver(entries => {
-        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setFlowStep(flowSteps.indexOf(visible.target));
-      }, { threshold: [0.35, 0.6, 0.85], rootMargin: '-20% 0px -38%' });
-      flowSteps.forEach(step => flowObserver.observe(step));
-    }
-  }
-  const demoTabs = [...root.querySelectorAll('[data-demo-tab]')];
-  const demoTabsWrap = root.querySelector('.v6-demo-tabs');
-  if (demoTabsWrap && demoTabs.length) {
-    const indicator = document.createElement('span');
-    indicator.className = 'v6-demo-tabs-indicator';
-    indicator.setAttribute('aria-hidden', 'true');
-    demoTabsWrap.prepend(indicator);
-    const moveIndicator = (instant) => {
-      const active = demoTabsWrap.querySelector('[data-demo-tab][aria-selected="true"]') || demoTabs[0];
-      const x = active.offsetLeft, w = active.offsetWidth;
-      if (canAnimate && !instant) {
-        gsap.to(indicator, { x, width: w, duration: 0.5, ease: 'back.out(1.2)', overwrite: true });
-      } else if (hasGsap) {
-        gsap.set(indicator, { x, width: w });
-      } else {
-        indicator.style.transform = `translateX(${x}px)`;
-        indicator.style.width = `${w}px`;
-      }
-    };
-    moveIndicator(true);
-    demoTabs.forEach(button => button.addEventListener('click', () => moveIndicator(false)));
-    window.addEventListener('resize', () => moveIndicator(true));
-  }
-  demoTabs.forEach((button, index) => {
-    button.tabIndex = button.getAttribute('aria-selected') === 'true' ? 0 : -1;
-    button.addEventListener('keydown', event => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault();
-      const nextIndex = event.key === 'Home' ? 0 : event.key === 'End' ? demoTabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + demoTabs.length) % demoTabs.length;
-      demoTabs[nextIndex].focus();
-      demoTabs[nextIndex].click();
-    });
-  });
   const faqTimers = new WeakMap();
   root.querySelectorAll('.v6-faq h3 button').forEach(button => {
     button.addEventListener('click', () => {
@@ -429,25 +359,5 @@
           heroDemo.style.setProperty('--v6-tilt', `${(parallax.p * -0.8).toFixed(2)}deg`);
         }
       });
-  }
-
-  const featureQr = root.querySelector('.v6-feature-qr');
-  if (featureQr && window.qrcode) {
-    try {
-      const target = new URL(window.location.href);
-      target.hash = 'landing';
-      const code = window.qrcode(0, 'M');
-      code.addData(target.toString());
-      code.make();
-      featureQr.innerHTML = code.createSvgTag({
-        cellSize: 3,
-        margin: 0,
-        scalable: true,
-        alt: 'QR odkaz na Načas',
-        title: 'Otvoriť Načas'
-      });
-    } catch (error) {
-      console.error('landing url qr', error);
-    }
   }
 })();

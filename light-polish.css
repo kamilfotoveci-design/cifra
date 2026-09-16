@@ -154,7 +154,7 @@
 .landing-v6 .v6-eyebrow { color: var(--light-blue); }
 .landing-v6 .v6-hero-copy > p:not(.v6-note), .landing-v6 .v6-section-head p, .landing-v6 .v6-feature-copy p, .landing-v6 .v6-scenario p, .landing-v6 .v6-pricing p, .landing-v6 .v6-security p, .landing-v6 .v6-support p, .landing-v6 .v6-legal p { color: var(--light-ink-soft); }
 .landing-v6 .v6-hero-demo, .landing-v6 .v6-product, .landing-v6 .v6-feature-visual { background: var(--light-surface); border-color: var(--light-rule-strong); box-shadow: none; }
-.landing-v6 .v6-demo-toolbar, .landing-v6 .v6-trust, .landing-v6 .v6-reassurance, .landing-v6 .v6-workflow, .landing-v6 .v6-features, .landing-v6 .v6-scenario, .landing-v6 .v6-pricing, .landing-v6 .v6-security, .landing-v6 .v6-support, .landing-v6 .v6-faq, .landing-v6 .v6-final, .landing-v6 .v6-legal, .landing-v6 .v6-footer { border-color: var(--light-rule); }
+.landing-v6 .v6-demo-toolbar, .landing-v6 .v6-reassurance, .landing-v6 .v6-showcase, .landing-v6 .v6-cloud, .landing-v6 .v6-security, .landing-v6 .v6-support, .landing-v6 .v6-faq, .landing-v6 .v6-final, .landing-v6 .v6-legal, .landing-v6 .v6-footer { border-color: var(--light-rule); }
 .landing-v6 .v6-overview-head button { background: var(--light-blue); color: #fff; }
 .landing-v6 .v6-demo-tabs button[aria-selected="true"] { background: transparent; color: var(--light-ink); }
 .landing-v6 .v6-demo-tabs button { color: var(--light-ink-soft); }
