@@ -576,6 +576,127 @@ html[lang="cz"] .app .invoice-table td:nth-child(3)::before {
   gap: 12px;
 }
 
+.app .template-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.app .tpl-option {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  transition: border-color 150ms var(--ease-out);
+}
+
+.app .tpl-option input {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+}
+
+.app .tpl-option.is-active {
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+}
+
+.app .tpl-option strong {
+  color: var(--color-ink);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.app .tpl-option span {
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.app .tpl-swatch {
+  height: 84px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.app .tpl-swatch .tpl-mark {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--color-rule-strong);
+}
+
+.app .tpl-swatch .tpl-mark.accent {
+  background: var(--color-accent);
+}
+
+.app .tpl-swatch .tpl-row {
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  background: var(--color-rule-strong);
+}
+
+.app .tpl-swatch .tpl-row.short {
+  width: 60%;
+}
+
+.app .tpl-swatch .tpl-total {
+  margin-top: auto;
+  height: 8px;
+  width: 45%;
+  align-self: flex-end;
+  border-radius: 2px;
+  background: var(--color-rule-strong);
+}
+
+.app .tpl-swatch .tpl-total.accent {
+  background: var(--color-accent);
+}
+
+.app .tpl-swatch-modern .tpl-band {
+  height: 22px;
+  margin: -10px -10px 0;
+  background: var(--color-accent);
+}
+
+.app .tpl-swatch-modern .tpl-row,
+.app .tpl-swatch-modern .tpl-row.short {
+  background: var(--color-rule);
+}
+
+.app .tpl-swatch-minimal {
+  gap: 8px;
+  justify-content: center;
+}
+
+.app .tpl-swatch-minimal .tpl-rule {
+  height: 1px;
+  width: 100%;
+  background: var(--color-rule-strong);
+}
+
+.app .tpl-swatch-minimal .tpl-row {
+  height: 3px;
+  background: var(--color-rule);
+}
+
+@media (min-width: 40rem) {
+  .app .template-picker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 .app .invoice-detail-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

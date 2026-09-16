@@ -50,6 +50,23 @@
 .app .invoice-paper-v2 .invoice-sums b strong{color:#3157d5;font-size:19px;letter-spacing:-.02em}
 .app .invoice-paper-v2 .invoice-qr{grid-column:1/-1;justify-self:start;display:grid;grid-template-columns:88px auto;align-items:center;gap:12px;margin-top:2px;color:#68758a;font-size:10px}
 .app .invoice-paper-v2 .invoice-qr img{grid-row:1;width:88px;height:88px}.app .invoice-paper-v2 .invoice-qr span{grid-column:2;max-width:16ch;line-height:1.35}
+
+/* Template: Moderná — bolder accent presence on the status badge and total, no new colors. */
+.app .invoice-paper-v2.tpl-modern .invoice-status{background:#3157d5;color:#fff}
+.app .invoice-paper-v2.tpl-modern .invoice-status-paid{background:#157653}
+.app .invoice-paper-v2.tpl-modern .invoice-status-late{background:#b42318}
+.app .invoice-paper-v2.tpl-modern .invoice-sums b{border-top-color:#3157d5}
+.app .invoice-paper-v2.tpl-modern .invoice-sums b strong{display:inline-block;margin-top:4px;padding:3px 10px;border-radius:6px;background:#eef2ff}
+
+/* Template: Minimalistická — hairlines only, no accent color beyond links. */
+.app .invoice-paper-v2.tpl-minimal .invoice-status{padding:0;background:transparent;color:#68758a;border-radius:0;font-weight:700}
+.app .invoice-paper-v2.tpl-minimal .invoice-status-paid,
+.app .invoice-paper-v2.tpl-minimal .invoice-status-late{background:transparent;color:#68758a}
+.app .invoice-paper-v2.tpl-minimal .invoice-parties small{color:#68758a}
+.app .invoice-paper-v2.tpl-minimal .invoice-payment>small{color:#68758a}
+.app .invoice-paper-v2.tpl-minimal .invoice-paper-table th{background:transparent}
+.app .invoice-paper-v2.tpl-minimal .invoice-sums b strong{color:#182337}
+.app .invoice-paper-v2.tpl-minimal .invoice-nacas-mark{opacity:.65}
 .app .invoice-paper-v2 .invoice-stamp{position:static;display:block;width:110px;height:58px;margin:18px 0 0 auto;object-fit:contain;object-position:right center}
 @media(max-width:720px){
   .app .invoice-paper-v2{padding:24px 20px 30px;overflow:hidden;border-radius:10px}
