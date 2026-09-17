@@ -306,13 +306,93 @@ body { font-synthesis: none; -webkit-font-smoothing: antialiased; }
 .app .field select:focus,
 .app .field textarea:focus { border-color: var(--ui-blue); box-shadow: 0 0 0 3px rgb(49 87 213 / 12%); outline: 0; }
 
-.app .invoice-table thead th { color: var(--ui-muted); font-size: 12px; letter-spacing: .02em; }
+.app .invoice-table thead th { background: transparent; border-block-end: 1px solid var(--ui-rule); color: var(--ui-muted); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
 .app .invoice-table tbody tr { transition: background-color 150ms ease; }
 .app .invoice-table tbody tr:hover { background: #f8faff; }
 .app .invoice-table td { color: var(--ui-ink); }
 .app .invoice-table td small { color: var(--ui-muted); }
 .app .invoice-table .amount { font-family: var(--font-display); font-variant-numeric: tabular-nums; }
 .app .status { border-radius: 7px; }
+
+.app .invoice-empty {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 22rem;
+  padding: 56px 24px 60px;
+  text-align: center;
+}
+.app .invoice-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-block-end: 6px;
+  border-radius: 50%;
+  background: var(--ui-blue-soft);
+  color: var(--ui-blue);
+}
+.app .invoice-empty-icon svg { width: 24px; height: 24px; }
+.app .invoice-empty strong {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ui-ink);
+}
+.app .invoice-empty p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ui-muted);
+}
+.app .invoice-empty .btn {
+  margin-block-start: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.app .invoice-empty .btn .ui-icon svg { width: 16px; height: 16px; }
+
+.app .chart-wrap:has(.chart-empty) { display: flex; align-items: center; justify-content: center; min-height: 240px; }
+.app .chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 20rem;
+  text-align: center;
+}
+.app .chart-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-block-end: 4px;
+  border-radius: 50%;
+  background: var(--ui-blue-soft);
+  color: var(--ui-blue);
+}
+.app .chart-empty-icon svg { width: 21px; height: 21px; }
+.app .chart-empty strong {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ui-ink);
+}
+.app .chart-empty p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ui-muted);
+}
+.app .chart-empty .btn {
+  margin-block-start: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.app .chart-empty .btn .ui-icon svg { width: 15px; height: 15px; }
 
 .app .settings-form { background: var(--ui-surface); }
 .app .settings-section { padding-block: 24px; }
