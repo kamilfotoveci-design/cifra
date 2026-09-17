@@ -825,6 +825,7 @@ h3,
 /* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · macrostructure: Narrative Workflow · nav: N9 · hero: H2 split diptych · enrichment: one live pocket workflow · footer: Ft5 · theme: locked Načas · contrast: pass (40–41) · slop: pass (42–49) · mobile: pass (34, 49, 50–57) */
 .landing-v6 {
   --v6-page: min(calc(100% - 2rem), var(--page-max));
+  --v6-font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
   --v6-ease-signature: cubic-bezier(0.23, 1, 0.32, 1);
   --v6-dur-quick: 120ms;
   --v6-dur-standard: 420ms;
@@ -990,8 +991,11 @@ body { overflow-x: clip; }
   min-height: 3rem;
   padding-inline: var(--space-lg);
   border-radius: 999px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-family: var(--v6-font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   transition: transform var(--dur-micro) var(--ease-out);
 }
 
@@ -1036,10 +1040,10 @@ body { overflow-x: clip; }
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: var(--text-display);
+  font-size: clamp(3.4rem, 6.4vw, 5.75rem);
   font-weight: 700;
-  line-height: 1.03;
-  letter-spacing: -0.035em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   overflow-wrap: anywhere;
 }
 
@@ -1337,24 +1341,52 @@ body { overflow-x: clip; }
   border: 0;
 }
 
-.v6-eyebrow { margin: 0 0 var(--space-sm); color: var(--color-accent); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.01em; }
+.v6-eyebrow {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-accent);
+  font-family: var(--v6-font-mono);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
 .v6-step-tag {
+  position: relative;
   display: flex;
   align-items: baseline;
   gap: 10px;
   margin: 0 0 var(--space-sm);
   color: var(--color-muted);
+  font-family: var(--v6-font-mono);
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .v6-step-tag b {
-  font-family: var(--font-mono);
+  font-family: var(--v6-font-mono);
   font-size: 12px;
   font-weight: 700;
   color: var(--color-accent);
+}
+
+.v6-step-ghost {
+  position: absolute;
+  inset-block-start: -0.35em;
+  inset-inline-start: -0.05em;
+  z-index: -1;
+  color: transparent;
+  font-family: var(--v6-font-mono);
+  font-size: clamp(9rem, 16vw, 15rem);
+  font-weight: 700;
+  line-height: 1;
+  -webkit-text-stroke: 1px var(--color-rule-strong);
+  user-select: none;
+  pointer-events: none;
+}
+@media (max-width: 74.99rem) {
+  .v6-step-ghost { display: none; }
 }
 
 .v6-scroll-progress {
@@ -1572,6 +1604,7 @@ body { overflow-x: clip; }
 
     <section class="v6-showcase" id="faktura" aria-labelledby="faktTitle">
       <div class="v6-showcase-copy">
+        <span class="v6-step-ghost" aria-hidden="true">01</span>
         <p class="v6-step-tag"><b>01</b><span data-v6-copy="stepOne">Vystav</span></p>
         <h2 id="faktTitle" data-v6-copy="featOneTitle">Faktúra, ktorá vyzerá profesionálne.</h2>
         <p data-v6-copy="featOneCopy">Klient, položky, DPH, splatnosť a účet. Uložené údaje nabudúce len vyberieš. Hotový PDF s logom a pečiatkou je pripravený na odoslanie.</p>
@@ -1590,6 +1623,7 @@ body { overflow-x: clip; }
 
     <section class="v6-showcase v6-showcase-reverse" id="qr-platba" aria-labelledby="qrTitle">
       <div class="v6-showcase-copy">
+        <span class="v6-step-ghost" aria-hidden="true">02</span>
         <p class="v6-step-tag"><b>02</b><span data-v6-copy="stepTwo">Odošli</span></p>
         <h2 id="qrTitle" data-v6-copy="featTwoTitle">QR platba, ktorú netreba prepisovať.</h2>
         <p data-v6-copy="featTwoCopy">Česká QR Platba aj slovenské PAY by square, s presnou sumou a variabilným symbolom. Klient naskenuje v bankovej aplikácii a je hotovo.</p>
@@ -1604,6 +1638,7 @@ body { overflow-x: clip; }
 
     <section class="v6-showcase" id="stav-uhrad" aria-labelledby="stavTitle">
       <div class="v6-showcase-copy">
+        <span class="v6-step-ghost" aria-hidden="true">03</span>
         <p class="v6-step-tag"><b>03</b><span data-v6-copy="stepThree">Sleduj</span></p>
         <h2 id="stavTitle" data-v6-copy="featThreeTitle">Vždy vieš, čo je uhradené.</h2>
         <p data-v6-copy="featThreeCopy">Stavy Uhradené, Čaká na úhradu a Po splatnosti na jednom mieste, s vyhľadávaním a filtrom podľa stavu.</p>
@@ -2897,6 +2932,29 @@ var baseToggleProfileMenuV4=toggleProfileMenu;toggleProfileMenu=function(){baseT
       gsap.fromTo(inner, { y: '-1rem' }, {
         y: '1rem', ease: 'none',
         scrollTrigger: { trigger: inner, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+      });
+    });
+  }
+
+  // Count the hero demo's headline numbers up from zero the first time they
+  // scroll into view — a small "living" touch that reads as real, moving data
+  // rather than a static screenshot. Skipped entirely under reduced motion or
+  // without GSAP, where the server-rendered static value is already correct.
+  const heroMetricValues = root.querySelectorAll('.v6-metrics dd');
+  if (canAnimate && heroMetricValues.length) {
+    const moneyFormat = new Intl.NumberFormat('sk-SK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    heroMetricValues.forEach(dd => {
+      const target = parseFloat(dd.textContent.replace(/[^\d,.-]/g, '').replace(',', '.'));
+      if (!isFinite(target)) return;
+      const proxy = { v: 0 };
+      ScrollTrigger.create({
+        trigger: dd,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => gsap.to(proxy, {
+          v: target, duration: 1.1, ease: 'v6Signature',
+          onUpdate: () => { dd.textContent = `${moneyFormat.format(proxy.v)} €`; }
+        })
       });
     });
   }

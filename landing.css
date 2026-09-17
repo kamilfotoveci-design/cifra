@@ -1,6 +1,7 @@
 /* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 · macrostructure: Narrative Workflow · nav: N9 · hero: H2 split diptych · enrichment: one live pocket workflow · footer: Ft5 · theme: locked Načas · contrast: pass (40–41) · slop: pass (42–49) · mobile: pass (34, 49, 50–57) */
 .landing-v6 {
   --v6-page: min(calc(100% - 2rem), var(--page-max));
+  --v6-font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
   --v6-ease-signature: cubic-bezier(0.23, 1, 0.32, 1);
   --v6-dur-quick: 120ms;
   --v6-dur-standard: 420ms;
@@ -166,8 +167,11 @@ body { overflow-x: clip; }
   min-height: 3rem;
   padding-inline: var(--space-lg);
   border-radius: 999px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-family: var(--v6-font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   transition: transform var(--dur-micro) var(--ease-out);
 }
 
@@ -212,10 +216,10 @@ body { overflow-x: clip; }
   margin: 0;
   color: var(--color-ink);
   font-family: var(--font-display);
-  font-size: var(--text-display);
+  font-size: clamp(3.4rem, 6.4vw, 5.75rem);
   font-weight: 700;
-  line-height: 1.03;
-  letter-spacing: -0.035em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   overflow-wrap: anywhere;
 }
 
@@ -513,24 +517,52 @@ body { overflow-x: clip; }
   border: 0;
 }
 
-.v6-eyebrow { margin: 0 0 var(--space-sm); color: var(--color-accent); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.01em; }
+.v6-eyebrow {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-accent);
+  font-family: var(--v6-font-mono);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
 .v6-step-tag {
+  position: relative;
   display: flex;
   align-items: baseline;
   gap: 10px;
   margin: 0 0 var(--space-sm);
   color: var(--color-muted);
+  font-family: var(--v6-font-mono);
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .v6-step-tag b {
-  font-family: var(--font-mono);
+  font-family: var(--v6-font-mono);
   font-size: 12px;
   font-weight: 700;
   color: var(--color-accent);
+}
+
+.v6-step-ghost {
+  position: absolute;
+  inset-block-start: -0.35em;
+  inset-inline-start: -0.05em;
+  z-index: -1;
+  color: transparent;
+  font-family: var(--v6-font-mono);
+  font-size: clamp(9rem, 16vw, 15rem);
+  font-weight: 700;
+  line-height: 1;
+  -webkit-text-stroke: 1px var(--color-rule-strong);
+  user-select: none;
+  pointer-events: none;
+}
+@media (max-width: 74.99rem) {
+  .v6-step-ghost { display: none; }
 }
 
 .v6-scroll-progress {

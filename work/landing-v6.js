@@ -300,6 +300,29 @@
     });
   }
 
+  // Count the hero demo's headline numbers up from zero the first time they
+  // scroll into view — a small "living" touch that reads as real, moving data
+  // rather than a static screenshot. Skipped entirely under reduced motion or
+  // without GSAP, where the server-rendered static value is already correct.
+  const heroMetricValues = root.querySelectorAll('.v6-metrics dd');
+  if (canAnimate && heroMetricValues.length) {
+    const moneyFormat = new Intl.NumberFormat('sk-SK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    heroMetricValues.forEach(dd => {
+      const target = parseFloat(dd.textContent.replace(/[^\d,.-]/g, '').replace(',', '.'));
+      if (!isFinite(target)) return;
+      const proxy = { v: 0 };
+      ScrollTrigger.create({
+        trigger: dd,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => gsap.to(proxy, {
+          v: target, duration: 1.1, ease: 'v6Signature',
+          onUpdate: () => { dd.textContent = `${moneyFormat.format(proxy.v)} €`; }
+        })
+      });
+    });
+  }
+
   const faqTimers = new WeakMap();
   root.querySelectorAll('.v6-faq h3 button').forEach(button => {
     button.addEventListener('click', () => {
