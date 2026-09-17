@@ -10,6 +10,7 @@
       heroTitle: 'Od práce k platbe. Načas.',
       heroCopy: 'Vystav profesionálny doklad, pridaj QR platbu a sleduj úhradu. V slovenčine aj češtine, na počítači aj v mobile.',
       heroCta: 'Vystaviť faktúru zdarma', tourLink: 'Pozrieť ukážku',
+      stepOne: 'Vystav', stepTwo: 'Odošli', stepThree: 'Sleduj', stepFour: 'Kdekoľvek',
       reassureOne: 'Bez platobnej karty', reassureTwo: 'Prvá faktúra za pár minút', reassureThree: 'Pre Česko aj Slovensko',
       demoTitle: 'Skutočný produkt, nie ukážka',
       demoNoteOverview: 'Vidíš, čo je uhradené a čo ešte čaká na peniaze.',
@@ -67,6 +68,7 @@
       heroTitle: 'Od práce k platbě. Načas.',
       heroCopy: 'Vystav profesionální doklad, přidej QR platbu a sleduj úhradu. V češtině i slovenštině, na počítači i v mobilu.',
       heroCta: 'Vystavit fakturu zdarma', tourLink: 'Prohlédnout ukázku',
+      stepOne: 'Vystav', stepTwo: 'Odešli', stepThree: 'Sleduj', stepFour: 'Kdekoli',
       reassureOne: 'Bez platební karty', reassureTwo: 'První faktura za pár minut', reassureThree: 'Pro Česko i Slovensko',
       demoTitle: 'Skutečný produkt, ne ukázka',
       demoNoteOverview: 'Vidíš, co je uhrazeno a co ještě čeká na peníze.',
@@ -243,6 +245,13 @@
       duration: 0.6, ease: 'v6Signature'
     }, 0);
 
+    const stepTag = section.querySelector('.v6-step-tag');
+    if (stepTag) {
+      tl.fromTo(stepTag, { opacity: 0, x: '-0.6rem' }, {
+        opacity: 1, x: 0, duration: 0.42, ease: 'v6Signature'
+      }, 0);
+    }
+
     const headings = section.querySelectorAll('h2, h3');
     if (headings.length) {
       tl.fromTo(headings, { clipPath: 'inset(0% 0% 100% 0%)', y: '1rem' }, {
@@ -360,6 +369,25 @@
     const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  const scrollProgress = root.querySelector('.v6-scroll-progress');
+  if (scrollProgress) {
+    if (canAnimate) {
+      gsap.fromTo(scrollProgress, { scaleX: 0 }, {
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: root, start: 'top top', end: 'bottom bottom', scrub: true }
+      });
+    } else {
+      const updateProgress = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+        scrollProgress.style.transform = `scaleX(${ratio})`;
+      };
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+    }
   }
 
   const heroDemo = root.querySelector('.v6-hero-demo');

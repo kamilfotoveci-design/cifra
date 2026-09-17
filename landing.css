@@ -8,7 +8,7 @@
   --v6-section-pad: clamp(3rem, 7vw, 6rem);
   min-height: 100%;
   overflow: clip;
-  background: var(--color-paper-2);
+  background: var(--color-paper-3);
   color: var(--color-ink);
   font-family: var(--font-body);
   font-synthesis: none;
@@ -165,7 +165,7 @@ body { overflow-x: clip; }
 .landing-v6 .btn {
   min-height: 3rem;
   padding-inline: var(--space-lg);
-  border-radius: var(--radius-control);
+  border-radius: 999px;
   font-weight: 700;
   letter-spacing: -0.01em;
   transition: transform var(--dur-micro) var(--ease-out);
@@ -175,6 +175,21 @@ body { overflow-x: clip; }
   border-color: var(--color-accent);
   background: var(--color-accent);
   color: var(--color-accent-ink);
+}
+
+.v6-hero-actions .btn-primary,
+.v6-final-actions .btn-primary {
+  position: relative;
+  padding-inline-end: calc(var(--space-lg) + 22px);
+}
+.v6-hero-actions .btn-primary::after,
+.v6-final-actions .btn-primary::after {
+  content: "\2192";
+  position: absolute;
+  inset-inline-end: var(--space-lg);
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  transition: transform var(--dur-micro) var(--ease-out);
 }
 
 .v6-hero {
@@ -500,6 +515,37 @@ body { overflow-x: clip; }
 
 .v6-eyebrow { margin: 0 0 var(--space-sm); color: var(--color-accent); font-weight: 700; font-size: var(--text-sm); letter-spacing: 0.01em; }
 
+.v6-step-tag {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.v6-step-tag b {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.v6-scroll-progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: calc(var(--z-sticky) + 1);
+  width: 100%;
+  height: 3px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
 .v6-reassurance {
   display: flex;
   flex-wrap: wrap;
@@ -543,8 +589,10 @@ body { overflow-x: clip; }
 
 @media (hover: hover) and (pointer: fine) {
   .landing-v6 .btn:hover, .v6-overview-head button:hover, .v6-invoice > button:hover { transform: translateY(-1px); }
-  .v6-login:hover, .v6-locale button:hover, .v6-pocket-steps button:hover { background: var(--color-paper-3); color: var(--color-ink); }
+  .v6-login:hover, .v6-locale button:hover, .v6-pocket-steps button:hover { background: var(--color-rule); color: var(--color-ink); }
   .v6-hero-actions > a:hover, .v6-footer :is(a, button):hover { color: var(--color-accent); }
+  .v6-hero-actions .btn-primary:hover::after,
+  .v6-final-actions .btn-primary:hover::after { transform: translateY(-50%) translateX(4px); }
 }
 .landing-v6 .btn:active, .v6-overview-head button:active, .v6-invoice > button:active, .v6-pocket-steps button:active { transform: translateY(1px); transition-duration: var(--dur-micro); }
 
