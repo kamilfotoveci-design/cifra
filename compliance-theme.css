@@ -62,7 +62,7 @@
 
 .app .sidebar { background: var(--ops-bg); border-color: var(--ops-border); color: var(--ops-muted); }
 .app .sidebar > .brand img { filter: brightness(0) invert(1); }
-.app .sidebar > .nav-label { color: #71717a; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; }
+.app .sidebar > .nav-label { color: #71717a; font-size: 11px; letter-spacing: .04em; }
 .app .side-nav button { color: var(--ops-muted); }
 .app .side-nav button.active { background: var(--ops-surface-2); border-color: var(--ops-blue); color: var(--ops-text); }
 .app .side-nav button:hover:not(.active) { background: var(--ops-surface); color: var(--ops-text); }
@@ -90,7 +90,7 @@
 .app .settings-grid small,
 .app .client-fields small { color: var(--ops-muted); }
 
-.app .invoice-table thead th { background: var(--ops-surface-2); border-color: var(--ops-border); color: var(--ops-muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .03em; }
+.app .invoice-table thead th { background: var(--ops-surface-2); border-color: var(--ops-border); color: var(--ops-muted); font-size: 11px; letter-spacing: .03em; }
 .app .invoice-table td { border-color: var(--ops-border); color: var(--ops-text); }
 .app .invoice-table tbody tr:hover { background: #202023; }
 .app .invoice-table td small { color: var(--ops-muted); }
@@ -131,7 +131,8 @@
 .landing-v6 .v6-trust, .landing-v6 .v6-footer { color: var(--ops-muted); }
 .landing-v6 .v6-statement p { color: #fff; }
 .landing-v6 .v6-steps li, .landing-v6 .v6-faq-list article, .landing-v6 .v6-ledger > div { border-color: var(--ops-border); }
-.landing-v6 .v6-steps > li > span, .landing-v6 .v6-ledger dt { color: var(--ops-blue); font-family: var(--font-mono); font-size: 12px; }
+.landing-v6 .v6-steps > li > span { color: var(--ops-blue); font-family: var(--font-mono); font-size: 12px; }
+.landing-v6 .v6-ledger dt { color: var(--ops-blue); }
 .landing-v6 .v6-steps p, .landing-v6 .v6-ledger dd { color: var(--ops-muted); }
 .landing-v6 .v6-feature-visual { color: var(--ops-text); }
 .landing-v6 .v6-feature-visual span, .landing-v6 .v6-feature-payment-rows span { color: var(--ops-muted); }
@@ -141,8 +142,6 @@
 .landing-v6 .v6-faq-list button > span:last-child { color: var(--ops-blue); }
 .landing-v6 .v6-legal a, .landing-v6 .v6-footer a { color: var(--ops-blue); }
 .landing-v6 .v6-footer p, .landing-v6 .v6-footer span { color: var(--ops-muted); }
-
-.app .metric-top, .app .invoice-table thead th, .app .status, .landing-v6 .v6-trust, .landing-v6 .v6-eyebrow { font-family: var(--font-mono); }
 
 @media (max-width: 59.99rem) {
   .app .sidebar { background: var(--ops-bg); }
